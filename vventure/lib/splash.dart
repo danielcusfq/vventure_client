@@ -6,7 +6,7 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new SplashScreen(
-        seconds: 10,
+        seconds: 5,
         navigateAfterSeconds: new LoginView(),
         image: new Image.asset('assets/images/vventure.png'),
         backgroundColor: Colors.white,
