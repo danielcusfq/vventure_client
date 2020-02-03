@@ -14,20 +14,20 @@ class _LoginViewState extends State<LoginView> {
   List<bool> _selections = [true, false];
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool _isLoading = false;
-
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       resizeToAvoidBottomPadding: false,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            stops: [0.1, 0.6, 0.8, 0.9],
+            stops: [0.1, 0.7, 0.9, 0.98],
             colors: [
               Color.fromRGBO(132, 94, 194, 1),
               Color.fromRGBO(166, 94, 187, 1),
@@ -59,7 +59,7 @@ class _LoginViewState extends State<LoginView> {
                     padding: const EdgeInsets.all(15.0),
                     child: new Text(
                       "LogIn as",
-                      style: TextStyle(fontSize: 26),
+                      style: TextStyle(fontSize: 24),
                     ),
                   ),
                   new ToggleButtons(
@@ -68,27 +68,25 @@ class _LoginViewState extends State<LoginView> {
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
                           "Entrepreneur",
-                          style: TextStyle(fontSize: 22),
+                          style: TextStyle(fontSize: 20),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
                           "Investor",
-                          style: TextStyle(fontSize: 22),
+                          style: TextStyle(fontSize: 20),
                         ),
                       )
                     ],
                     isSelected: _selections,
                     onPressed: (int index) {
                       setState(() {
-                        //_selections[index] = !_selections[index];
                         for (int buttonIndex = 0;
                             buttonIndex < _selections.length;
                             buttonIndex++) {
                           if (buttonIndex == index) {
-                            _selections[buttonIndex] =
-                                !_selections[buttonIndex];
+                            _selections[buttonIndex] = true;
                           } else {
                             _selections[buttonIndex] = false;
                           }
@@ -105,7 +103,6 @@ class _LoginViewState extends State<LoginView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Form(
-                        key: _formKey,
                         child: Column(
                           children: <Widget>[
                             Container(
@@ -116,14 +113,12 @@ class _LoginViewState extends State<LoginView> {
                                 controller: emailController,
                                 cursorColor: Colors.black,
                                 style: TextStyle(
-                                    color: const Color(0xFF424242),
-                                    fontSize: 24),
+                                    color: Colors.black, fontSize: 20),
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: new InputDecoration(
                                   labelText: 'Email',
                                   labelStyle: new TextStyle(
-                                      color: const Color(0xFF424242),
-                                      fontSize: 26),
+                                      color: Colors.black, fontSize: 20),
                                   focusedBorder: UnderlineInputBorder(
                                       borderSide:
                                           new BorderSide(color: Colors.black)),
@@ -137,14 +132,12 @@ class _LoginViewState extends State<LoginView> {
                                 controller: passwordController,
                                 cursorColor: Colors.black,
                                 style: TextStyle(
-                                    color: const Color(0xFF424242),
-                                    fontSize: 24),
+                                    color: Colors.black, fontSize: 20),
                                 keyboardType: TextInputType.visiblePassword,
                                 decoration: new InputDecoration(
                                   labelText: 'Password',
                                   labelStyle: new TextStyle(
-                                      color: const Color(0xFF424242),
-                                      fontSize: 26),
+                                      color: Colors.black, fontSize: 20),
                                   focusedBorder: UnderlineInputBorder(
                                       borderSide:
                                           new BorderSide(color: Colors.black)),
@@ -159,8 +152,10 @@ class _LoginViewState extends State<LoginView> {
                                   setState(() {
                                     _isLoading = true;
                                   });
-                                  signIn(emailController.text,
-                                      passwordController.text);
+                                  signIn(
+                                      emailController.text,
+                                      passwordController.text,
+                                      getIndexSelections());
                                 },
                                 child: Text(
                                   "Submit",
@@ -173,57 +168,88 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ],
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      MaterialButton(
-                        onPressed: () => {},
-                        child: Text(
-                          "Register",
-                          style: TextStyle(fontSize: 20),
-                        ),
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: MaterialButton(
+                      onPressed: () =>
+                          {Navigator.pushNamed(context, '/register')},
+                      child: Text(
+                        "Register",
+                        style: TextStyle(fontSize: 20),
                       ),
-                    ],
-                  )
+                    ),
+                  ),
                 ],
               ),
       ),
     );
   }
 
-  signIn(String email, String password) async {
-    Map data = {'ok': 'ok', 'type': "2", 'email': email, 'password': password};
+  signIn(String email, String password, int type) async {
+    Map data = {
+      'ok': 'ok',
+      'type': type.toString(),
+      'email': email,
+      'password': password
+    };
     print(data);
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    var response = await http.post("http://vventure.tk/login/", body: data);
-    Map<String, dynamic> JSON;
 
-    if (response.statusCode == 200) {
-      JSON = json.decode(response.body);
+    if (type != null && password.isNotEmpty && email.isNotEmpty) {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      var response = await http.post("http://vventure.tk/login/", body: data);
+      Map<String, dynamic> JSON;
 
-      if (JSON['res'].toString() == "success") {
-        setState(() {
-          _isLoading = false;
+      if (response.statusCode == 200) {
+        JSON = json.decode(response.body);
 
-          sharedPreferences.setString("token", JSON['token']);
-          sharedPreferences.setString("type", JSON['type']);
+        if (JSON['res'].toString() == "success") {
+          setState(() {
+            _isLoading = false;
 
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                  builder: (BuildContext context) => InvestorHomeView()),
-              (Route<dynamic> route) => false);
-        });
+            sharedPreferences.setString("token", JSON['token']);
+            sharedPreferences.setString("type", JSON['type']);
+            sharedPreferences.setString("activation", JSON['activation']);
+
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(
+                    builder: (BuildContext context) => InvestorHomeView()),
+                (Route<dynamic> route) => false);
+          });
+        } else {
+          setState(() {
+            _isLoading = false;
+          });
+
+          final snackBar = SnackBar(content: Text('Wrong user Information'));
+          _scaffoldKey.currentState.showSnackBar(snackBar);
+        }
       } else {
         setState(() {
           _isLoading = false;
         });
-        print("error on jason data");
+
+        final snackBar = SnackBar(content: Text('Server Error'));
+        _scaffoldKey.currentState.showSnackBar(snackBar);
       }
     } else {
       setState(() {
         _isLoading = false;
       });
-      print("error on url");
+
+      final snackBar = SnackBar(content: Text('Empty Information'));
+      _scaffoldKey.currentState.showSnackBar(snackBar);
+    }
+  }
+
+  getIndexSelections() {
+    if (_selections[0] == true) {
+      return 1;
+    } else if (_selections[1] == true) {
+      return 2;
+    } else {
+      return null;
     }
   }
 }
