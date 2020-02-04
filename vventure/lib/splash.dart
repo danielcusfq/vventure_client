@@ -12,6 +12,6 @@ class Splash extends StatelessWidget {
         backgroundColor: Colors.white,
         styleTextUnderTheLoader: new TextStyle(),
         photoSize: 100.0,
-        loaderColor: Colors.deepPurpleAccent);
+        loaderColor: Color.fromRGBO(132, 94, 194, 1));
   }
 }

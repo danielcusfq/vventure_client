@@ -37,7 +37,10 @@ class _LoginViewState extends State<LoginView> {
           ),
         ),
         child: _isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? Center(
+                child: CircularProgressIndicator(
+                    valueColor: new AlwaysStoppedAnimation<Color>(
+                        Color.fromRGBO(255, 150, 113, 1))))
             : Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -186,31 +189,26 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  signIn(String email, String password, int type) async {
-    Map data = {
-      'ok': 'ok',
-      'type': type.toString(),
-      'email': email,
-      'password': password
-    };
-    print(data);
+  signIn(String email, String password, String type) async {
+    Map data = {'ok': 'ok', 'type': type, 'email': email, 'password': password};
 
     if (type != null && password.isNotEmpty && email.isNotEmpty) {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       var response = await http.post("http://vventure.tk/login/", body: data);
-      Map<String, dynamic> JSON;
+      Map<String, dynamic> jasonData;
 
       if (response.statusCode == 200) {
-        JSON = json.decode(response.body);
+        jasonData = json.decode(response.body);
 
-        if (JSON['res'].toString() == "success") {
+        if (jasonData['res'].toString() == "success") {
           setState(() {
             _isLoading = false;
 
-            sharedPreferences.setString("token", JSON['token']);
-            sharedPreferences.setString("type", JSON['type']);
-            sharedPreferences.setString("activation", JSON['activation']);
+            sharedPreferences.setString("token", jasonData['token'].toString());
+            sharedPreferences.setString("type", jasonData['type'].toString());
+            sharedPreferences.setString(
+                "activation", jasonData['activation'].toString());
 
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
@@ -222,6 +220,8 @@ class _LoginViewState extends State<LoginView> {
             _isLoading = false;
           });
 
+          clearInput();
+
           final snackBar = SnackBar(content: Text('Wrong user Information'));
           _scaffoldKey.currentState.showSnackBar(snackBar);
         }
@@ -230,6 +230,7 @@ class _LoginViewState extends State<LoginView> {
           _isLoading = false;
         });
 
+        clearInput();
         final snackBar = SnackBar(content: Text('Server Error'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
       }
@@ -238,6 +239,7 @@ class _LoginViewState extends State<LoginView> {
         _isLoading = false;
       });
 
+      clearInput();
       final snackBar = SnackBar(content: Text('Empty Information'));
       _scaffoldKey.currentState.showSnackBar(snackBar);
     }
@@ -245,11 +247,16 @@ class _LoginViewState extends State<LoginView> {
 
   getIndexSelections() {
     if (_selections[0] == true) {
-      return 1;
+      return "1";
     } else if (_selections[1] == true) {
-      return 2;
+      return "2";
     } else {
       return null;
     }
+  }
+
+  clearInput() {
+    emailController.clear();
+    passwordController.clear();
   }
 }
