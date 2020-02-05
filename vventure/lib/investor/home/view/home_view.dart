@@ -8,6 +8,10 @@ class InvestorHomeView extends StatefulWidget {
 class _InvestorHomeViewState extends State<InvestorHomeView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Investor"),
+      ),
+    );
   }
 }

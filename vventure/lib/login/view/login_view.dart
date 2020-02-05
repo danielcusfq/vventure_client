@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vventure/investor/home/view/home_view.dart';
+import 'package:vventure/entrepreneur/home/view/home_view.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -102,74 +103,56 @@ class _LoginViewState extends State<LoginView> {
                     borderRadius: BorderRadius.circular(25),
                     splashColor: Color.fromRGBO(255, 150, 113, 0.2),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Form(
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 20),
-                              width: MediaQuery.of(context).size.width,
-                              child: TextField(
-                                controller: emailController,
-                                cursorColor: Colors.black,
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 20),
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: new InputDecoration(
-                                  labelText: 'Email',
-                                  labelStyle: new TextStyle(
-                                      color: Colors.black, fontSize: 20),
-                                  focusedBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          new BorderSide(color: Colors.black)),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              width: MediaQuery.of(context).size.width,
-                              child: TextField(
-                                controller: passwordController,
-                                cursorColor: Colors.black,
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 20),
-                                keyboardType: TextInputType.visiblePassword,
-                                decoration: new InputDecoration(
-                                  labelText: 'Password',
-                                  labelStyle: new TextStyle(
-                                      color: Colors.black, fontSize: 20),
-                                  focusedBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          new BorderSide(color: Colors.black)),
-                                ),
-                                obscureText: true,
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 20),
-                              child: FlatButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _isLoading = true;
-                                  });
-                                  signIn(
-                                      emailController.text,
-                                      passwordController.text,
-                                      getIndexSelections());
-                                },
-                                child: Text(
-                                  "Submit",
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    width: MediaQuery.of(context).size.width,
+                    child: TextField(
+                      controller: emailController,
+                      cursorColor: Colors.black,
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: new InputDecoration(
+                        labelText: 'Email',
+                        labelStyle:
+                            new TextStyle(color: Colors.black, fontSize: 20),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: new BorderSide(color: Colors.black)),
                       ),
-                    ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    width: MediaQuery.of(context).size.width,
+                    child: TextField(
+                      controller: passwordController,
+                      cursorColor: Colors.black,
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                      keyboardType: TextInputType.visiblePassword,
+                      decoration: new InputDecoration(
+                        labelText: 'Password',
+                        labelStyle:
+                            new TextStyle(color: Colors.black, fontSize: 20),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: new BorderSide(color: Colors.black)),
+                      ),
+                      obscureText: true,
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: FlatButton(
+                      onPressed: () {
+                        setState(() {
+                          _isLoading = true;
+                        });
+                        signIn(emailController.text, passwordController.text,
+                            getIndexSelections());
+                      },
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
                   ),
                   Spacer(),
                   Padding(
@@ -201,7 +184,9 @@ class _LoginViewState extends State<LoginView> {
       if (response.statusCode == 200) {
         jasonData = json.decode(response.body);
 
-        if (jasonData['res'].toString() == "success") {
+        if (jasonData['res'].toString() == "success" &&
+            (jasonData['type'].toString() == "1" ||
+                jasonData['type'].toString() == "2")) {
           setState(() {
             _isLoading = false;
 
@@ -210,10 +195,18 @@ class _LoginViewState extends State<LoginView> {
             sharedPreferences.setString(
                 "activation", jasonData['activation'].toString());
 
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(
-                    builder: (BuildContext context) => InvestorHomeView()),
-                (Route<dynamic> route) => false);
+            if (jasonData['type'].toString() == "1") {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          EntrepreneurHomeView()),
+                  (Route<dynamic> route) => false);
+            } else if (jasonData['type'].toString() == "2") {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => InvestorHomeView()),
+                  (Route<dynamic> route) => false);
+            }
           });
         } else {
           setState(() {

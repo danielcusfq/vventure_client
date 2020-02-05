@@ -3,6 +3,7 @@ import 'package:vventure/splash.dart';
 import 'package:vventure/login/view/login_view.dart';
 import 'package:vventure/register/view/register_view.dart';
 import 'package:vventure/investor/home/view/home_view.dart';
+import 'package:vventure/entrepreneur/home/view/home_view.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginView(),
         '/register': (context) => Register(),
-        '/investor_home': (context) => InvestorHomeView()
+        '/investor_home': (context) => InvestorHomeView(),
+        '/entrepreneur_home': (context) => EntrepreneurHomeView()
       },
     );
   }
