@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vventure/investor/home/view/home_view.dart';
 import 'package:vventure/entrepreneur/home/view/home_view.dart';
+import 'package:vventure/basic_profile/entrepreneur/view/home_view.dart';
+import 'package:vventure/basic_profile/investor/view/home_view.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -149,7 +151,7 @@ class _LoginViewState extends State<LoginView> {
                             getIndexSelections());
                       },
                       child: Text(
-                        "Submit",
+                        "LogIn",
                         style: TextStyle(fontSize: 20),
                       ),
                     ),
@@ -196,16 +198,32 @@ class _LoginViewState extends State<LoginView> {
                 "activation", jasonData['activation'].toString());
 
             if (jasonData['type'].toString() == "1") {
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          EntrepreneurHomeView()),
-                  (Route<dynamic> route) => false);
+              if (jasonData['activation'].toString() == "1") {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            EntrepreneurHomeView()),
+                    (Route<dynamic> route) => false);
+              } else if (jasonData['activation'].toString() == "0") {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            EntrepreneurBasicProfileView()),
+                    (Route<dynamic> route) => false);
+              }
             } else if (jasonData['type'].toString() == "2") {
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => InvestorHomeView()),
-                  (Route<dynamic> route) => false);
+              if (jasonData['activation'].toString() == "1") {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => InvestorHomeView()),
+                    (Route<dynamic> route) => false);
+              } else if (jasonData['activation'].toString() == "0") {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            InvetorBasicProfileView()),
+                    (Route<dynamic> route) => false);
+              }
             }
           });
         } else {
