@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vventure/auth/info.dart';
 import 'package:vventure/investor/home/view/home_view.dart';
 import 'package:vventure/entrepreneur/home/view/home_view.dart';
 import 'package:vventure/basic_profile/entrepreneur/view/home_view.dart';
+import 'package:vventure/basic_profile/entrepreneur/model/basic_profile.dart';
 import 'package:vventure/basic_profile/investor/view/home_view.dart';
 
 class LoginView extends StatefulWidget {
@@ -26,19 +28,6 @@ class _LoginViewState extends State<LoginView> {
       key: _scaffoldKey,
       resizeToAvoidBottomPadding: false,
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: [0.1, 0.7, 0.9, 0.98],
-            colors: [
-              Color.fromRGBO(132, 94, 194, 1),
-              Color.fromRGBO(166, 94, 187, 1),
-              Color.fromRGBO(181, 94, 184, 1),
-              Color.fromRGBO(214, 93, 177, 1),
-            ],
-          ),
-        ),
         child: _isLoading
             ? Center(
                 child: CircularProgressIndicator(
@@ -100,25 +89,28 @@ class _LoginViewState extends State<LoginView> {
                       });
                     },
                     color: Colors.black,
-                    selectedColor: Color.fromRGBO(255, 150, 113, 1),
+                    selectedColor: Color.fromRGBO(132, 94, 194, 1),
                     fillColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(25),
-                    splashColor: Color.fromRGBO(255, 150, 113, 0.2),
+                    splashColor: Color.fromRGBO(132, 94, 194, 0.2),
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     width: MediaQuery.of(context).size.width,
                     child: TextField(
                       controller: emailController,
-                      cursorColor: Colors.black,
-                      style: TextStyle(color: Colors.black, fontSize: 20),
+                      cursorColor: Color.fromRGBO(132, 94, 194, 1),
+                      style: TextStyle(
+                          color: Color.fromRGBO(132, 94, 194, 1), fontSize: 20),
                       keyboardType: TextInputType.emailAddress,
                       decoration: new InputDecoration(
                         labelText: 'Email',
-                        labelStyle:
-                            new TextStyle(color: Colors.black, fontSize: 20),
+                        labelStyle: new TextStyle(
+                            color: Color.fromRGBO(132, 94, 194, 1),
+                            fontSize: 20),
                         focusedBorder: UnderlineInputBorder(
-                            borderSide: new BorderSide(color: Colors.black)),
+                            borderSide: new BorderSide(
+                                color: Color.fromRGBO(132, 94, 194, 1))),
                       ),
                     ),
                   ),
@@ -127,15 +119,18 @@ class _LoginViewState extends State<LoginView> {
                     width: MediaQuery.of(context).size.width,
                     child: TextField(
                       controller: passwordController,
-                      cursorColor: Colors.black,
-                      style: TextStyle(color: Colors.black, fontSize: 20),
+                      cursorColor: Color.fromRGBO(132, 94, 194, 1),
+                      style: TextStyle(
+                          color: Color.fromRGBO(132, 94, 194, 1), fontSize: 20),
                       keyboardType: TextInputType.visiblePassword,
                       decoration: new InputDecoration(
                         labelText: 'Password',
-                        labelStyle:
-                            new TextStyle(color: Colors.black, fontSize: 20),
+                        labelStyle: new TextStyle(
+                            color: Color.fromRGBO(132, 94, 194, 1),
+                            fontSize: 20),
                         focusedBorder: UnderlineInputBorder(
-                            borderSide: new BorderSide(color: Colors.black)),
+                            borderSide: new BorderSide(
+                                color: Color.fromRGBO(132, 94, 194, 1))),
                       ),
                       obscureText: true,
                     ),
@@ -152,7 +147,9 @@ class _LoginViewState extends State<LoginView> {
                       },
                       child: Text(
                         "LogIn",
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Color.fromRGBO(132, 94, 194, 1)),
                       ),
                     ),
                   ),
@@ -192,27 +189,47 @@ class _LoginViewState extends State<LoginView> {
           setState(() {
             _isLoading = false;
 
-            sharedPreferences.setString("token", jasonData['token'].toString());
-            sharedPreferences.setString("type", jasonData['type'].toString());
-            sharedPreferences.setString(
-                "activation", jasonData['activation'].toString());
+            final UserInfo userInfo = new UserInfo(
+                jasonData['token'].toString(),
+                jasonData['type'].toString(),
+                jasonData['activation'].toString());
 
             if (jasonData['type'].toString() == "1") {
               if (jasonData['activation'].toString() == "1") {
+                sharedPreferences.setString(
+                    "token", jasonData['token'].toString());
+                sharedPreferences.setString(
+                    "type", jasonData['type'].toString());
+                sharedPreferences.setString(
+                    "activation", jasonData['activation'].toString());
+
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
                             EntrepreneurHomeView()),
                     (Route<dynamic> route) => false);
               } else if (jasonData['activation'].toString() == "0") {
+                final BasicProfileEntrepreneur basicProfileEntrepreneur =
+                    new BasicProfileEntrepreneur(
+                        userInfo, null, null, null, null, null, null);
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            EntrepreneurBasicProfileView()),
+                            EntrepreneurBasicProfileView(
+                              basicProfileEntrepreneur:
+                                  basicProfileEntrepreneur,
+                            )),
                     (Route<dynamic> route) => false);
               }
             } else if (jasonData['type'].toString() == "2") {
               if (jasonData['activation'].toString() == "1") {
+                sharedPreferences.setString(
+                    "token", jasonData['token'].toString());
+                sharedPreferences.setString(
+                    "type", jasonData['type'].toString());
+                sharedPreferences.setString(
+                    "activation", jasonData['activation'].toString());
+
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                         builder: (BuildContext context) => InvestorHomeView()),
@@ -221,7 +238,7 @@ class _LoginViewState extends State<LoginView> {
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            InvetorBasicProfileView()),
+                            InvestorBasicProfileView()),
                     (Route<dynamic> route) => false);
               }
             }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class InvetorBasicProfileView extends StatefulWidget {
+class InvestorBasicProfileView extends StatefulWidget {
   @override
-  _InvetorBasicProfileViewState createState() =>
-      _InvetorBasicProfileViewState();
+  _InvestorBasicProfileViewState createState() =>
+      _InvestorBasicProfileViewState();
 }
 
-class _InvetorBasicProfileViewState extends State<InvetorBasicProfileView> {
+class _InvestorBasicProfileViewState extends State<InvestorBasicProfileView> {
   @override
   Widget build(BuildContext context) {
     return Container();

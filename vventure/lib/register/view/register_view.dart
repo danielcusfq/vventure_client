@@ -2,9 +2,10 @@ import 'dart:ui';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:vventure/auth/info.dart';
 import 'package:vventure/basic_profile/entrepreneur/view/home_view.dart';
+import 'package:vventure/basic_profile/entrepreneur/model/basic_profile.dart';
 import 'package:vventure/basic_profile/investor/view/home_view.dart';
 
 class Register extends StatefulWidget {
@@ -27,13 +28,13 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-          backgroundColor: Color.fromRGBO(132, 94, 194, 1),
+          backgroundColor: Colors.transparent,
           bottomOpacity: 0.0,
           elevation: 0,
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: Color.fromRGBO(132, 94, 194, 1),
             ),
             onPressed: () => Navigator.pop(context, false),
           )),
@@ -43,19 +44,6 @@ class _RegisterState extends State<Register> {
                   valueColor: new AlwaysStoppedAnimation<Color>(
                       Color.fromRGBO(255, 150, 113, 1))))
           : Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: [0.1, 0.7, 0.9, 0.98],
-                  colors: [
-                    Color.fromRGBO(132, 94, 194, 1),
-                    Color.fromRGBO(166, 94, 187, 1),
-                    Color.fromRGBO(181, 94, 184, 1),
-                    Color.fromRGBO(214, 93, 177, 1),
-                  ],
-                ),
-              ),
               height: MediaQuery.of(context).size.height,
               child: SingleChildScrollView(
                 child: Column(
@@ -114,10 +102,10 @@ class _RegisterState extends State<Register> {
                         });
                       },
                       color: Colors.black,
-                      selectedColor: Color.fromRGBO(255, 150, 113, 1),
+                      selectedColor: Color.fromRGBO(132, 94, 194, 1),
                       fillColor: Colors.transparent,
                       borderRadius: BorderRadius.circular(25),
-                      splashColor: Color.fromRGBO(255, 150, 113, 0.2),
+                      splashColor: Color.fromRGBO(132, 94, 194, 0.2),
                     ),
                     Container(
                       padding:
@@ -125,15 +113,19 @@ class _RegisterState extends State<Register> {
                       width: MediaQuery.of(context).size.width,
                       child: TextField(
                         controller: nameController,
-                        cursorColor: Colors.black,
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        cursorColor: Color.fromRGBO(132, 94, 194, 1),
+                        style: TextStyle(
+                            color: Color.fromRGBO(132, 94, 194, 1),
+                            fontSize: 20),
                         keyboardType: TextInputType.text,
                         decoration: new InputDecoration(
                           labelText: 'Name',
-                          labelStyle:
-                              new TextStyle(color: Colors.black, fontSize: 20),
+                          labelStyle: new TextStyle(
+                              color: Color.fromRGBO(132, 94, 194, 1),
+                              fontSize: 20),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: new BorderSide(color: Colors.black)),
+                              borderSide: new BorderSide(
+                                  color: Color.fromRGBO(132, 94, 194, 1))),
                         ),
                       ),
                     ),
@@ -143,15 +135,19 @@ class _RegisterState extends State<Register> {
                       width: MediaQuery.of(context).size.width,
                       child: TextField(
                         controller: lastNameController,
-                        cursorColor: Colors.black,
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        cursorColor: Color.fromRGBO(132, 94, 194, 1),
+                        style: TextStyle(
+                            color: Color.fromRGBO(132, 94, 194, 1),
+                            fontSize: 20),
                         keyboardType: TextInputType.text,
                         decoration: new InputDecoration(
                           labelText: 'Last Name',
-                          labelStyle:
-                              new TextStyle(color: Colors.black, fontSize: 20),
+                          labelStyle: new TextStyle(
+                              color: Color.fromRGBO(132, 94, 194, 1),
+                              fontSize: 20),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: new BorderSide(color: Colors.black)),
+                              borderSide: new BorderSide(
+                                  color: Color.fromRGBO(132, 94, 194, 1))),
                         ),
                       ),
                     ),
@@ -161,15 +157,19 @@ class _RegisterState extends State<Register> {
                       width: MediaQuery.of(context).size.width,
                       child: TextField(
                         controller: organizationController,
-                        cursorColor: Colors.black,
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        cursorColor: Color.fromRGBO(132, 94, 194, 1),
+                        style: TextStyle(
+                            color: Color.fromRGBO(132, 94, 194, 1),
+                            fontSize: 20),
                         keyboardType: TextInputType.text,
                         decoration: new InputDecoration(
                           labelText: 'Organization',
-                          labelStyle:
-                              new TextStyle(color: Colors.black, fontSize: 20),
+                          labelStyle: new TextStyle(
+                              color: Color.fromRGBO(132, 94, 194, 1),
+                              fontSize: 20),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: new BorderSide(color: Colors.black)),
+                              borderSide: new BorderSide(
+                                  color: Color.fromRGBO(132, 94, 194, 1))),
                         ),
                       ),
                     ),
@@ -179,15 +179,19 @@ class _RegisterState extends State<Register> {
                       width: MediaQuery.of(context).size.width,
                       child: TextField(
                         controller: emailController,
-                        cursorColor: Colors.black,
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        cursorColor: Color.fromRGBO(132, 94, 194, 1),
+                        style: TextStyle(
+                            color: Color.fromRGBO(132, 94, 194, 1),
+                            fontSize: 20),
                         keyboardType: TextInputType.emailAddress,
                         decoration: new InputDecoration(
                           labelText: 'Email',
-                          labelStyle:
-                              new TextStyle(color: Colors.black, fontSize: 20),
+                          labelStyle: new TextStyle(
+                              color: Color.fromRGBO(132, 94, 194, 1),
+                              fontSize: 20),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: new BorderSide(color: Colors.black)),
+                              borderSide: new BorderSide(
+                                  color: Color.fromRGBO(132, 94, 194, 1))),
                         ),
                       ),
                     ),
@@ -196,15 +200,19 @@ class _RegisterState extends State<Register> {
                       width: MediaQuery.of(context).size.width,
                       child: TextField(
                         controller: passwordController,
-                        cursorColor: Colors.black,
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        cursorColor: Color.fromRGBO(132, 94, 194, 1),
+                        style: TextStyle(
+                            color: Color.fromRGBO(132, 94, 194, 1),
+                            fontSize: 20),
                         keyboardType: TextInputType.visiblePassword,
                         decoration: new InputDecoration(
                           labelText: 'Password',
-                          labelStyle:
-                              new TextStyle(color: Colors.black, fontSize: 20),
+                          labelStyle: new TextStyle(
+                              color: Color.fromRGBO(132, 94, 194, 1),
+                              fontSize: 20),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: new BorderSide(color: Colors.black)),
+                              borderSide: new BorderSide(
+                                  color: Color.fromRGBO(132, 94, 194, 1))),
                         ),
                         obscureText: true,
                       ),
@@ -226,7 +234,9 @@ class _RegisterState extends State<Register> {
                         },
                         child: Text(
                           "Register",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Color.fromRGBO(132, 94, 194, 1)),
                         ),
                       ),
                     )
@@ -255,8 +265,6 @@ class _RegisterState extends State<Register> {
         organization.isNotEmpty &&
         password.isNotEmpty &&
         email.isNotEmpty) {
-      SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
       var response =
           await http.post("http://vventure.tk/register/", body: data);
       Map<String, dynamic> jasonData;
@@ -270,21 +278,27 @@ class _RegisterState extends State<Register> {
           setState(() {
             _isLoading = false;
 
-            sharedPreferences.setString("token", jasonData['token'].toString());
-            sharedPreferences.setString("type", jasonData['type'].toString());
-            sharedPreferences.setString("activation", "0");
+            final UserInfo userInfo = new UserInfo(
+                jasonData['token'].toString(),
+                jasonData['type'].toString(),
+                "0");
 
             if (jasonData['type'].toString() == "1") {
+              final BasicProfileEntrepreneur basicProfileEntrepreneur =
+                  new BasicProfileEntrepreneur(
+                      userInfo, null, null, null, null, null, null);
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          EntrepreneurBasicProfileView()),
+                          EntrepreneurBasicProfileView(
+                            basicProfileEntrepreneur: basicProfileEntrepreneur,
+                          )),
                   (Route<dynamic> route) => false);
             } else if (jasonData['type'].toString() == "2") {
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          InvetorBasicProfileView()),
+                          InvestorBasicProfileView()),
                   (Route<dynamic> route) => false);
             }
           });
