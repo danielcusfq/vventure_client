@@ -43,6 +43,7 @@ class _RegisterState extends State<Register> {
               child: CircularProgressIndicator(
                   valueColor: new AlwaysStoppedAnimation<Color>(
                       Color.fromRGBO(255, 150, 113, 1))))
+          // main content of view
           : Container(
               height: MediaQuery.of(context).size.height,
               child: SingleChildScrollView(
@@ -221,9 +222,11 @@ class _RegisterState extends State<Register> {
                       padding: EdgeInsets.symmetric(vertical: 30),
                       child: FlatButton(
                         onPressed: () {
+                          // set loading state
                           setState(() {
                             _isLoading = true;
                           });
+                          // register user and performs redirect
                           registerUser(
                               nameController.text,
                               lastNameController.text,
@@ -247,10 +250,12 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  // registers user and redirects user
   registerUser(String name, String lastName, String organization, String email,
       String password, String type) async {
     Map data = {
-      'ok': 'ok',
+      'auth':
+          'f82d371b7c8178f9632c83cb33bd3cfe4f8ae7847394a0ff3513f5d679ff5fb3',
       'type': type,
       'name': name,
       'last': lastName,
@@ -266,12 +271,13 @@ class _RegisterState extends State<Register> {
         password.isNotEmpty &&
         email.isNotEmpty) {
       var response =
-          await http.post("http://vventure.tk/register/", body: data);
+          await http.post("https://vventure.tk/register/", body: data);
       Map<String, dynamic> jasonData;
 
       if (response.statusCode == 200) {
         jasonData = json.decode(response.body);
 
+        // verifies if response is correct
         if (jasonData['res'].toString() == "success" &&
             (jasonData['type'].toString() == "1" ||
                 jasonData['type'].toString() == "2")) {
@@ -283,6 +289,8 @@ class _RegisterState extends State<Register> {
                 jasonData['type'].toString(),
                 "0");
 
+            // verifies type of user and redirects to proper page
+            // 1 -> entrepreneur, 2 -> investor
             if (jasonData['type'].toString() == "1") {
               final BasicProfileEntrepreneur basicProfileEntrepreneur =
                   new BasicProfileEntrepreneur(
@@ -341,6 +349,7 @@ class _RegisterState extends State<Register> {
     }
   }
 
+  // get index of true value from toggle button
   getIndexSelections() {
     if (_selections[0] == true) {
       return "1";
@@ -351,6 +360,7 @@ class _RegisterState extends State<Register> {
     }
   }
 
+  // clears input of text fields
   clearInput() {
     nameController.clear();
     lastNameController.clear();

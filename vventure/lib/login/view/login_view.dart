@@ -33,6 +33,7 @@ class _LoginViewState extends State<LoginView> {
                 child: CircularProgressIndicator(
                     valueColor: new AlwaysStoppedAnimation<Color>(
                         Color.fromRGBO(255, 150, 113, 1))))
+            // main column for view
             : Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -171,13 +172,20 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
+  // authenticate user with server and redirects authenticated user
   signIn(String email, String password, String type) async {
-    Map data = {'ok': 'ok', 'type': type, 'email': email, 'password': password};
+    Map data = {
+      'auth':
+          '607be6747e2a18f043221b6528785169e4a391fa17c12b45dc44289387bd9cbb',
+      'type': type,
+      'email': email,
+      'password': password
+    };
 
     if (type != null && password.isNotEmpty && email.isNotEmpty) {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
-      var response = await http.post("http://vventure.tk/login/", body: data);
+      var response = await http.post("https://vventure.tk/login/", body: data);
       Map<String, dynamic> jasonData;
 
       if (response.statusCode == 200) {
@@ -194,7 +202,11 @@ class _LoginViewState extends State<LoginView> {
                 jasonData['type'].toString(),
                 jasonData['activation'].toString());
 
+            // verifies which type of account the user is
+            // 1 -> entrepreneur, 2 -> investor
             if (jasonData['type'].toString() == "1") {
+              // verifies if account is activated/registration finished
+              // 1 -> activated, 0 -> not activated
               if (jasonData['activation'].toString() == "1") {
                 sharedPreferences.setString(
                     "token", jasonData['token'].toString());
@@ -212,6 +224,7 @@ class _LoginViewState extends State<LoginView> {
                 final BasicProfileEntrepreneur basicProfileEntrepreneur =
                     new BasicProfileEntrepreneur(
                         userInfo, null, null, null, null, null, null);
+
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
@@ -222,6 +235,8 @@ class _LoginViewState extends State<LoginView> {
                     (Route<dynamic> route) => false);
               }
             } else if (jasonData['type'].toString() == "2") {
+              // verifies if account is activated/registration finished
+              // 1 -> activated, 0 -> not activated3
               if (jasonData['activation'].toString() == "1") {
                 sharedPreferences.setString(
                     "token", jasonData['token'].toString());
@@ -273,6 +288,7 @@ class _LoginViewState extends State<LoginView> {
     }
   }
 
+  // get index of true value from toggle button
   getIndexSelections() {
     if (_selections[0] == true) {
       return "1";
@@ -283,6 +299,7 @@ class _LoginViewState extends State<LoginView> {
     }
   }
 
+  // clears input of text fields
   clearInput() {
     emailController.clear();
     passwordController.clear();

@@ -12,13 +12,4 @@ class BasicProfileEntrepreneur {
 
   BasicProfileEntrepreneur(this.userInfo, this.profilePicture, this.stage,
       this.percentage, this.exchange, this.problem, this.solution);
-
-  Map<String, dynamic> toJason() => {
-        'file': profilePicture,
-        'stage': stage,
-        'percentage': percentage,
-        'exchange': exchange,
-        'problem': problem,
-        'solution': solution
-      };
 }

@@ -17,6 +17,7 @@ class BasicProfileLastEnt extends StatefulWidget {
 }
 
 class _BasicProfileLastEntState extends State<BasicProfileLastEnt> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   TextEditingController problem = new TextEditingController();
   TextEditingController solution = new TextEditingController();
   bool _isLoading = false;
@@ -24,18 +25,20 @@ class _BasicProfileLastEntState extends State<BasicProfileLastEnt> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        bottomOpacity: 0,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Color.fromRGBO(132, 94, 194, 1),
-          ),
-          onPressed: () => Navigator.pop(context, false),
-        ),
-      ),
+      appBar: _isLoading
+          ? null
+          : AppBar(
+              backgroundColor: Colors.white,
+              bottomOpacity: 0,
+              elevation: 0,
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Color.fromRGBO(132, 94, 194, 1),
+                ),
+                onPressed: () => Navigator.pop(context, false),
+              ),
+            ),
       body: _isLoading
           ? Center(
               child: CircularProgressIndicator(
@@ -111,6 +114,9 @@ class _BasicProfileLastEntState extends State<BasicProfileLastEnt> {
                   ),
                   FlatButton(
                     onPressed: () {
+                      setState(() {
+                        _isLoading = true;
+                      });
                       this.widget.basicProfileEntrepreneur.problem =
                           problem.text;
                       this.widget.basicProfileEntrepreneur.solution =
@@ -131,6 +137,7 @@ class _BasicProfileLastEntState extends State<BasicProfileLastEnt> {
 
   completeRegister(BasicProfileEntrepreneur basicProfileEntrepreneur) async {
     String base64image;
+    String ext;
     String stage;
     String percentage;
     String exchange;
@@ -140,16 +147,17 @@ class _BasicProfileLastEntState extends State<BasicProfileLastEnt> {
 
     if (basicProfileEntrepreneur.userInfo.activation == "1") {
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-              builder: (BuildContext context) => EntrepreneurHomeView()),
+          MaterialPageRoute(builder: (BuildContext context) => LoginView()),
           (Route<dynamic> route) => false);
     }
 
     if (basicProfileEntrepreneur.profilePicture != null) {
       base64image = base64Encode(
           basicProfileEntrepreneur.profilePicture.readAsBytesSync());
+      ext = basicProfileEntrepreneur.profilePicture.path.split('.').last;
     } else {
       base64image = "";
+      ext = "";
     }
 
     if (basicProfileEntrepreneur.stage.isNotEmpty) {
@@ -183,9 +191,12 @@ class _BasicProfileLastEntState extends State<BasicProfileLastEnt> {
     }
 
     data = {
+      "auth":
+          "b2df705644a0c7ff7dd469afa096c56d6da918cfcf827d69631dcacfccf54fa5",
       "token": basicProfileEntrepreneur.userInfo.token,
       "type": basicProfileEntrepreneur.userInfo.type,
       "image": base64image,
+      "ext": ext,
       "stage": stage,
       "percentage": percentage,
       "exchange": exchange,
@@ -194,17 +205,19 @@ class _BasicProfileLastEntState extends State<BasicProfileLastEnt> {
     };
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    var response = await http
-        .post("http://vventure.tk/complete_register/entrepreneur/", body: data);
+    var response = await http.post(
+        "https://vventure.tk/complete_register/entrepreneur/",
+        body: data);
     Map<String, dynamic> jasonData;
 
     if (response.statusCode == 200) {
       jasonData = json.decode(response.body);
 
       if (jasonData['res'].toString() == "success" &&
-          jasonData['type'].toString() == "1") {
+          jasonData['type'].toString() == "1" &&
+          jasonData['activation'].toString() == "1") {
         setState(() {
-          _isLoading = true;
+          _isLoading = false;
 
           sharedPreferences.setString("token", jasonData['token'].toString());
           sharedPreferences.setString("type", jasonData['type'].toString());
@@ -216,11 +229,22 @@ class _BasicProfileLastEntState extends State<BasicProfileLastEnt> {
                   builder: (BuildContext context) => EntrepreneurHomeView()),
               (Route<dynamic> route) => false);
         });
-      }
-    }
+      } else {
+        setState(() {
+          _isLoading = false;
+        });
 
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (BuildContext context) => LoginView()),
-        (Route<dynamic> route) => false);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (BuildContext context) => LoginView()),
+            (Route<dynamic> route) => false);
+      }
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+
+      final snackBar = SnackBar(content: Text('Server Error'));
+      _scaffoldKey.currentState.showSnackBar(snackBar);
+    }
   }
 }
