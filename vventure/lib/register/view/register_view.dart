@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:vventure/auth/info.dart';
 import 'package:vventure/basic_profile/entrepreneur/view/home_view.dart';
-import 'package:vventure/basic_profile/entrepreneur/model/basic_profile.dart';
 import 'package:vventure/basic_profile/investor/view/home_view.dart';
 
 class Register extends StatefulWidget {
@@ -27,17 +26,19 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          bottomOpacity: 0.0,
-          elevation: 0,
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Color.fromRGBO(132, 94, 194, 1),
-            ),
-            onPressed: () => Navigator.pop(context, false),
-          )),
+      appBar: _isLoading
+          ? null
+          : AppBar(
+              backgroundColor: Colors.transparent,
+              bottomOpacity: 0.0,
+              elevation: 0,
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Color.fromRGBO(132, 94, 194, 1),
+                ),
+                onPressed: () => Navigator.pop(context, false),
+              )),
       body: _isLoading
           ? Center(
               child: CircularProgressIndicator(
@@ -292,21 +293,19 @@ class _RegisterState extends State<Register> {
             // verifies type of user and redirects to proper page
             // 1 -> entrepreneur, 2 -> investor
             if (jasonData['type'].toString() == "1") {
-              final BasicProfileEntrepreneur basicProfileEntrepreneur =
-                  new BasicProfileEntrepreneur(
-                      userInfo, null, null, null, null, null, null);
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          EntrepreneurBasicProfileView(
-                            basicProfileEntrepreneur: basicProfileEntrepreneur,
+                      builder: (BuildContext context) => BasicProfileEntView(
+                            userInfo: userInfo,
                           )),
                   (Route<dynamic> route) => false);
             } else if (jasonData['type'].toString() == "2") {
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          InvestorBasicProfileView()),
+                          BasicProfileInvestorView(
+                            userInfo: userInfo,
+                          )),
                   (Route<dynamic> route) => false);
             }
           });

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:vventure/splash.dart';
 import 'package:vventure/login/view/login_view.dart';
 import 'package:vventure/register/view/register_view.dart';
 import 'package:vventure/investor/home/view/home_view.dart';
 import 'package:vventure/entrepreneur/home/view/home_view.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
+      .then((_) => runApp(new MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   @override

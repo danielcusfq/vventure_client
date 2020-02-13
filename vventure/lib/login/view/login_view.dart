@@ -7,7 +7,6 @@ import 'package:vventure/auth/info.dart';
 import 'package:vventure/investor/home/view/home_view.dart';
 import 'package:vventure/entrepreneur/home/view/home_view.dart';
 import 'package:vventure/basic_profile/entrepreneur/view/home_view.dart';
-import 'package:vventure/basic_profile/entrepreneur/model/basic_profile.dart';
 import 'package:vventure/basic_profile/investor/view/home_view.dart';
 
 class LoginView extends StatefulWidget {
@@ -208,6 +207,7 @@ class _LoginViewState extends State<LoginView> {
               // verifies if account is activated/registration finished
               // 1 -> activated, 0 -> not activated
               if (jasonData['activation'].toString() == "1") {
+                sharedPreferences.setString("id", jasonData['id'].toString());
                 sharedPreferences.setString(
                     "token", jasonData['token'].toString());
                 sharedPreferences.setString(
@@ -221,16 +221,10 @@ class _LoginViewState extends State<LoginView> {
                             EntrepreneurHomeView()),
                     (Route<dynamic> route) => false);
               } else if (jasonData['activation'].toString() == "0") {
-                final BasicProfileEntrepreneur basicProfileEntrepreneur =
-                    new BasicProfileEntrepreneur(
-                        userInfo, null, null, null, null, null, null);
-
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            EntrepreneurBasicProfileView(
-                              basicProfileEntrepreneur:
-                                  basicProfileEntrepreneur,
+                        builder: (BuildContext context) => BasicProfileEntView(
+                              userInfo: userInfo,
                             )),
                     (Route<dynamic> route) => false);
               }
@@ -238,6 +232,7 @@ class _LoginViewState extends State<LoginView> {
               // verifies if account is activated/registration finished
               // 1 -> activated, 0 -> not activated3
               if (jasonData['activation'].toString() == "1") {
+                sharedPreferences.setString("id", jasonData['id'].toString());
                 sharedPreferences.setString(
                     "token", jasonData['token'].toString());
                 sharedPreferences.setString(
@@ -253,7 +248,9 @@ class _LoginViewState extends State<LoginView> {
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            InvestorBasicProfileView()),
+                            BasicProfileInvestorView(
+                              userInfo: userInfo,
+                            )),
                     (Route<dynamic> route) => false);
               }
             }
