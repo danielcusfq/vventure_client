@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:vventure/auth/info.dart';
 import 'package:vventure/login/view/login_view.dart';
 import 'package:vventure/basic_profile/entrepreneur/controller/communication.dart';
-import 'package:vventure/entrepreneur/home/view/home_view.dart';
+import 'package:vventure/entrepreneur/main/view/home_view.dart';
 
 class BasicProfileEntView extends StatefulWidget {
   final UserInfo userInfo;
