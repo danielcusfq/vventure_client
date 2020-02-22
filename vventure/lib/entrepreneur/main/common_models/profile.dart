@@ -26,6 +26,6 @@ class Profile {
       this.background,
       this.highlight,
       this.info,
-      this.timeline,
-      this.images);
+      this.images,
+      this.timeline);
 }

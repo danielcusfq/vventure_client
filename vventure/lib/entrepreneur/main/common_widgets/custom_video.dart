@@ -14,7 +14,7 @@ class CustomVideo extends StatefulWidget {
 class _CustomVideoState extends State<CustomVideo> {
   VideoPlayerController _videoPlayerController;
   ChewieController __chewieMainController;
-  double _aspectRatio = 4 / 3;
+  double _aspectRatio = 16 / 10;
 
   @override
   initState() {

@@ -1,9 +1,13 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
 import 'package:vventure/entrepreneur/main/common_widgets/custom_video.dart';
 import 'package:vventure/entrepreneur/main/common_widgets/log_out.dart';
 import 'package:vventure/entrepreneur/main/content/profile/model/my_profile.dart';
+import 'package:vventure/entrepreneur/main/content/profile/widget/highlights_widget.dart';
+import 'package:vventure/entrepreneur/main/content/profile/widget/image_widget.dart';
+import 'package:vventure/entrepreneur/main/content/profile/widget/info_widget.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/loading_widget.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/name_widget.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/organization_widget.dart';
@@ -19,10 +23,10 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   SharedPreferences sharedPreferences;
-  MyProfile _profile;
-  bool _loaded = false;
   String id;
   String token;
+  MyProfile _profile;
+  bool _loaded = false;
 
   @override
   void initState() {
@@ -54,8 +58,8 @@ class _ProfileState extends State<Profile> {
             ),
             SizedBox.expand(
               child: DraggableScrollableSheet(
-                initialChildSize: 0.65,
-                minChildSize: 0.65,
+                initialChildSize: 0.715,
+                minChildSize: 0.715,
                 builder: (BuildContext buildContext, scroll) {
                   return Container(
                     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -117,6 +121,48 @@ class _ProfileState extends State<Profile> {
                               SolutionWidget(
                                 solution: _profile.solution,
                               ),
+                              HighlightsWidget(
+                                highlights: _profile.highlight,
+                                id: id,
+                                token: token,
+                                type: "1",
+                                rebuild: () {
+                                  rebuild();
+                                },
+                                removeItem: (index) {
+                                  setState(() {
+                                    _profile.highlight.removeAt(index);
+                                  });
+                                },
+                              ),
+                              InfoWidget(
+                                info: _profile.info,
+                                id: id,
+                                token: token,
+                                type: "1",
+                                rebuild: () {
+                                  rebuild();
+                                },
+                                removeItem: (index) {
+                                  setState(() {
+                                    _profile.info.removeAt(index);
+                                  });
+                                },
+                              ),
+                              ImageWidget(
+                                images: _profile.images,
+                                id: id,
+                                token: token,
+                                type: "1",
+                                rebuild: () {
+                                  rebuild();
+                                },
+                                removeItem: (index) {
+                                  setState(() {
+                                    _profile.images.removeAt(index);
+                                  });
+                                },
+                              ),
                             ],
                           ),
                   );
@@ -134,6 +180,22 @@ class _ProfileState extends State<Profile> {
     setState(() {
       id = sharedPreferences.getString("id");
       token = sharedPreferences.getString("token");
+    });
+  }
+
+  void rebuild() {
+    setState(() {
+      _loaded = false;
+    });
+    Timer(Duration(seconds: 1), () {
+      var result = Communication.fetchProfile(id, token);
+      result.then((value) {
+        setState(() {
+          _profile = null;
+          _profile = value;
+          _loaded = true;
+        });
+      });
     });
   }
 }

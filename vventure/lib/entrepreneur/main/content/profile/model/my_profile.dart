@@ -32,6 +32,6 @@ class MyProfile {
       this.solution,
       this.highlight,
       this.info,
-      this.timeline,
-      this.images);
+      this.images,
+      this.timeline);
 }
