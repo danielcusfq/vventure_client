@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:snaplist/snaplist.dart';
-import 'package:vventure/entrepreneur/main/common_models/work_image.dart';
-import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/loading_widget.dart';
+import 'package:vventure/investor/main/common_models/work_image.dart';
+import 'package:vventure/investor/main/content/profile/controller/communication.dart';
+import 'package:vventure/investor/main/content/profile/widget/loading_widget.dart';
 
 class ImageWidget extends StatefulWidget {
   final List<WorkImage> images;

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:vventure/auth/info.dart';
 import 'package:vventure/login/view/login_view.dart';
 import 'package:vventure/basic_profile/investor/controller/communication.dart';
-import 'package:vventure/investor/home/view/home_view.dart';
+import 'package:vventure/investor/main/view/home_view.dart';
 
 class BasicProfileInvestorView extends StatefulWidget {
   final UserInfo userInfo;

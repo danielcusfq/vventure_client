@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:vventure/entrepreneur/main/common_models/highlight.dart';
-import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
+import 'package:vventure/investor/main/common_models/highlight.dart';
+import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 
 class HighlightsWidget extends StatefulWidget {
   final List<Highlight> highlights;

@@ -1,54 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
+import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 
-class SolutionWidget extends StatefulWidget {
-  final String solution;
+class NameWidget extends StatefulWidget {
+  final String name;
+  final String last;
   final String id;
   final String token;
   final String type;
   final Function rebuild;
-  SolutionWidget(
+
+  NameWidget(
       {Key key,
-      @required this.solution,
+      @required this.name,
+      @required this.last,
       @required this.id,
       @required this.token,
       @required this.type,
       @required this.rebuild})
       : super(key: key);
+
   @override
-  _SolutionWidgetState createState() => _SolutionWidgetState();
+  _NameWidgetState createState() => _NameWidgetState();
 }
 
-class _SolutionWidgetState extends State<SolutionWidget> {
+class _NameWidgetState extends State<NameWidget> {
   Color myColor = Color.fromRGBO(132, 94, 194, 1);
-  TextEditingController solution = TextEditingController();
+  String fullName;
+  TextEditingController name = new TextEditingController();
+  TextEditingController lastName = new TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      fullName = this.widget.name + " " + this.widget.last;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      padding: EdgeInsets.symmetric(vertical: 20),
       child: GestureDetector(
         onLongPress: () {
-          solution.text = widget.solution;
+          name.text = widget.name;
+          lastName.text = widget.last;
           updateDialog(context);
         },
-        child: Container(
+        child: Center(
+            child: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Text("Represented by",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
               Text(
-                "This is How You are Solving the Problem",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                this.widget.solution,
-                style: TextStyle(fontSize: 24),
-                textAlign: TextAlign.center,
+                fullName,
+                style: TextStyle(fontSize: 26),
               )
             ],
           ),
-        ),
+        )),
       ),
     );
   }
@@ -73,7 +85,7 @@ class _SolutionWidgetState extends State<SolutionWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Solution",
+                        "Update Name",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -89,7 +101,7 @@ class _SolutionWidgetState extends State<SolutionWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Solution",
+                        "Name",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -100,14 +112,48 @@ class _SolutionWidgetState extends State<SolutionWidget> {
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       width: MediaQuery.of(context).size.width,
                       child: TextField(
-                        controller: solution,
+                        controller: name,
                         cursorColor: Color.fromRGBO(132, 94, 194, 1),
                         style: TextStyle(
                             color: Color.fromRGBO(132, 94, 194, 1),
                             fontSize: 20),
                         keyboardType: TextInputType.text,
-                        minLines: 3,
-                        maxLines: 3,
+                        minLines: 1,
+                        maxLines: 1,
+                        decoration: InputDecoration(
+                          labelStyle: TextStyle(
+                              color: Color.fromRGBO(132, 94, 194, 1),
+                              fontSize: 20),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromRGBO(132, 94, 194, 1))),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: Center(
+                      child: Text(
+                        "Last Name",
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 20),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      width: MediaQuery.of(context).size.width,
+                      child: TextField(
+                        controller: lastName,
+                        cursorColor: Color.fromRGBO(132, 94, 194, 1),
+                        style: TextStyle(
+                            color: Color.fromRGBO(132, 94, 194, 1),
+                            fontSize: 20),
+                        keyboardType: TextInputType.text,
+                        minLines: 1,
+                        maxLines: 1,
                         decoration: InputDecoration(
                           labelStyle: TextStyle(
                               color: Color.fromRGBO(132, 94, 194, 1),
@@ -130,8 +176,8 @@ class _SolutionWidgetState extends State<SolutionWidget> {
                       ),
                       child: FlatButton(
                         onPressed: () {
-                          updateSolution(this.widget.id, this.widget.token,
-                              this.widget.type, solution.text);
+                          updateName(this.widget.id, this.widget.token,
+                              this.widget.type, name.text, lastName.text);
                           Navigator.of(context, rootNavigator: true)
                               .pop('dialog');
                           setState(() {
@@ -139,7 +185,7 @@ class _SolutionWidgetState extends State<SolutionWidget> {
                           });
                         },
                         child: Text(
-                          "Update Solution",
+                          "Update Name",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -153,8 +199,9 @@ class _SolutionWidgetState extends State<SolutionWidget> {
         });
   }
 
-  void updateSolution(String id, String token, String type, String solution) {
-    var future = Communication.updateSolution(id, token, type, solution);
+  void updateName(
+      String id, String token, String type, String name, String lastName) {
+    var future = Communication.updateName(id, token, type, name, lastName);
     future.then((val) {});
   }
 }

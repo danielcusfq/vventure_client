@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vventure/auth/info.dart';
-import 'package:vventure/investor/home/view/home_view.dart';
+import 'package:vventure/investor/main/view/home_view.dart';
 import 'package:vventure/entrepreneur/main/view/home_view.dart';
 import 'package:vventure/basic_profile/entrepreneur/view/home_view.dart';
 import 'package:vventure/basic_profile/investor/view/home_view.dart';

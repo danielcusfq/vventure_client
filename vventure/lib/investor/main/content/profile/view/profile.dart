@@ -1,21 +1,19 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/custom_video.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/log_out.dart';
-import 'package:vventure/entrepreneur/main/content/profile/model/my_profile.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/highlights_widget.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/image_widget.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/info_widget.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/loading_widget.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/name_widget.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/organization_widget.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/problem_widget.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/profile_image_widget.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/solution_widget.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/stage_widget.dart';
-import 'package:vventure/entrepreneur/main/content/profile/widget/stake_widget.dart';
+import 'package:vventure/investor/main/content/profile/controller/communication.dart';
+import 'package:vventure/investor/main/content/profile/widget/custom_video.dart';
+import 'package:vventure/investor/main/content/profile/widget/log_out.dart';
+import 'package:vventure/investor/main/content/profile/model/my_profile.dart';
+import 'package:vventure/investor/main/content/profile/widget/highlights_widget.dart';
+import 'package:vventure/investor/main/content/profile/widget/image_widget.dart';
+import 'package:vventure/investor/main/content/profile/widget/info_widget.dart';
+import 'package:vventure/investor/main/content/profile/widget/loading_widget.dart';
+import 'package:vventure/investor/main/content/profile/widget/name_widget.dart';
+import 'package:vventure/investor/main/content/profile/widget/organization_widget.dart';
+import 'package:vventure/investor/main/content/profile/widget/interests.dart';
+import 'package:vventure/investor/main/content/profile/widget/profile_image_widget.dart';
+import 'package:vventure/investor/main/content/profile/widget/background.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -57,7 +55,7 @@ class _ProfileState extends State<Profile> {
                         video: _profile.video,
                         id: id,
                         token: token,
-                        type: "1",
+                        type: "2",
                         rebuild: () {
                           rebuild();
                         }),
@@ -95,7 +93,7 @@ class _ProfileState extends State<Profile> {
                                 image: _profile.image,
                                 id: id,
                                 token: token,
-                                type: "1",
+                                type: "2",
                                 rebuild: () {
                                   rebuild();
                                 },
@@ -104,7 +102,7 @@ class _ProfileState extends State<Profile> {
                                 organization: _profile.organization,
                                 id: id,
                                 token: token,
-                                type: "1",
+                                type: "2",
                                 rebuild: () {
                                   rebuild();
                                 },
@@ -114,44 +112,25 @@ class _ProfileState extends State<Profile> {
                                 last: _profile.last,
                                 id: id,
                                 token: token,
-                                type: "1",
+                                type: "2",
                                 rebuild: () {
                                   rebuild();
                                 },
                               ),
-                              StageWidget(
-                                stage: _profile.stage,
+                              InterestsWidget(
+                                interest: _profile.interests,
                                 id: id,
                                 token: token,
-                                type: "1",
+                                type: "2",
                                 rebuild: () {
                                   rebuild();
                                 },
                               ),
-                              StakeWidget(
-                                stake: _profile.stake,
-                                exchange: _profile.stakeInfo,
+                              BackgroundWidget(
+                                background: _profile.background,
                                 id: id,
                                 token: token,
-                                type: "1",
-                                rebuild: () {
-                                  rebuild();
-                                },
-                              ),
-                              ProblemWidget(
-                                problem: _profile.problem,
-                                id: id,
-                                token: token,
-                                type: "1",
-                                rebuild: () {
-                                  rebuild();
-                                },
-                              ),
-                              SolutionWidget(
-                                solution: _profile.solution,
-                                id: id,
-                                token: token,
-                                type: "1",
+                                type: "2",
                                 rebuild: () {
                                   rebuild();
                                 },
@@ -160,7 +139,7 @@ class _ProfileState extends State<Profile> {
                                 highlights: _profile.highlight,
                                 id: id,
                                 token: token,
-                                type: "1",
+                                type: "2",
                                 rebuild: () {
                                   rebuild();
                                 },
@@ -174,7 +153,7 @@ class _ProfileState extends State<Profile> {
                                 info: _profile.info,
                                 id: id,
                                 token: token,
-                                type: "1",
+                                type: "2",
                                 rebuild: () {
                                   rebuild();
                                 },
@@ -188,7 +167,7 @@ class _ProfileState extends State<Profile> {
                                   images: _profile.images,
                                   id: id,
                                   token: token,
-                                  type: "1",
+                                  type: "2",
                                   rebuild: () {
                                     rebuild();
                                   },

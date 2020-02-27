@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:vventure/entrepreneur/main/common_models/highlight.dart';
-import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
+import 'package:vventure/investor/main/common_models/info.dart';
+import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 
-class HighlightsWidget extends StatefulWidget {
-  final List<Highlight> highlights;
+class InfoWidget extends StatefulWidget {
+  final List<Info> info;
   final String id;
   final String token;
   final String type;
   final Function rebuild;
   final Function removeItem;
 
-  HighlightsWidget(
+  InfoWidget(
       {Key key,
-      @required this.highlights,
+      @required this.info,
       @required this.id,
-      @required this.token,
       @required this.type,
+      @required this.token,
       @required this.rebuild,
       @required this.removeItem})
       : super(key: key);
+
   @override
-  _HighlightsWidgetState createState() => _HighlightsWidgetState();
+  _InfoWidgetState createState() => _InfoWidgetState();
 }
 
-class _HighlightsWidgetState extends State<HighlightsWidget> {
+class _InfoWidgetState extends State<InfoWidget> {
   Color myColor = Color.fromRGBO(132, 94, 194, 1);
-  TextEditingController description = TextEditingController();
+  TextEditingController title = new TextEditingController();
+  TextEditingController description = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +36,16 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 60),
+          padding: EdgeInsets.only(top: 60),
           child: Text(
-            "Highlights",
+            "Information",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
         FlatButton(
           onPressed: () {
-            setState(() {
-              description.text = "";
-            });
+            title.text = "";
+            description.text = "";
             dialog(context);
           },
           child: Column(
@@ -62,22 +62,19 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
             ],
           ),
         ),
-        this.widget.highlights == null
+        this.widget.info == null
             ? Text("")
             : Container(
                 child: ListView.builder(
                   primary: false,
-                  itemCount: this.widget.highlights.length,
+                  itemCount: this.widget.info.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
                     return Dismissible(
                       onDismissed: (DismissDirection direction) {
                         setState(() {
-                          deleteHighlight(
-                              this.widget.id,
-                              this.widget.token,
-                              this.widget.type,
-                              this.widget.highlights[index].idHighlight);
+                          deleteInfo(this.widget.id, this.widget.token,
+                              this.widget.type, this.widget.info[index].idInfo);
                           this.widget.removeItem(index);
                         });
                       },
@@ -106,15 +103,15 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                         child: GestureDetector(
                           onLongPress: () {
                             setState(() {
+                              title.text = this.widget.info[index].title;
                               description.text =
-                                  this.widget.highlights[index].detail;
+                                  this.widget.info[index].content;
                             });
                             updateDialog(
                                 context,
                                 this.widget.id,
                                 this.widget.token,
-                                this.widget.highlights[index].idHighlight,
-                                this.widget.highlights[index].detail);
+                                this.widget.info[index].idInfo);
                           },
                           child: Card(
                               elevation: 0.5,
@@ -127,17 +124,43 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                                 constraints: BoxConstraints(
                                     maxHeight:
                                         MediaQuery.of(context).size.height / 2),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                    Flexible(
-                                      child: Text(
-                                        this.widget.highlights[index].detail,
-                                        style: TextStyle(
-                                            fontSize: 24, color: Colors.black),
-                                        textAlign: TextAlign.center,
-                                      ),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          Flexible(
+                                            child: Text(
+                                              this.widget.info[index].title,
+                                              style: TextStyle(
+                                                  fontSize: 22,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ]),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        Flexible(
+                                          child: Text(
+                                            this.widget.info[index].content,
+                                            style: TextStyle(
+                                                fontSize: 24,
+                                                color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ],
                                     )
                                   ],
                                 ),
@@ -149,7 +172,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                     );
                   },
                 ),
-              ),
+              )
       ],
     );
   }
@@ -174,7 +197,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Add New Highlight",
+                        "Add New Info",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -185,6 +208,34 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                   Divider(
                     color: Colors.grey,
                     height: 4.0,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20.0),
+                    child: Center(
+                      child: Text(
+                        "Title",
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    width: MediaQuery.of(context).size.width,
+                    child: TextField(
+                      controller: title,
+                      cursorColor: Color.fromRGBO(132, 94, 194, 1),
+                      style: TextStyle(
+                          color: Color.fromRGBO(132, 94, 194, 1), fontSize: 20),
+                      keyboardType: TextInputType.text,
+                      decoration: new InputDecoration(
+                        labelStyle: new TextStyle(
+                            color: Color.fromRGBO(132, 94, 194, 1),
+                            fontSize: 20),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: new BorderSide(
+                                color: Color.fromRGBO(132, 94, 194, 1))),
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 20),
@@ -209,12 +260,12 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                         keyboardType: TextInputType.text,
                         minLines: 3,
                         maxLines: 3,
-                        decoration: InputDecoration(
-                          labelStyle: TextStyle(
+                        decoration: new InputDecoration(
+                          labelStyle: new TextStyle(
                               color: Color.fromRGBO(132, 94, 194, 1),
                               fontSize: 20),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: new BorderSide(
                                   color: Color.fromRGBO(132, 94, 194, 1))),
                         ),
                       ),
@@ -231,8 +282,8 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                       ),
                       child: FlatButton(
                         onPressed: () {
-                          insertHighlight(this.widget.id, this.widget.token,
-                              description.text, this.widget.type);
+                          insertInfo(this.widget.id, this.widget.token,
+                              title.text, description.text, this.widget.type);
                           Navigator.of(context, rootNavigator: true)
                               .pop('dialog');
                           setState(() {
@@ -240,7 +291,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                           });
                         },
                         child: Text(
-                          "Add Highlight",
+                          "Add Info",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -254,8 +305,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
         });
   }
 
-  void updateDialog(
-      context, String id, String token, String idHighlight, String detail) {
+  void updateDialog(context, String id, String token, String idInfo) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -275,7 +325,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Highlight",
+                        "Update Info",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -286,6 +336,34 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                   Divider(
                     color: Colors.grey,
                     height: 4.0,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20.0),
+                    child: Center(
+                      child: Text(
+                        "Title",
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    width: MediaQuery.of(context).size.width,
+                    child: TextField(
+                      controller: title,
+                      cursorColor: Color.fromRGBO(132, 94, 194, 1),
+                      style: TextStyle(
+                          color: Color.fromRGBO(132, 94, 194, 1), fontSize: 20),
+                      keyboardType: TextInputType.text,
+                      decoration: new InputDecoration(
+                        labelStyle: new TextStyle(
+                            color: Color.fromRGBO(132, 94, 194, 1),
+                            fontSize: 20),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: new BorderSide(
+                                color: Color.fromRGBO(132, 94, 194, 1))),
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 20),
@@ -310,12 +388,12 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                         keyboardType: TextInputType.text,
                         minLines: 3,
                         maxLines: 3,
-                        decoration: InputDecoration(
-                          labelStyle: TextStyle(
+                        decoration: new InputDecoration(
+                          labelStyle: new TextStyle(
                               color: Color.fromRGBO(132, 94, 194, 1),
                               fontSize: 20),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: new BorderSide(
                                   color: Color.fromRGBO(132, 94, 194, 1))),
                         ),
                       ),
@@ -332,8 +410,13 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                       ),
                       child: FlatButton(
                         onPressed: () {
-                          updateHighlight(this.widget.id, this.widget.token,
-                              this.widget.type, description.text, idHighlight);
+                          updateInfo(
+                              this.widget.id,
+                              this.widget.token,
+                              this.widget.type,
+                              title.text,
+                              description.text,
+                              idInfo);
                           Navigator.of(context, rootNavigator: true)
                               .pop('dialog');
                           setState(() {
@@ -341,7 +424,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                           });
                         },
                         child: Text(
-                          "Update Highlight",
+                          "Update Info",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -355,21 +438,21 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
         });
   }
 
-  void insertHighlight(String id, String token, String detail, String type) {
-    var future = Communication.insertHighlight(id, token, detail, type);
+  void insertInfo(
+      String id, String token, String title, String detail, String type) {
+    var future = Communication.insertInfo(id, token, title, detail, type);
     future.then((val) {});
   }
 
-  void updateHighlight(
-      String id, String token, String type, String detail, String idHighlight) {
+  void updateInfo(String id, String token, String type, String title,
+      String detail, String idInfo) {
     var future =
-        Communication.updateHighlight(id, token, detail, type, idHighlight);
+        Communication.updateInfo(id, token, title, detail, type, idInfo);
     future.then((val) {});
   }
 
-  void deleteHighlight(
-      String id, String token, String type, String idHighlight) {
-    var future = Communication.deleteHighlight(id, token, type, idHighlight);
+  void deleteInfo(String id, String token, String type, String idInfo) {
+    var future = Communication.deleteInfo(id, token, type, idInfo);
     future.then((val) {});
   }
 }

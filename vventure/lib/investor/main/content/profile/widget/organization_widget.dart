@@ -1,60 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
+import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 
-class StageWidget extends StatefulWidget {
-  final stage;
+class OrganizationWidget extends StatefulWidget {
+  final String organization;
   final String id;
   final String token;
   final String type;
   final Function rebuild;
 
-  StageWidget(
+  OrganizationWidget(
       {Key key,
-      @required this.stage,
+      @required this.organization,
       @required this.id,
       @required this.token,
       @required this.type,
       @required this.rebuild})
       : super(key: key);
   @override
-  _StageWidgetState createState() => _StageWidgetState();
+  _OrganizationWidgetState createState() => _OrganizationWidgetState();
 }
 
-class _StageWidgetState extends State<StageWidget> {
+class _OrganizationWidgetState extends State<OrganizationWidget> {
   Color myColor = Color.fromRGBO(132, 94, 194, 1);
-  List<String> _dropItems = ["Concept", "Prototipe", "Production", "Scaling"];
-  String stage = "";
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      stage = widget.stage.toString();
-    });
-  }
+  TextEditingController organization = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20),
-      child: GestureDetector(
-        onLongPress: () {
-          updateDialog(context);
-        },
-        child: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "Project Stage",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+      child: Center(
+        child: GestureDetector(
+          onLongPress: () {
+            organization.text = widget.organization;
+            updateDialog(context);
+          },
+          child: Container(
+            child: Text(
+              this.widget.organization,
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
-            Text(
-              this.widget.stage,
-              style: TextStyle(fontSize: 22),
-            ),
-          ],
-        )),
+          ),
+        ),
       ),
     );
   }
@@ -79,7 +65,7 @@ class _StageWidgetState extends State<StageWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "What’s the Stage of Your Project?",
+                        "Update Organization",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -92,34 +78,37 @@ class _StageWidgetState extends State<StageWidget> {
                     height: 4.0,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 20, bottom: 20),
+                    padding: EdgeInsets.only(top: 20),
                     child: Center(
-                      child: DropdownButton<String>(
-                          items: _dropItems.map((String val) {
-                            return DropdownMenuItem<String>(
-                              value: val,
-                              child: Center(
-                                  child: Text(
-                                val,
-                                style: TextStyle(fontSize: 24),
-                              )),
-                            );
-                          }).toList(),
-                          hint: stage.isNotEmpty
-                              ? Text(
-                                  stage,
-                                  style: TextStyle(fontSize: 24),
-                                )
-                              : Text("Select Project Stage"),
-                          onChanged: (val) {
-                            stage = val;
-                            setState(() {
-                              stage = val;
-                            });
-                            Navigator.of(context, rootNavigator: true)
-                                .pop('dialog');
-                            updateDialog(context);
-                          }),
+                      child: Text(
+                        "Organization",
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 20),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      width: MediaQuery.of(context).size.width,
+                      child: TextField(
+                        controller: organization,
+                        cursorColor: Color.fromRGBO(132, 94, 194, 1),
+                        style: TextStyle(
+                            color: Color.fromRGBO(132, 94, 194, 1),
+                            fontSize: 20),
+                        keyboardType: TextInputType.text,
+                        minLines: 1,
+                        maxLines: 1,
+                        decoration: InputDecoration(
+                          labelStyle: TextStyle(
+                              color: Color.fromRGBO(132, 94, 194, 1),
+                              fontSize: 20),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromRGBO(132, 94, 194, 1))),
+                        ),
+                      ),
                     ),
                   ),
                   InkWell(
@@ -133,8 +122,8 @@ class _StageWidgetState extends State<StageWidget> {
                       ),
                       child: FlatButton(
                         onPressed: () {
-                          updateStage(this.widget.id, this.widget.token,
-                              this.widget.type, stage);
+                          updateOrganization(this.widget.id, this.widget.token,
+                              this.widget.type, organization.text);
                           Navigator.of(context, rootNavigator: true)
                               .pop('dialog');
                           setState(() {
@@ -142,7 +131,7 @@ class _StageWidgetState extends State<StageWidget> {
                           });
                         },
                         child: Text(
-                          "Update Stage",
+                          "Update Organization",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -156,8 +145,10 @@ class _StageWidgetState extends State<StageWidget> {
         });
   }
 
-  void updateStage(String id, String token, String type, String stage) {
-    var future = Communication.updateStage(id, token, type, stage);
+  void updateOrganization(
+      String id, String token, String type, String organization) {
+    var future =
+        Communication.updateOrganization(id, token, organization, type);
     future.then((val) {});
   }
 }

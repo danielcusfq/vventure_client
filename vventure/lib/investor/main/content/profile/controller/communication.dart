@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:vventure/entrepreneur/main/common_models/highlight.dart';
-import 'package:vventure/entrepreneur/main/common_models/info.dart';
-import 'package:vventure/entrepreneur/main/common_models/work_image.dart';
-import 'package:vventure/entrepreneur/main/content/profile/model/my_profile.dart';
+import 'package:vventure/investor/main/common_models/highlight.dart';
+import 'package:vventure/investor/main/common_models/info.dart';
+import 'package:vventure/investor/main/common_models/work_image.dart';
+import 'package:vventure/investor/main/content/profile/model/my_profile.dart';
 
 class Communication {
   static Future<MyProfile> fetchProfile(String id, String token) async {
@@ -13,7 +13,7 @@ class Communication {
     token = "&token=" + token;
 
     String url =
-        "https://vventure.tk/entrepreneur/profile/info/basic/?auth=ee046aa3e8cba86d08f5c902c2dba507c7ec6c63da3cbc0262ff2e5d3f969854" +
+        "https://vventure.tk/investor/profile/info/basic/?auth=dbfc41327aa4e3658bc31596579209cadf6566cffcb754645b818bc88ba4ec19" +
             id +
             token;
     final response = await http.get(url);
@@ -51,11 +51,8 @@ class Communication {
             jsonData['organization'].toString(),
             jsonData['image'].toString(),
             jsonData['video'].toString(),
-            jsonData['stage'].toString(),
-            jsonData['stake'].toString(),
-            jsonData['stakeinfo'].toString(),
-            jsonData['problem'].toString(),
-            jsonData['solution'].toString(),
+            jsonData['interests'].toString(),
+            jsonData['background'].toString(),
             highlights,
             info,
             images,
@@ -79,7 +76,7 @@ class Communication {
 
       Map data = {
         'auth':
-            "2d75b3c9f1a0986361022cc789546001ca5370224cda732e55aa18c3c0549867",
+            "11b1bb7929b3348c1dc0ee17dc20b8166a868d67bacb7181b50890d05320b968",
         'id': id,
         'token': token,
         'type': type,
@@ -88,7 +85,7 @@ class Communication {
       };
 
       final response = await http.post(
-          "https://vventure.tk/entrepreneur/profile/update/video/",
+          "https://vventure.tk/investor/profile/update/video/",
           body: data);
       Map<String, dynamic> jsonData;
 
@@ -122,7 +119,7 @@ class Communication {
 
       Map data = {
         'auth':
-            "58c9f66f088872805a34ebbe24f971f80b6e914736d08a4fedcdcdfb743c3c9b",
+            "7892cabe8bba72b69adbfe32c139e1b214360af7d649cb2a900ebe8e6523c328",
         'id': id,
         'token': token,
         'type': type,
@@ -130,7 +127,7 @@ class Communication {
         'ext': ext
       };
       final response = await http.post(
-          "https://vventure.tk/entrepreneur/profile/update/profile_image/",
+          "https://vventure.tk/investor/profile/update/profile_image/",
           body: data);
       Map<String, dynamic> jsonData;
 
@@ -157,14 +154,14 @@ class Communication {
       String id, String token, String organization, String type) async {
     Map data = {
       'auth':
-          "13496a7b21b744a01b08da955937251cff3e1cdac7189b485138a87d471aa3db",
+          "50b5bea6375fb5565e5cfa42f01c91cce1ee099a604c2fac353c820048e055d2",
       'id': id,
       'token': token,
       'type': type,
       'organization': organization
     };
     final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/update/organization/",
+        "https://vventure.tk/investor/profile/update/organization/",
         body: data);
     Map<String, dynamic> jsonData;
 
@@ -188,15 +185,46 @@ class Communication {
       String name, String lastName) async {
     Map data = {
       'auth':
-          "927301fc7588331163dbe11c8168b2af9a92e46e5b3f339a8e06ce7c3daaa428",
+          "b617206d3646e21a68156e88de0938a672a52219b76c14baec72869e889db110",
       'id': id,
       'token': token,
       'type': type,
       'name': name,
       'last': lastName
     };
+    final response = await http
+        .post("https://vventure.tk/investor/profile/update/name/", body: data);
+    Map<String, dynamic> jsonData;
+
+    if (response.statusCode == 200) {
+      jsonData = jsonDecode(response.body);
+
+      if (jsonData['res'].toString() == "success") {
+        Timer(Duration(seconds: 2), () {});
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  //----------------------------------------------------------------------------
+  //-------------------Interests------------------------------------------------
+  static Future<bool> updateInterests(
+      String id, String token, String type, String interest) async {
+    Map data = {
+      'auth':
+          "29e5fa9c1528a0f6d5cc51b79a619873f2cb95c4e41b7490d028184924583022",
+      'id': id,
+      'token': token,
+      'type': type,
+      'interest': interest
+    };
+
     final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/update/name/",
+        "https://vventure.tk/investor/profile/update/interests/",
         body: data);
     Map<String, dynamic> jsonData;
 
@@ -215,113 +243,20 @@ class Communication {
   }
 
   //----------------------------------------------------------------------------
-  //-------------------Stage----------------------------------------------------
-  static Future<bool> updateStage(
-      String id, String token, String type, String stage) async {
+  //-------------------Background-----------------------------------------------
+  static Future<bool> updateBackground(
+      String id, String token, String type, String background) async {
     Map data = {
       'auth':
-          "16a90b81f4004bd627fd4462dd0416be5c00b243ecb4267c8bf9a0e1b70060a8",
+          "85e11a30110d8687f39caa7eef251a929bee3415ee4923d3f93697b986dab799",
       'id': id,
       'token': token,
       'type': type,
-      'stage': stage
+      'background': background
     };
+
     final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/update/stage/",
-        body: data);
-    Map<String, dynamic> jsonData;
-
-    if (response.statusCode == 200) {
-      jsonData = jsonDecode(response.body);
-
-      if (jsonData['res'].toString() == "success") {
-        Timer(Duration(seconds: 2), () {});
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
-
-  //----------------------------------------------------------------------------
-  //-------------------Stake----------------------------------------------------
-  static Future<bool> updateStake(String id, String token, String type,
-      String stake, String exchange) async {
-    Map data = {
-      'auth':
-          "ffe94004943ede695970aa04170a359cfc6f193a7212d105385aa6bb4ea98cbc",
-      'id': id,
-      'token': token,
-      'type': type,
-      'stake': stake,
-      'exchange': exchange
-    };
-    final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/update/stake/",
-        body: data);
-    Map<String, dynamic> jsonData;
-
-    if (response.statusCode == 200) {
-      jsonData = jsonDecode(response.body);
-
-      if (jsonData['res'].toString() == "success") {
-        Timer(Duration(seconds: 2), () {});
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
-
-  //----------------------------------------------------------------------------
-  //-------------------Problem--------------------------------------------------
-  static Future<bool> updateProblem(
-      String id, String token, String type, String problem) async {
-    Map data = {
-      'auth':
-          "424e36889a5fdde2549a5153410ccea88ea9aeee4955e26f57b7629966650a3c",
-      'id': id,
-      'token': token,
-      'type': type,
-      'problem': problem
-    };
-    final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/update/problem/",
-        body: data);
-    Map<String, dynamic> jsonData;
-
-    if (response.statusCode == 200) {
-      jsonData = jsonDecode(response.body);
-
-      if (jsonData['res'].toString() == "success") {
-        Timer(Duration(seconds: 2), () {});
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
-
-  //----------------------------------------------------------------------------
-  //-------------------Solution-------------------------------------------------
-  static Future<bool> updateSolution(
-      String id, String token, String type, String solution) async {
-    Map data = {
-      'auth':
-          "8f2a413f76baa5cd42de059398b467ecc81675f23707060f9498e50bdfebaff6",
-      'id': id,
-      'token': token,
-      'type': type,
-      'solution': solution
-    };
-    final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/update/solution/",
+        "https://vventure.tk/investor/profile/update/background/",
         body: data);
     Map<String, dynamic> jsonData;
 
@@ -345,14 +280,14 @@ class Communication {
       String id, String token, String detail, String type) async {
     Map data = {
       'auth':
-          "f525ddc20d143230a7e3a2b4d6871ebf0bcbcc71816de9ae358ed6025a6f665f",
+          "13f4667e8740a0fccc7680b42b43bf89525aebf33b59343e279d36f61e5e96ea",
       'id': id,
       'token': token,
       'type': type,
       'detail': detail
     };
     final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/insert/highlight/",
+        "https://vventure.tk/investor/profile/insert/highlight/",
         body: data);
     Map<String, dynamic> jsonData;
 
@@ -373,7 +308,7 @@ class Communication {
       String type, String idHighlight) async {
     Map data = {
       'auth':
-          "5a4517b3a15a2fc8961e5aeb63af6663f0cdcd9c1e48183dd67e57f6d7fb3728",
+          "5607ad722c4a315ed035cb0c7a8bea027c4090270c270ff5ab00ef1ab82c3f11",
       'id': id,
       'token': token,
       'type': type,
@@ -381,7 +316,7 @@ class Communication {
       'detail': detail
     };
     final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/update/highlight/",
+        "https://vventure.tk/investor/profile/update/highlight/",
         body: data);
     Map<String, dynamic> jsonData;
 
@@ -403,14 +338,14 @@ class Communication {
       String id, String token, String type, String idHighlight) async {
     Map data = {
       'auth':
-          '2b7b9f856c3ce030f7545c3489b31c0687674208512e113a5d93a48cba0503db',
+          'c563b7856ac22839f792721ac02d294c633fe9544e7081e727242b830d58fe6b',
       'id': id,
       'token': token,
       'type': type,
       'id_highlight': idHighlight
     };
     final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/delete/highlight/",
+        "https://vventure.tk/investor/profile/delete/highlight/",
         body: data);
     Map<String, dynamic> jsonData;
 
@@ -434,16 +369,15 @@ class Communication {
       String id, String token, String title, String detail, String type) async {
     Map data = {
       'auth':
-          "6523cde886413d7237021657b6fee69873e30376c4dbbb72ebf114f506d423d9",
+          "ac4e7d80123eb6f32ce658fd967703539809265657db8b766855e13e31feb4fc",
       'id': id,
       'token': token,
       'type': type,
       'title': title,
       'detail': detail
     };
-    final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/insert/info/",
-        body: data);
+    final response = await http
+        .post("https://vventure.tk/investor/profile/insert/info/", body: data);
     Map<String, dynamic> jsonData;
 
     if (response.statusCode == 200) {
@@ -463,7 +397,7 @@ class Communication {
       String detail, String type, String idInfo) async {
     Map data = {
       'auth':
-          "2a9f190211c1eebc8280b7e9b77f3f7b2f806d8f64f06fba81730ba455ecb7f6",
+          "8212fd0968904f4af1655909e85fe0feb7e314c55ad38d111e5ee7366bc95d96",
       'id': id,
       'token': token,
       'type': type,
@@ -471,9 +405,8 @@ class Communication {
       'title': title,
       'detail': detail
     };
-    final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/update/info/",
-        body: data);
+    final response = await http
+        .post("https://vventure.tk/investor/profile/update/info/", body: data);
     Map<String, dynamic> jsonData;
 
     if (response.statusCode == 200) {
@@ -494,15 +427,14 @@ class Communication {
       String id, String token, String type, String idInfo) async {
     Map data = {
       'auth':
-          '3542f67fa25e703491846af21cbf09007879f6f056427e36737ea33937ec6395',
+          'd3a068303bab39c65720afed00c62e8a58fbb72f9c499cda7322e1462475825b',
       'id': id,
       'token': token,
       'type': type,
       'id_info': idInfo
     };
-    final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/delete/info/",
-        body: data);
+    final response = await http
+        .post("https://vventure.tk/investor/profile/delete/info/", body: data);
     Map<String, dynamic> jsonData;
 
     if (response.statusCode == 200) {
@@ -532,7 +464,7 @@ class Communication {
 
       Map data = {
         'auth':
-            "ed317b354577d279ac35f26dffac916169b83ff197f5f333b28a4c099a5ab5d7",
+            "c0cdcf6c5d22053916a5efcdcb23fae308212585740a758088f10be4e2df2808",
         'id': id,
         'token': token,
         'type': type,
@@ -540,7 +472,7 @@ class Communication {
         'ext': ext
       };
       final response = await http.post(
-          "https://vventure.tk/entrepreneur/profile/insert/image/",
+          "https://vventure.tk/investor/profile/insert/image/",
           body: data);
       Map<String, dynamic> jsonData;
 
@@ -565,15 +497,14 @@ class Communication {
       String id, String token, String type, String idImage) async {
     Map data = {
       'auth':
-          'eb432260e66deef8a6482ae9cebf98f5faabbcc0f19ce08b5edeb1bbdd043457',
+          '08afd9c6759ef1f08f9a03cfb23bc8d1e0b6b7f6faf4012342f7fe22ad815dd9',
       'id': id,
       'token': token,
       'type': type,
       'id_image': idImage
     };
-    final response = await http.post(
-        "https://vventure.tk/entrepreneur/profile/delete/image/",
-        body: data);
+    final response = await http
+        .post("https://vventure.tk/investor/profile/delete/image/", body: data);
     Map<String, dynamic> jsonData;
 
     if (response.statusCode == 200) {

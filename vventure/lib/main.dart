@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:vventure/splash.dart';
 import 'package:vventure/login/view/login_view.dart';
 import 'package:vventure/register/view/register_view.dart';
-import 'package:vventure/investor/home/view/home_view.dart';
+import 'package:vventure/investor/main/view/home_view.dart';
 import 'package:vventure/entrepreneur/main/view/home_view.dart';
 
 void main() {
