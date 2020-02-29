@@ -18,8 +18,7 @@ class FetchResults {
         rawData.forEach((key) => users.add(new BasicCardInfo(
             key['id'].toString(),
             key['organization'].toString(),
-            key['name'].toString(),
-            key['last'].toString(),
+            key['stage'].toString(),
             key['image'].toString())));
       }
     }

@@ -114,7 +114,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                                 this.widget.info[index].idInfo);
                           },
                           child: Card(
-                              elevation: 0.5,
+                              elevation: 3,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30.0),
                               ),

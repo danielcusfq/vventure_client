@@ -254,6 +254,13 @@ class _BasicProfileInvestorViewState extends State<BasicProfileInvestorView> {
 
         final snackBar = SnackBar(content: Text('Server Error'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
+      } else if (result.toString() == "empty") {
+        setState(() {
+          _isLoading = false;
+        });
+
+        final snackBar = SnackBar(content: Text('All Fields Are Required'));
+        _scaffoldKey.currentState.showSnackBar(snackBar);
       } else {
         setState(() {
           _isLoading = false;

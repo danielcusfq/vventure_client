@@ -1,32 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:vventure/entrepreneur/main/common_models/highlight.dart';
-import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
+import 'package:vventure/investor/main/common_models/timeline.dart';
+import 'package:timeline_list/timeline.dart';
+import 'package:timeline_list/timeline_model.dart';
+import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 
-class HighlightsWidget extends StatefulWidget {
-  final List<Highlight> highlights;
+class UserTimelineWidget extends StatefulWidget {
+  final List<UserTimeline> timeline;
   final String id;
   final String token;
   final String type;
   final Function rebuild;
   final Function removeItem;
-
-  HighlightsWidget(
+  UserTimelineWidget(
       {Key key,
-      @required this.highlights,
+      @required this.timeline,
       @required this.id,
       @required this.token,
       @required this.type,
       @required this.rebuild,
       @required this.removeItem})
       : super(key: key);
+
   @override
-  _HighlightsWidgetState createState() => _HighlightsWidgetState();
+  _UserTimelineWidgetState createState() => _UserTimelineWidgetState();
 }
 
-class _HighlightsWidgetState extends State<HighlightsWidget> {
+class _UserTimelineWidgetState extends State<UserTimelineWidget> {
   Color myColor = Color.fromRGBO(132, 94, 194, 1);
-  TextEditingController description = TextEditingController();
+  Color secondary = Color.fromRGBO(255, 150, 113, 1);
+  TextEditingController detail = new TextEditingController();
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _isLoading = true;
+      _isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +47,15 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 60),
+          padding: EdgeInsets.only(top: 60),
           child: Text(
-            "Highlights",
+            "My Timeline",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
         FlatButton(
           onPressed: () {
-            setState(() {
-              description.text = "";
-            });
+            detail.text = "";
             dialog(context);
           },
           child: Column(
@@ -59,100 +69,104 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                 "Add",
                 style: TextStyle(fontSize: 22),
               ),
+              widget.timeline == null
+                  ? Container()
+                  : Container(
+                      child: Timeline.builder(
+                        itemBuilder: timelineModel,
+                        itemCount: widget.timeline.length,
+                        primary: false,
+                        shrinkWrap: true,
+                      ),
+                    ),
+              SizedBox(height: 10)
             ],
           ),
         ),
-        this.widget.highlights == null
-            ? Text("")
-            : Container(
-                child: ListView.builder(
-                  primary: false,
-                  itemCount: this.widget.highlights.length,
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Dismissible(
-                      onDismissed: (DismissDirection direction) {
-                        setState(() {
-                          deleteHighlight(
-                              this.widget.id,
-                              this.widget.token,
-                              this.widget.type,
-                              this.widget.highlights[index].idHighlight);
-                          this.widget.removeItem(index);
-                        });
-                      },
-                      secondaryBackground: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              'Delete',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 22),
-                            ),
-                            Icon(
-                              Icons.delete,
-                              color: Colors.white,
-                            )
-                          ],
-                        ),
-                      ),
-                      background: Container(),
-                      child: Container(
-                        child: GestureDetector(
-                          onLongPress: () {
-                            setState(() {
-                              description.text =
-                                  this.widget.highlights[index].detail;
-                            });
-                            updateDialog(
-                                context,
-                                this.widget.id,
-                                this.widget.token,
-                                this.widget.highlights[index].idHighlight,
-                                this.widget.highlights[index].detail);
-                            widget.rebuild();
-                          },
-                          child: Card(
-                              elevation: 3,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                padding: EdgeInsets.all(16.0),
-                                constraints: BoxConstraints(
-                                    maxHeight:
-                                        MediaQuery.of(context).size.height / 2),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Flexible(
-                                      child: Text(
-                                        this.widget.highlights[index].detail,
-                                        style: TextStyle(
-                                            fontSize: 24, color: Colors.black),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )),
-                        ),
-                      ),
-                      key: UniqueKey(),
-                      direction: DismissDirection.endToStart,
-                    );
-                  },
-                ),
-              ),
       ],
     );
+  }
+
+  TimelineModel timelineModel(BuildContext context, int i) {
+    final data = widget.timeline[i];
+
+    return TimelineModel(
+        Dismissible(
+          onDismissed: (DismissDirection direction) {
+            setState(() {
+              deleteTimeline(
+                  widget.id, widget.token, widget.type, data.idTimeline);
+              widget.removeItem(i);
+            });
+          },
+          secondaryBackground: Container(
+            decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.all(Radius.circular(25))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'Delete',
+                  style: TextStyle(color: Colors.white, fontSize: 22),
+                ),
+                Icon(
+                  Icons.delete,
+                  color: Colors.white,
+                )
+              ],
+            ),
+          ),
+          background: Container(),
+          child: Card(
+            color: myColor,
+            elevation: 8,
+            margin: EdgeInsets.symmetric(vertical: 16.0),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0)),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GestureDetector(
+                onLongPress: () {
+                  setState(() {
+                    detail.text = data.detail;
+                  });
+                  updateDialog(context, data.idTimeline);
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    Text(
+                      data.detail,
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          key: UniqueKey(),
+          direction: DismissDirection.endToStart,
+        ),
+        position:
+            i % 2 == 0 ? TimelineItemPosition.right : TimelineItemPosition.left,
+        isFirst: i == 0,
+        isLast: i == widget.timeline.length,
+        iconBackground: secondary,
+        icon: Icon(
+          Icons.adjust,
+          color: Colors.white,
+        ));
   }
 
   void dialog(context) {
@@ -175,7 +189,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Add New Highlight",
+                        "Add Timeline Entry",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -202,7 +216,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       width: MediaQuery.of(context).size.width,
                       child: TextField(
-                        controller: description,
+                        controller: detail,
                         cursorColor: Color.fromRGBO(132, 94, 194, 1),
                         style: TextStyle(
                             color: Color.fromRGBO(132, 94, 194, 1),
@@ -210,12 +224,12 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                         keyboardType: TextInputType.text,
                         minLines: 3,
                         maxLines: 3,
-                        decoration: InputDecoration(
-                          labelStyle: TextStyle(
+                        decoration: new InputDecoration(
+                          labelStyle: new TextStyle(
                               color: Color.fromRGBO(132, 94, 194, 1),
                               fontSize: 20),
                           focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: new BorderSide(
                                   color: Color.fromRGBO(132, 94, 194, 1))),
                         ),
                       ),
@@ -232,8 +246,8 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                       ),
                       child: FlatButton(
                         onPressed: () {
-                          insertHighlight(this.widget.id, this.widget.token,
-                              description.text, this.widget.type);
+                          insertTimeline(this.widget.id, this.widget.token,
+                              this.widget.type, detail.text);
                           Navigator.of(context, rootNavigator: true)
                               .pop('dialog');
                           setState(() {
@@ -241,7 +255,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                           });
                         },
                         child: Text(
-                          "Add Highlight",
+                          "Submit Timeline Entry",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -255,8 +269,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
         });
   }
 
-  void updateDialog(
-      context, String id, String token, String idHighlight, String detail) {
+  void updateDialog(context, String idTimeline) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -276,7 +289,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Highlight",
+                        "Update Timeline Entry",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -303,7 +316,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       width: MediaQuery.of(context).size.width,
                       child: TextField(
-                        controller: description,
+                        controller: detail,
                         cursorColor: Color.fromRGBO(132, 94, 194, 1),
                         style: TextStyle(
                             color: Color.fromRGBO(132, 94, 194, 1),
@@ -333,8 +346,8 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                       ),
                       child: FlatButton(
                         onPressed: () {
-                          updateHighlight(this.widget.id, this.widget.token,
-                              this.widget.type, description.text, idHighlight);
+                          updateTimeline(this.widget.id, this.widget.token,
+                              this.widget.type, idTimeline, detail.text);
                           Navigator.of(context, rootNavigator: true)
                               .pop('dialog');
                           setState(() {
@@ -342,7 +355,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                           });
                         },
                         child: Text(
-                          "Update Highlight",
+                          "Update Timeline Entry",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -356,21 +369,20 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
         });
   }
 
-  void insertHighlight(String id, String token, String detail, String type) {
-    var future = Communication.insertHighlight(id, token, detail, type);
+  void insertTimeline(String id, String token, String type, String detail) {
+    var future = Communication.insertTimeline(id, token, type, detail);
     future.then((val) {});
   }
 
-  void updateHighlight(
-      String id, String token, String type, String detail, String idHighlight) {
+  void updateTimeline(
+      String id, String token, String type, String idTimeline, String detail) {
     var future =
-        Communication.updateHighlight(id, token, detail, type, idHighlight);
+        Communication.updateTimeline(id, token, type, idTimeline, detail);
     future.then((val) {});
   }
 
-  void deleteHighlight(
-      String id, String token, String type, String idHighlight) {
-    var future = Communication.deleteHighlight(id, token, type, idHighlight);
+  void deleteTimeline(String id, String token, String type, String idTimeline) {
+    var future = Communication.deleteTimeline(id, token, type, idTimeline);
     future.then((val) {});
   }
 }

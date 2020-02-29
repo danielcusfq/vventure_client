@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:vventure/entrepreneur/main/common_models/highlight.dart';
 import 'package:vventure/entrepreneur/main/common_models/info.dart';
+import 'package:vventure/entrepreneur/main/common_models/timeline.dart';
 import 'package:vventure/entrepreneur/main/common_models/work_image.dart';
 import 'package:vventure/entrepreneur/main/content/profile/model/my_profile.dart';
 
@@ -45,6 +46,14 @@ class Communication {
         rawData.forEach((key) => images.add(new WorkImage(key['id'].toString(),
             key['iduser'].toString(), key['image'].toString())));
 
+        List<UserTimeline> timeline = new List();
+        rawData = jsonData['timeline'];
+        rawData.forEach((key) => timeline.add(new UserTimeline(
+            key['id'].toString(),
+            key['iduser'].toString(),
+            key['detail'].toString(),
+            key['position'])));
+
         profile = new MyProfile(
             jsonData['name'].toString(),
             jsonData['last'].toString(),
@@ -59,7 +68,7 @@ class Communication {
             highlights,
             info,
             images,
-            null);
+            timeline);
       }
     }
 
@@ -573,6 +582,95 @@ class Communication {
     };
     final response = await http.post(
         "https://vventure.tk/entrepreneur/profile/delete/image/",
+        body: data);
+    Map<String, dynamic> jsonData;
+
+    if (response.statusCode == 200) {
+      jsonData = jsonDecode(response.body);
+
+      if (jsonData['res'].toString() == "success") {
+        Timer(Duration(seconds: 2), () {});
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  //----------------------------------------------------------------------------
+  //-------------------Timeline-------------------------------------------------
+  static Future<bool> insertTimeline(
+      String id, String token, String type, String detail) async {
+    Map data = {
+      'auth':
+          "6a391198f489808f558534e9076fa893a204bd622e8c6ce9f25133b934e4bb6f",
+      'id': id,
+      'token': token,
+      'type': type,
+      'detail': detail
+    };
+    final response = await http.post(
+        "https://vventure.tk/entrepreneur/profile/insert/timeline/",
+        body: data);
+    Map<String, dynamic> jsonData;
+
+    if (response.statusCode == 200) {
+      jsonData = jsonDecode(response.body);
+
+      if (jsonData['res'].toString() == "success") {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  static Future<bool> updateTimeline(String id, String token, String type,
+      String idTimeline, String detail) async {
+    Map data = {
+      'auth':
+          "7a3defcec07e39d2a163bb0276b33e6fae6d0911415412efd25d812c23ad78ea",
+      'id': id,
+      'token': token,
+      'type': type,
+      'id_timeline': idTimeline,
+      'detail': detail
+    };
+    final response = await http.post(
+        "https://vventure.tk/entrepreneur/profile/update/timeline/",
+        body: data);
+    Map<String, dynamic> jsonData;
+
+    if (response.statusCode == 200) {
+      jsonData = jsonDecode(response.body);
+
+      if (jsonData['res'].toString() == "success") {
+        Timer(Duration(seconds: 2), () {});
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  static Future<bool> deleteTimeline(
+      String id, String token, String type, String idTimeline) async {
+    Map data = {
+      'auth':
+          'f3952cde77f55eff87419f14a2f1680d8553b75d0850f0d64f138613d650b131',
+      'id': id,
+      'token': token,
+      'type': type,
+      'id_timeline': idTimeline
+    };
+    final response = await http.post(
+        "https://vventure.tk/entrepreneur/profile/delete/timeline/",
         body: data);
     Map<String, dynamic> jsonData;
 

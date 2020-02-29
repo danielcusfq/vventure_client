@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vventure/entrepreneur/main/content/profile/model/my_profile.dart';
 import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/custom_video.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/log_out.dart';
-import 'package:vventure/entrepreneur/main/content/profile/model/my_profile.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/highlights_widget.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/image_widget.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/info_widget.dart';
@@ -16,6 +16,7 @@ import 'package:vventure/entrepreneur/main/content/profile/widget/profile_image_
 import 'package:vventure/entrepreneur/main/content/profile/widget/solution_widget.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/stage_widget.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/stake_widget.dart';
+import 'package:vventure/entrepreneur/main/content/profile/widget/timeline_widget.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -195,6 +196,19 @@ class _ProfileState extends State<Profile> {
                                   removeItem: (index) {
                                     setState(() {
                                       _profile.images.removeAt(index);
+                                    });
+                                  }),
+                              UserTimelineWidget(
+                                  timeline: _profile.timeline,
+                                  id: id,
+                                  token: token,
+                                  type: "1",
+                                  rebuild: () {
+                                    rebuild();
+                                  },
+                                  removeItem: (index) {
+                                    setState(() {
+                                      _profile.timeline.removeAt(index);
                                     });
                                   }),
                             ],

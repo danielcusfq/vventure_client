@@ -53,8 +53,7 @@ class _MainResultsState extends State<MainResults> {
                 return ProfileCard(
                   id: _users[index].id,
                   organization: _users[index].organization,
-                  name: _users[index].name,
-                  last: _users[index].last,
+                  stage: _users[index].stage,
                   image: _users[index].image,
                 );
               },

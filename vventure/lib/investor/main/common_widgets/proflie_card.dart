@@ -4,16 +4,14 @@ import 'package:vventure/investor/main/content/view_profile/view/view_proflie.da
 class ProfileCard extends StatefulWidget {
   final String id;
   final String image;
-  final String name;
-  final String last;
+  final String stage;
   final String organization;
 
   ProfileCard(
       {Key key,
       @required this.id,
       @required this.image,
-      @required this.name,
-      @required this.last,
+      @required this.stage,
       @required this.organization})
       : super(key: key);
 
@@ -61,11 +59,11 @@ class _ProfileCardState extends State<ProfileCard> {
                         ),
                         Spacer(),
                         Text(
-                          this.widget.name,
-                          style: TextStyle(fontSize: 22, color: Colors.black),
+                          "Stage",
+                          style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                         Text(
-                          this.widget.last,
+                          this.widget.stage,
                           style: TextStyle(fontSize: 22, color: Colors.black),
                         )
                       ],
