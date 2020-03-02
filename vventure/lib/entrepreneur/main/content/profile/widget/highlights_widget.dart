@@ -115,7 +115,6 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                                 this.widget.token,
                                 this.widget.highlights[index].idHighlight,
                                 this.widget.highlights[index].detail);
-                            widget.rebuild();
                           },
                           child: Card(
                               elevation: 3,
