@@ -69,20 +69,20 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
                 "Add",
                 style: TextStyle(fontSize: 22),
               ),
-              widget.timeline == null
-                  ? Container()
-                  : Container(
-                      child: Timeline.builder(
-                        itemBuilder: timelineModel,
-                        itemCount: widget.timeline.length,
-                        primary: false,
-                        shrinkWrap: true,
-                      ),
-                    ),
-              SizedBox(height: 10)
             ],
           ),
         ),
+        widget.timeline == null
+            ? Container()
+            : Container(
+                child: Timeline.builder(
+                  itemBuilder: timelineModel,
+                  itemCount: widget.timeline.length,
+                  primary: false,
+                  shrinkWrap: true,
+                ),
+              ),
+        SizedBox(height: 10)
       ],
     );
   }

@@ -9,12 +9,16 @@ class Profile {
   String organization;
   String image;
   String video;
-  String interest;
-  String background;
+  String stage;
+  String stake;
+  String exchange;
+  String problem;
+  String solution;
   List<Highlight> highlight = new List();
   List<Info> info = new List();
   List<UserTimeline> timeline = new List();
   List<WorkImage> images = new List();
+  bool inFavorites;
 
   Profile(
       this.name,
@@ -22,10 +26,14 @@ class Profile {
       this.organization,
       this.image,
       this.video,
-      this.interest,
-      this.background,
+      this.stage,
+      this.stake,
+      this.exchange,
+      this.problem,
+      this.solution,
       this.highlight,
       this.info,
       this.images,
-      this.timeline);
+      this.timeline,
+      this.inFavorites);
 }

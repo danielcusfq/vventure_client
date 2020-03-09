@@ -1,34 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vventure/entrepreneur/main/common_models/profile.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/controller/comunication.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/widget/background_widget.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/widget/custom_video.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/widget/highlights_widget.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/widget/image_widget.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/widget/info_widget.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/widget/inspection_widget.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/widget/interests.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/widget/loading_widget.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/widget/name_widget.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/widget/organization_widget.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/widget/profile_image_widget.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/widget/timeline_widget.dart';
+import 'package:vventure/investor/main/common_models/profile.dart';
+import 'package:vventure/investor/main/content/view_profile/controller/comunication.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/custom_video.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/highlights_widget.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/image_widget.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/info_widget.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/inspection_widget.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/loading_widget.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/name_widget.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/organization_widget.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/profile_image_widget.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/timeline_widget.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/stage_widget.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/stake_widget.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/problem_widget.dart';
+import 'package:vventure/investor/main/content/view_profile/widget/solution_widget.dart';
 
-class ViewInvestorProfile extends StatefulWidget {
-  final String investorId;
-
-  ViewInvestorProfile({
-    Key key,
-    @required this.investorId,
-  }) : super(key: key);
+class ViewEntrepreneurProfile extends StatefulWidget {
+  final String entrepreneurId;
+  final bool inspection;
+  final String inspectionId;
+  ViewEntrepreneurProfile(
+      {Key key,
+      @required this.entrepreneurId,
+      this.inspection,
+      this.inspectionId})
+      : super(key: key);
 
   @override
-  _ViewInvestorProfileState createState() => _ViewInvestorProfileState();
+  _ViewEntrepreneurProfileState createState() =>
+      _ViewEntrepreneurProfileState();
 }
 
-class _ViewInvestorProfileState extends State<ViewInvestorProfile> {
+class _ViewEntrepreneurProfileState extends State<ViewEntrepreneurProfile> {
   SharedPreferences sharedPreferences;
   String id;
   String token;
@@ -43,7 +49,7 @@ class _ViewInvestorProfileState extends State<ViewInvestorProfile> {
     });
 
     getPreferences().then((val) {
-      var future = Communication.fetchProfile(widget.investorId, id, token);
+      var future = Communication.fetchProfile(widget.entrepreneurId, id, token);
       future
         ..then((profile) {
           setState(() {
@@ -92,7 +98,7 @@ class _ViewInvestorProfileState extends State<ViewInvestorProfile> {
               onPressed: () => Navigator.pop(context, false),
             )),
         body: Hero(
-          tag: widget.investorId,
+          tag: widget.entrepreneurId,
           child: Container(
             color: Colors.white,
             child: _isLoading == true
@@ -145,12 +151,13 @@ class _ViewInvestorProfileState extends State<ViewInvestorProfile> {
                                       name: _profile.name,
                                       last: _profile.last,
                                     ),
-                                    InterestsWidget(
-                                      interest: _profile.interest,
+                                    StageWidget(stage: _profile.stage),
+                                    StakeWidget(
+                                      stake: _profile.stake,
+                                      exchange: _profile.exchange,
                                     ),
-                                    BackgroundWidget(
-                                      background: _profile.background,
-                                    ),
+                                    ProblemWidget(problem: _profile.problem),
+                                    SolutionWidget(solution: _profile.solution),
                                     HighlightsWidget(
                                       highlights: _profile.highlight,
                                     ),
@@ -163,11 +170,17 @@ class _ViewInvestorProfileState extends State<ViewInvestorProfile> {
                                     UserTimelineWidget(
                                       timeline: _profile.timeline,
                                     ),
-                                    InspectionWidget(
-                                      investor: widget.investorId,
-                                      id: id,
-                                      token: token,
-                                    ),
+                                    widget.inspection == false
+                                        ? Container()
+                                        : InspectionFeedbackWidget(
+                                            entrepreneur: widget.entrepreneurId,
+                                            id: id,
+                                            token: token,
+                                            inspection: widget.inspectionId,
+                                            navigation: () {
+                                              navigateBack();
+                                            },
+                                          )
                                   ],
                                 ),
                               );
@@ -189,5 +202,9 @@ class _ViewInvestorProfileState extends State<ViewInvestorProfile> {
       id = sharedPreferences.getString("id");
       token = sharedPreferences.getString("token");
     });
+  }
+
+  void navigateBack() {
+    Navigator.pop(context, false);
   }
 }

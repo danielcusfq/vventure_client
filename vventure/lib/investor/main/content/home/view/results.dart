@@ -55,6 +55,7 @@ class _MainResultsState extends State<MainResults> {
                   organization: _users[index].organization,
                   stage: _users[index].stage,
                   image: _users[index].image,
+                  inspection: false,
                 );
               },
             ),

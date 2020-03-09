@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:vventure/investor/main/content/view_profile/view/view_proflie.dart';
+import 'package:vventure/investor/main/content/view_profile/view/view_profile.dart';
 
 class ProfileCard extends StatefulWidget {
   final String id;
   final String image;
   final String stage;
   final String organization;
-
+  final bool inspection;
+  final String inspectionid;
   ProfileCard(
       {Key key,
       @required this.id,
       @required this.image,
       @required this.stage,
-      @required this.organization})
+      @required this.organization,
+      @required this.inspection,
+      this.inspectionid})
       : super(key: key);
 
   @override
@@ -25,13 +28,27 @@ class _ProfileCardState extends State<ProfileCard> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
-        onTap: () => {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ViewInvestorProfile(id: this.widget.id),
-            ),
-          )
+        onTap: () {
+          if (widget.inspection == true) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ViewEntrepreneurProfile(
+                  entrepreneurId: this.widget.id,
+                  inspection: true,
+                  inspectionId: widget.inspectionid,
+                ),
+              ),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ViewEntrepreneurProfile(
+                    entrepreneurId: this.widget.id, inspection: false),
+              ),
+            );
+          }
         },
         child: Card(
             elevation: 8,

@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:vventure/entrepreneur/main/content/view_profile/view/view_proflie.dart';
+import 'package:vventure/entrepreneur/main/content/inspection/view/view_inspection.dart';
 
-class ProfileCard extends StatefulWidget {
+class InvestorProfileCard extends StatefulWidget {
   final String id;
+  final String inspection;
   final String image;
   final String name;
   final String last;
   final String organization;
-
-  ProfileCard(
+  InvestorProfileCard(
       {Key key,
       @required this.id,
+      @required this.inspection,
       @required this.image,
       @required this.name,
       @required this.last,
       @required this.organization})
       : super(key: key);
-
   @override
-  _ProfileCardState createState() => _ProfileCardState();
+  _InvestorProfileCardState createState() => _InvestorProfileCardState();
 }
 
-class _ProfileCardState extends State<ProfileCard> {
+class _InvestorProfileCardState extends State<InvestorProfileCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,8 +31,11 @@ class _ProfileCardState extends State<ProfileCard> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  ViewInvestorProfile(investorId: this.widget.id),
+              builder: (context) => ViewInvestorInspection(
+                inspection: widget.inspection,
+                investor: widget.id,
+                id: widget.id,
+              ),
             ),
           )
         },
@@ -80,7 +83,7 @@ class _ProfileCardState extends State<ProfileCard> {
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: CircleAvatar(
                         radius: (MediaQuery.of(context).size.height / 13),
-                        backgroundImage: NetworkImage(this.widget.image),
+                        backgroundImage: NetworkImage(widget.image),
                         backgroundColor: Colors.transparent,
                       ),
                     )

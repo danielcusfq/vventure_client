@@ -15,6 +15,7 @@ class Profile {
   List<Info> info = new List();
   List<UserTimeline> timeline = new List();
   List<WorkImage> images = new List();
+  bool inFavorites;
 
   Profile(
       this.name,
@@ -27,5 +28,6 @@ class Profile {
       this.highlight,
       this.info,
       this.images,
-      this.timeline);
+      this.timeline,
+      this.inFavorites);
 }
