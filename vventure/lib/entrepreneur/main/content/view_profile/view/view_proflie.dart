@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vventure/entrepreneur/main/common_models/profile.dart';
 import 'package:vventure/entrepreneur/main/content/view_profile/controller/comunication.dart';
@@ -57,9 +56,7 @@ class _ViewInvestorProfileState extends State<ViewInvestorProfile> {
           });
         });
     });
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
-        statusBarIconBrightness: Brightness.dark));
+
     super.initState();
   }
 

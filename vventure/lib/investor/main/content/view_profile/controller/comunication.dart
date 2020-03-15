@@ -83,4 +83,30 @@ class Communication {
       return profile;
     }
   }
+
+  static Future<String> requestContactInformation(
+      String id, String token, String entrepreneur) async {
+    id = "&id=" + id;
+    token = "&token=" + token;
+    entrepreneur = "&entrepreneur=" + entrepreneur;
+    String url =
+        "https://vventure.tk/investor/contact/?auth=357c4b87c630bd41efc01097ff535209d1eba8bc536964902cf4e1653596ebbf" +
+            id +
+            token +
+            entrepreneur;
+
+    final response = await http.get(url);
+    Map<String, dynamic> jsonData;
+
+    if (response.statusCode == 200) {
+      jsonData = jsonDecode(response.body);
+      if (jsonData['res'].toString() == "success") {
+        return "succes";
+      } else {
+        return "fail";
+      }
+    } else {
+      return "fail";
+    }
+  }
 }

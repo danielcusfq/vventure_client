@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vventure/entrepreneur/main/content/inspection/controller/communication.dart';
 import 'package:vventure/entrepreneur/main/content/inspection/model/inspection.dart';
@@ -46,16 +45,14 @@ class _ViewInvestorInspectionState extends State<ViewInvestorInspection> {
         });
       });
     });
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
-        statusBarIconBrightness: Brightness.dark));
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: widget.id,
+      tag: widget.inspection,
       child: Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.white,

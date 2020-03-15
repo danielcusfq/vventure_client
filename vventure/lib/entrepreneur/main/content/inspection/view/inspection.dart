@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vventure/entrepreneur/main/content/inspection/controller/communication.dart';
 import 'package:vventure/entrepreneur/main/content/inspection/model/profile.dart';
@@ -32,11 +31,6 @@ class _InspectionState extends State<Inspection> {
         });
       });
     });
-
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
-        statusBarIconBrightness: Brightness.dark));
-    super.initState();
 
     super.initState();
   }

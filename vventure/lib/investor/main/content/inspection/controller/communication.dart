@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:vventure/investor/main/content/inspection/model/inspection_model.dart';
 import 'package:vventure/investor/main/common_models/basic_card.dart';
 
 class Communication {
@@ -8,6 +9,68 @@ class Communication {
     token = "&token=" + token;
     String url =
         "https://vventure.tk/investor/inspection/users/?auth=355155b15b8f4acab45ac8cb623522b5c60d82a300429e3723c84853f6633ded" +
+            id +
+            token;
+
+    final response = await http.get(url);
+    Map<String, dynamic> jsonData;
+    List<BasicCardInfo> users = new List();
+    List<dynamic> rawData = new List();
+
+    if (response.statusCode == 200) {
+      jsonData = jsonDecode(response.body);
+
+      if (jsonData['res'].toString() == "success") {
+        rawData = jsonData['users'];
+        rawData.forEach((key) => users.add(new BasicCardInfo.inspection(
+            key['id'].toString(),
+            key['organization'].toString(),
+            key['stage'].toString(),
+            key['image'].toString(),
+            key['inspection'].toString())));
+      }
+    }
+
+    return users;
+  }
+
+  static Future<InspectionModel> fetchInspection(
+      String id, String token, String inspection) async {
+    id = "&id=" + id;
+    token = "&token=" + token;
+    inspection = "&inspection=" + inspection;
+    String url =
+        "https://vventure.tk/investor/inspection/detail/?auth=cb7ee1818d60a7f8888a9c3d2125e9cf8a04ac5a417f6487a355caed5cac360a" +
+            id +
+            token +
+            inspection;
+
+    final response = await http.get(url);
+    Map<String, dynamic> jsonData;
+    InspectionModel inspectionData;
+
+    if (response.statusCode == 200) {
+      jsonData = jsonDecode(response.body);
+
+      if (jsonData['res'].toString() == "success") {
+        inspectionData = new InspectionModel(
+            jsonData['image'].toString(),
+            jsonData['organization'].toString(),
+            jsonData['name'].toString(),
+            jsonData['last'].toString(),
+            jsonData['detail'].toString());
+      }
+    }
+
+    return inspectionData;
+  }
+
+  static Future<List<BasicCardInfo>> fetchInspectionHistory(
+      String id, String token) async {
+    id = "&id=" + id;
+    token = "&token=" + token;
+    String url =
+        "https://vventure.tk/investor/inspection/history/?auth=6d0210379efe392a654aa989d4ac1cfe4d4f1719e1906f695c302926b7c296e6" +
             id +
             token;
 

@@ -1,46 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:vventure/entrepreneur/main/content/inspection/view/view_inspection.dart';
+import 'package:vventure/investor/main/content/inspection/view/view_inspection.dart';
 
-class InvestorProfileCard extends StatefulWidget {
+class InspectionCard extends StatefulWidget {
+  final investorID;
+  final token;
   final String id;
-  final String inspection;
   final String image;
-  final String name;
-  final String last;
+  final String stage;
   final String organization;
-  InvestorProfileCard(
+  final String inspection;
+  InspectionCard(
       {Key key,
+      @required this.investorID,
+      @required this.token,
       @required this.id,
-      @required this.inspection,
       @required this.image,
-      @required this.name,
-      @required this.last,
-      @required this.organization})
+      @required this.stage,
+      @required this.organization,
+      @required this.inspection})
       : super(key: key);
+
   @override
-  _InvestorProfileCardState createState() => _InvestorProfileCardState();
+  _InspectionCardState createState() => _InspectionCardState();
 }
 
-class _InvestorProfileCardState extends State<InvestorProfileCard> {
+class _InspectionCardState extends State<InspectionCard> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: GestureDetector(
-        onTap: () => {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ViewInvestorInspection(
-                inspection: widget.inspection,
-                investor: widget.id,
-                id: widget.id,
+    return Hero(
+      tag: widget.inspection,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ViewPreviousInspection(
+                    id: widget.investorID,
+                    token: widget.token,
+                    inspection: widget.inspection),
               ),
-            ),
-          )
-        },
-        child: Hero(
-          tag: widget.inspection,
+            );
+          },
           child: Card(
               elevation: 8,
               shape: RoundedRectangleBorder(
@@ -68,11 +70,11 @@ class _InvestorProfileCardState extends State<InvestorProfileCard> {
                           ),
                           Spacer(),
                           Text(
-                            this.widget.name,
-                            style: TextStyle(fontSize: 22, color: Colors.black),
+                            "Stage",
+                            style: TextStyle(fontSize: 18, color: Colors.black),
                           ),
                           Text(
-                            this.widget.last,
+                            this.widget.stage,
                             style: TextStyle(fontSize: 22, color: Colors.black),
                           )
                         ],
@@ -83,7 +85,7 @@ class _InvestorProfileCardState extends State<InvestorProfileCard> {
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: CircleAvatar(
                         radius: (MediaQuery.of(context).size.height / 13),
-                        backgroundImage: NetworkImage(widget.image),
+                        backgroundImage: NetworkImage(this.widget.image),
                         backgroundColor: Colors.transparent,
                       ),
                     )
