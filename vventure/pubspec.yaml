@@ -12,8 +12,11 @@ dependencies:
 
   chewie: 0.9.8+1
   cupertino_icons: 0.1.2
+  downloads_path_provider: 0.1.0
+  flutter_downloader: 1.4.1
   http: 0.12.0+4
   image_picker: 0.6.3+1
+  permission_handler: ^4.4.0
   shared_preferences: 0.5.6+1
   snaplist: 0.1.8
   timeline_list: 0.0.5

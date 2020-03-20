@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vventure/entrepreneur/main/content/profile/model/my_profile.dart';
 import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/custom_video.dart';
+import 'package:vventure/entrepreneur/main/content/profile/widget/download_profile_widget.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/log_out.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/highlights_widget.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/image_widget.dart';
@@ -211,6 +212,10 @@ class _ProfileState extends State<Profile> {
                                       _profile.timeline.removeAt(index);
                                     });
                                   }),
+                              DownloadProfileWidget(
+                                  id: id,
+                                  token: token,
+                                  platform: Theme.of(context).platform)
                             ],
                           ),
                         );

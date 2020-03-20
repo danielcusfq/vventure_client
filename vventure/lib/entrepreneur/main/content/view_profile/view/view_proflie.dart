@@ -76,7 +76,31 @@ class _ViewInvestorProfileState extends State<ViewInvestorProfile> {
                     children: <Widget>[
                       Spacer(),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          if (_profile.inFavorites == true) {
+                            var future = Communication.removeFromFavorites(
+                                id, token, widget.investorId);
+                            future.then((value) {
+                              if (value == "success") {
+                                setState(() {
+                                  _profile.inFavorites = false;
+                                  _favorite = Colors.grey;
+                                });
+                              }
+                            });
+                          } else {
+                            var future = Communication.addToFavorites(
+                                id, token, widget.investorId);
+                            future.then((value) {
+                              if (value == "success") {
+                                setState(() {
+                                  _profile.inFavorites = true;
+                                  _favorite = Colors.red;
+                                });
+                              }
+                            });
+                          }
+                        },
                         child: Icon(Icons.favorite, color: _favorite),
                       )
                     ],

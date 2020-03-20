@@ -109,4 +109,56 @@ class Communication {
       return "fail";
     }
   }
+
+  static Future<String> addToFavorites(
+      String id, String token, String entrepreneur) async {
+    Map data = {
+      'auth':
+          "62a9addde6deec5dc3e747a592649ddc40dc3077823d8d8fae2c10b3d97a36b3",
+      'entrepreneur': entrepreneur,
+      'id': id,
+      'token': token
+    };
+    final response = await http
+        .post("https://vventure.tk/investor/favorites/add/", body: data);
+    Map<String, dynamic> jsonData;
+
+    if (response.statusCode == 200) {
+      jsonData = jsonDecode(response.body);
+
+      if (jsonData['res'].toString() == "success") {
+        return "success";
+      } else {
+        return "fail";
+      }
+    } else {
+      return "fail";
+    }
+  }
+
+  static Future<String> removeFromFavorites(
+      String id, String token, String entrepreneur) async {
+    Map data = {
+      'auth':
+          "7ec53e6efe4bee1bcba65122e6e67f38c8224658b3f86c8681df5fe77d33b3c2",
+      'entrepreneur': entrepreneur,
+      'id': id,
+      'token': token
+    };
+    final response = await http
+        .post("https://vventure.tk/investor/favorites/remove/", body: data);
+    Map<String, dynamic> jsonData;
+
+    if (response.statusCode == 200) {
+      jsonData = jsonDecode(response.body);
+
+      if (jsonData['res'].toString() == "success") {
+        return "success";
+      } else {
+        return "fail";
+      }
+    } else {
+      return "fail";
+    }
+  }
 }
