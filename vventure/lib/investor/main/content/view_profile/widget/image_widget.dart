@@ -28,14 +28,14 @@ class _ImageWidgetState extends State<ImageWidget> {
         Padding(
           padding: EdgeInsets.only(top: 60),
           child: Text(
-            "Investor Images",
+            "Imágenes de trabajo",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
         this.widget.images == null || this.widget.images.isEmpty == true
             ? Container(
                 child: Center(
-                  child: Text("No Images"),
+                  child: Text("No hay Imágenes por el Momento"),
                 ),
               )
             : Container(

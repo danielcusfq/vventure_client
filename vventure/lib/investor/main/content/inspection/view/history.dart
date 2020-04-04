@@ -44,7 +44,7 @@ class _InvestorInspectionHistoryViewState
           bottomOpacity: 0.0,
           elevation: 0,
           title: Text(
-            "History",
+            "Historial",
             style: TextStyle(
                 color: Colors.black, fontSize: 40, fontWeight: FontWeight.w200),
           ),
@@ -81,7 +81,7 @@ class _InvestorInspectionHistoryViewState
                           height: MediaQuery.of(context).size.height - 200,
                           child: Center(
                             child: Text(
-                              "No Previous Inspections",
+                              "No Hay Inspecciones Previas",
                               style: TextStyle(fontSize: 24),
                             ),
                           ),

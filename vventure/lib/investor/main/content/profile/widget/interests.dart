@@ -38,7 +38,7 @@ class _InterestsWidgetState extends State<InterestsWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "These Are Your Interests",
+                "Estos son tus Intereses",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
@@ -74,7 +74,7 @@ class _InterestsWidgetState extends State<InterestsWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Interests",
+                        "Editar Intereses",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -90,7 +90,7 @@ class _InterestsWidgetState extends State<InterestsWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Interests",
+                        "Intereses",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -140,7 +140,7 @@ class _InterestsWidgetState extends State<InterestsWidget> {
                           });
                         },
                         child: Text(
-                          "Update Interests",
+                          "Editar",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),

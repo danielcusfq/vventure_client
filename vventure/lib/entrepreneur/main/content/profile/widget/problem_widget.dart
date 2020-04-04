@@ -38,7 +38,7 @@ class _ProblemWidgetState extends State<ProblemWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "You are Solving the Next Problem",
+                "Estás Resolviendo el Siguiente Problema",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
@@ -74,7 +74,7 @@ class _ProblemWidgetState extends State<ProblemWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Problem",
+                        "Editar Problema",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -90,7 +90,7 @@ class _ProblemWidgetState extends State<ProblemWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Problem",
+                        "Problema",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -140,7 +140,7 @@ class _ProblemWidgetState extends State<ProblemWidget> {
                           });
                         },
                         child: Text(
-                          "Update Problem",
+                          "Editar",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),

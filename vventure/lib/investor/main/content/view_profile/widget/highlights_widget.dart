@@ -23,12 +23,12 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
         Padding(
           padding: const EdgeInsets.only(top: 60),
           child: Text(
-            "Highlights",
+            "Aspectos Destacados",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
         this.widget.highlights == null || this.widget.highlights.isEmpty == true
-            ? Text("Empty Highlights")
+            ? Text("Aspectos Destacados Vacíos")
             : Container(
                 child: ListView.builder(
                   primary: false,

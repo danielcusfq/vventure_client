@@ -76,7 +76,7 @@ class _ProfileCardState extends State<ProfileCard> {
                         ),
                         Spacer(),
                         Text(
-                          "Stage",
+                          "Etapa",
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                         Text(

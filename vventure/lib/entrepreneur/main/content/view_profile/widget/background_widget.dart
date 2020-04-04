@@ -21,7 +21,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "This Is The Background Of the Investor",
+              "Estos son los Antecedentes del Inversor",
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),

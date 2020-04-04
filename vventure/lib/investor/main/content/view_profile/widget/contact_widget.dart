@@ -44,7 +44,7 @@ class _ContactEntrepreneurWidgetState extends State<ContactEntrepreneurWidget> {
                 });
               },
               child: Text(
-                'Contact Entrepreneur',
+                'Contactar Emprendedor',
                 style: TextStyle(fontSize: 22),
               ),
               color: secondary,
@@ -81,9 +81,9 @@ class _ContactEntrepreneurWidgetState extends State<ContactEntrepreneurWidget> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: state == false
-                        ? Text("Request Error")
+                        ? Text("Error en la Solicitud")
                         : Text(
-                            "The Contact Information Was Sent to your email",
+                            "La Información de Contacto ha Sido Enviada a tu Correo Electrónico",
                             textAlign: TextAlign.center,
                           ),
                   ),

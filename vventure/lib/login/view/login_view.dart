@@ -53,7 +53,7 @@ class _LoginViewState extends State<LoginView> {
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: new Text(
-                      "LogIn as",
+                      "Inicia sesión como",
                       style: TextStyle(fontSize: 24),
                     ),
                   ),
@@ -62,14 +62,14 @@ class _LoginViewState extends State<LoginView> {
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
-                          "Entrepreneur",
+                          "Emprendedor",
                           style: TextStyle(fontSize: 20),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
-                          "Investor",
+                          "Inversor",
                           style: TextStyle(fontSize: 20),
                         ),
                       )
@@ -89,10 +89,10 @@ class _LoginViewState extends State<LoginView> {
                       });
                     },
                     color: Colors.black,
-                    selectedColor: Color.fromRGBO(132, 94, 194, 1),
+                    selectedColor: Color.fromRGBO(255, 150, 113, 1),
                     fillColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(25),
-                    splashColor: Color.fromRGBO(132, 94, 194, 0.2),
+                    splashColor: Color.fromRGBO(255, 150, 113, 0.2),
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -124,7 +124,7 @@ class _LoginViewState extends State<LoginView> {
                           color: Color.fromRGBO(132, 94, 194, 1), fontSize: 20),
                       keyboardType: TextInputType.visiblePassword,
                       decoration: new InputDecoration(
-                        labelText: 'Password',
+                        labelText: 'Contraseña',
                         labelStyle: new TextStyle(
                             color: Color.fromRGBO(132, 94, 194, 1),
                             fontSize: 20),
@@ -146,7 +146,7 @@ class _LoginViewState extends State<LoginView> {
                             getIndexSelections());
                       },
                       child: Text(
-                        "LogIn",
+                        "Ingresar",
                         style: TextStyle(
                             fontSize: 20,
                             color: Color.fromRGBO(132, 94, 194, 1)),
@@ -160,7 +160,7 @@ class _LoginViewState extends State<LoginView> {
                       onPressed: () =>
                           {Navigator.pushNamed(context, '/register')},
                       child: Text(
-                        "Register",
+                        "Regístrate",
                         style: TextStyle(fontSize: 20),
                       ),
                     ),
@@ -262,7 +262,8 @@ class _LoginViewState extends State<LoginView> {
 
           clearInput();
 
-          final snackBar = SnackBar(content: Text('Wrong user Information'));
+          final snackBar =
+              SnackBar(content: Text('Información de usuario incorrecta'));
           _scaffoldKey.currentState.showSnackBar(snackBar);
         }
       } else {
@@ -271,7 +272,7 @@ class _LoginViewState extends State<LoginView> {
         });
 
         clearInput();
-        final snackBar = SnackBar(content: Text('Server Error'));
+        final snackBar = SnackBar(content: Text('Error del Servidor'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
       }
     } else {
@@ -280,7 +281,7 @@ class _LoginViewState extends State<LoginView> {
       });
 
       clearInput();
-      final snackBar = SnackBar(content: Text('Empty Information'));
+      final snackBar = SnackBar(content: Text('Información Incompleta'));
       _scaffoldKey.currentState.showSnackBar(snackBar);
     }
   }

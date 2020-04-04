@@ -37,7 +37,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
         Padding(
           padding: const EdgeInsets.only(top: 60),
           child: Text(
-            "Highlights",
+            "Aspectos Destacados",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
@@ -56,7 +56,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                 size: 50.0,
               ),
               Text(
-                "Add",
+                "Añadir",
                 style: TextStyle(fontSize: 22),
               ),
             ],
@@ -90,7 +90,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'Delete',
+                              'Eliminar',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 22),
                             ),
@@ -174,7 +174,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Add New Highlight",
+                        "Añadir Aspecto Destacado",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -190,7 +190,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Description",
+                        "Descripción",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -240,7 +240,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                           });
                         },
                         child: Text(
-                          "Add Highlight",
+                          "Añadir",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -275,7 +275,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Highlight",
+                        "Editar Aspecto Destacado",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -291,7 +291,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Description",
+                        "Descripción",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -341,7 +341,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
                           });
                         },
                         child: Text(
-                          "Update Highlight",
+                          "Editar",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),

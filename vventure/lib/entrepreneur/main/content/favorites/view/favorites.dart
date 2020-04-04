@@ -64,7 +64,7 @@ class _FavoritesState extends State<Favorites> {
                           height: MediaQuery.of(context).size.height - 200,
                           child: Center(
                             child: Text(
-                              "No Favorites At The Moment",
+                              "No hay Favoritos en Este Momento",
                               style: TextStyle(fontSize: 24),
                             ),
                           ),

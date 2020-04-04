@@ -69,7 +69,7 @@ class _InspectionState extends State<Inspection> {
                             height: MediaQuery.of(context).size.height - 200,
                             child: Center(
                               child: Text(
-                                "No Inspections At the Moment",
+                                "No Hay Inspecciones en Este Momento",
                                 style: TextStyle(fontSize: 24),
                               ),
                             ),

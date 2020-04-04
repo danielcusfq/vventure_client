@@ -49,7 +49,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
         Padding(
           padding: EdgeInsets.only(top: 60),
           child: Text(
-            "My Timeline",
+            "Mi Línea de Tiempo",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
@@ -66,7 +66,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
                 size: 50.0,
               ),
               Text(
-                "Add",
+                "Añadir",
                 style: TextStyle(fontSize: 22),
               ),
             ],
@@ -107,7 +107,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Delete',
+                  'Eliminar',
                   style: TextStyle(color: Colors.white, fontSize: 22),
                 ),
                 Icon(
@@ -189,7 +189,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Add Timeline Entry",
+                        "Añadir Entrada",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -205,7 +205,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Description",
+                        "Descripción",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -255,7 +255,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
                           });
                         },
                         child: Text(
-                          "Submit Timeline Entry",
+                          "Añadir",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -289,7 +289,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Timeline Entry",
+                        "Editar Entrada",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -305,7 +305,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Description",
+                        "Descripción",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -355,7 +355,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
                           });
                         },
                         child: Text(
-                          "Update Timeline Entry",
+                          "Editar",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),

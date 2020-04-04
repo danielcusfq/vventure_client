@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'VVENTURE',
+      title: 'vventure',
       theme: ThemeData(
           primaryColor: Color.fromRGBO(132, 94, 194, 1),
           accentColor: Color.fromRGBO(132, 94, 194, 1),

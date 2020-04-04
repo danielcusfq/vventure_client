@@ -42,7 +42,7 @@ class _ImageWidgetState extends State<ImageWidget> {
         Padding(
           padding: EdgeInsets.only(top: 60),
           child: Text(
-            "My Work Images",
+            "Mis Imágenes de trabajo",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
@@ -58,7 +58,7 @@ class _ImageWidgetState extends State<ImageWidget> {
                 size: 50.0,
               ),
               Text(
-                "Add",
+                "Añadir",
                 style: TextStyle(fontSize: 22),
               ),
             ],
@@ -127,7 +127,7 @@ class _ImageWidgetState extends State<ImageWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Add New Image",
+                        "Añadir Imagen de Trabajo",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -173,7 +173,7 @@ class _ImageWidgetState extends State<ImageWidget> {
                             getImage();
                           },
                           child: Text(
-                            "Add Work Image",
+                            "Agregar Imagen de Trabajo",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Color.fromRGBO(132, 94, 194, 1)),
@@ -209,7 +209,7 @@ class _ImageWidgetState extends State<ImageWidget> {
                                 }
                               },
                               child: Text(
-                                "Upload Image",
+                                "Añadir",
                                 style: TextStyle(
                                     fontSize: 24, color: Colors.white),
                                 textAlign: TextAlign.center,
@@ -244,7 +244,7 @@ class _ImageWidgetState extends State<ImageWidget> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Text(
-                          "Delete Image",
+                          "Eliminar Imagen",
                           style: TextStyle(fontSize: 24.0),
                         ),
                       ],
@@ -262,7 +262,7 @@ class _ImageWidgetState extends State<ImageWidget> {
                         child: Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Text(
-                            "Are You Sure You Want To Delete This Image?",
+                            "¿Estás Seguro de que Quieres Eliminar Esta Imagen?",
                             style: TextStyle(fontSize: 24),
                           ),
                         ),
@@ -284,7 +284,7 @@ class _ImageWidgetState extends State<ImageWidget> {
                               });
                             },
                             child: Text(
-                              "Delete",
+                              "Eliminar",
                               style: TextStyle(fontSize: 24, color: Colors.red),
                               textAlign: TextAlign.center,
                             ),
@@ -295,7 +295,7 @@ class _ImageWidgetState extends State<ImageWidget> {
                                   .pop('dialog');
                             },
                             child: Text(
-                              "Cancel",
+                              "Cancelar",
                               style:
                                   TextStyle(fontSize: 24, color: Colors.black),
                               textAlign: TextAlign.center,

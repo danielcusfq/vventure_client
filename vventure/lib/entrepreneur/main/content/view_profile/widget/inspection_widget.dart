@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:vventure/entrepreneur/main/content/view_profile/controller/comunication.dart';
 
 class InspectionWidget extends StatefulWidget {
-  String investor;
-  String id;
-  String token;
+  final String investor;
+  final String id;
+  final String token;
   InspectionWidget(
       {Key key,
       @required this.investor,
@@ -39,7 +39,7 @@ class _InspectionWidgetState extends State<InspectionWidget> {
               });
             },
             child: Text(
-              'Request Inspection',
+              'Solicitar Inspección',
               style: TextStyle(fontSize: 22),
             ),
             color: secondary,
@@ -81,8 +81,8 @@ class _InspectionWidgetState extends State<InspectionWidget> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: state == false
-                        ? Text("Request Error")
-                        : Text("Inspectior Requested"),
+                        ? Text("Error en la Solicitud")
+                        : Text("Solicitud Pedida"),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),

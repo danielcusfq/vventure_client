@@ -35,7 +35,7 @@ class _EntrepreneurHomeViewState extends State<EntrepreneurHomeView> {
                   color: Color.fromRGBO(132, 94, 194, 1),
                 ),
                 title: Text(
-                  "Home",
+                  "Inicio",
                   style: TextStyle(color: Color.fromRGBO(132, 94, 194, 1)),
                 ),
                 backgroundColor: Colors.white),
@@ -45,7 +45,7 @@ class _EntrepreneurHomeViewState extends State<EntrepreneurHomeView> {
                   color: Color.fromRGBO(132, 94, 194, 1),
                 ),
                 title: Text(
-                  "Favorites",
+                  "Favoritos",
                   style: TextStyle(color: Color.fromRGBO(132, 94, 194, 1)),
                 ),
                 backgroundColor: Colors.white),
@@ -55,7 +55,7 @@ class _EntrepreneurHomeViewState extends State<EntrepreneurHomeView> {
                   color: Color.fromRGBO(132, 94, 194, 1),
                 ),
                 title: Text(
-                  "Search",
+                  "Buscar",
                   style: TextStyle(color: Color.fromRGBO(132, 94, 194, 1)),
                 ),
                 backgroundColor: Colors.white),
@@ -65,7 +65,7 @@ class _EntrepreneurHomeViewState extends State<EntrepreneurHomeView> {
                   color: Color.fromRGBO(132, 94, 194, 1),
                 ),
                 title: Text(
-                  "Inspection",
+                  "Inspección",
                   style: TextStyle(color: Color.fromRGBO(132, 94, 194, 1)),
                 ),
                 backgroundColor: Colors.white),
@@ -75,7 +75,7 @@ class _EntrepreneurHomeViewState extends State<EntrepreneurHomeView> {
                   color: Color.fromRGBO(132, 94, 194, 1),
                 ),
                 title: Text(
-                  "Profile",
+                  "Perfil",
                   style: TextStyle(color: Color.fromRGBO(132, 94, 194, 1)),
                 ),
                 backgroundColor: Colors.white)

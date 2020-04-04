@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:downloads_path_provider/downloads_path_provider.dart';
+import 'package:path_provider/path_provider.dart';
 
 class DownloadProfileWidget extends StatefulWidget {
   final String id;
@@ -48,14 +48,13 @@ class _DownloadProfileWidgetState extends State<DownloadProfileWidget> {
                 });
                 if (_permissionReady == true) {
                   download(widget.id, widget.token);
-                  //downloadProfile(widget.id, widget.token);
                 } else {
                   print("grant Permision first");
                 }
               });
             },
             child: Text(
-              'Download Profile',
+              'Descargar Perfil',
               style: TextStyle(fontSize: 22),
             ),
             color: secondary,
@@ -71,7 +70,7 @@ class _DownloadProfileWidgetState extends State<DownloadProfileWidget> {
   }
 
   Future<Null> download(String id, String token) async {
-    String path = _downloadsDirectory.path.toString();
+    String path = _downloadsDirectory.path;
 
     id = "&id=" + id;
     token = "&token=" + token;
@@ -112,7 +111,9 @@ class _DownloadProfileWidgetState extends State<DownloadProfileWidget> {
 
   Future<void> initDownloadsDirectoryState() async {
     Directory downloadsDirectory;
-    downloadsDirectory = await DownloadsPathProvider.downloadsDirectory;
+    downloadsDirectory = widget.platform == TargetPlatform.android
+        ? await getExternalStorageDirectory()
+        : await getApplicationDocumentsDirectory();
 
     setState(() {
       _downloadsDirectory = downloadsDirectory;

@@ -22,7 +22,7 @@ class StageWidget extends StatefulWidget {
 
 class _StageWidgetState extends State<StageWidget> {
   Color myColor = Color.fromRGBO(132, 94, 194, 1);
-  List<String> _dropItems = ["Concept", "Prototipe", "Production", "Scaling"];
+  List<String> _dropItems = ["Concepto", "Prototipo", "Producción", "Escalar"];
   String stage = "";
 
   @override
@@ -46,7 +46,7 @@ class _StageWidgetState extends State<StageWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Project Stage",
+              "Etapa del Proyecto",
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             Text(
@@ -79,7 +79,7 @@ class _StageWidgetState extends State<StageWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "What’s the Stage of Your Project?",
+                        "¿Cuál es la Etapa de tu Proyecto?",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -110,7 +110,7 @@ class _StageWidgetState extends State<StageWidget> {
                                   stage,
                                   style: TextStyle(fontSize: 24),
                                 )
-                              : Text("Select Project Stage"),
+                              : Text("Selecciona la Etapa de tu Proyecto"),
                           onChanged: (val) {
                             stage = val;
                             setState(() {
@@ -142,7 +142,7 @@ class _StageWidgetState extends State<StageWidget> {
                           });
                         },
                         child: Text(
-                          "Update Stage",
+                          "Editar",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),

@@ -35,7 +35,7 @@ class _BasicProfileInvestorViewState extends State<BasicProfileInvestorView> {
                   title: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "Welcome to VVENTURE",
+                      "Bienvenido a VVENTURE",
                       style: TextStyle(
                           fontSize: 24, color: Color.fromRGBO(132, 94, 194, 1)),
                     ),
@@ -65,13 +65,13 @@ class _BasicProfileInvestorViewState extends State<BasicProfileInvestorView> {
                       Tab(
                         child: Align(
                           alignment: Alignment.center,
-                          child: Text("Profile Picture"),
+                          child: Text("Foto de Perfil"),
                         ),
                       ),
                       Tab(
                         child: Align(
                           alignment: Alignment.center,
-                          child: Text("Interests & Background"),
+                          child: Text("Intereses & Antecedentes"),
                         ),
                       )
                     ],
@@ -113,7 +113,7 @@ class _BasicProfileInvestorViewState extends State<BasicProfileInvestorView> {
                           FlatButton(
                             onPressed: getImage,
                             child: Text(
-                              "Add Profile Image",
+                              "Añadir Imagen de Perfil",
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Color.fromRGBO(132, 94, 194, 1)),
@@ -133,7 +133,7 @@ class _BasicProfileInvestorViewState extends State<BasicProfileInvestorView> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "What Are Your Interests",
+                            "¿Cuáles Son tu Intereses?",
                             style: TextStyle(fontSize: 20),
                           ),
                           Container(
@@ -163,7 +163,7 @@ class _BasicProfileInvestorViewState extends State<BasicProfileInvestorView> {
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Text(
-                              "Tell Us About Yourself",
+                              "¿Cuéntanos Acerca de Tí?",
                               style: TextStyle(fontSize: 20),
                             ),
                           ),
@@ -201,7 +201,7 @@ class _BasicProfileInvestorViewState extends State<BasicProfileInvestorView> {
                                   interests.text, background.text);
                             },
                             child: Text(
-                              "Finish",
+                              "Terminar",
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Color.fromRGBO(132, 94, 194, 1)),
@@ -245,28 +245,28 @@ class _BasicProfileInvestorViewState extends State<BasicProfileInvestorView> {
           _isLoading = false;
         });
 
-        final snackBar = SnackBar(content: Text('Server Error'));
+        final snackBar = SnackBar(content: Text('Error del Servidor'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
       } else if (result.toString() == "Server Error") {
         setState(() {
           _isLoading = false;
         });
 
-        final snackBar = SnackBar(content: Text('Server Error'));
+        final snackBar = SnackBar(content: Text('Error del Servidor'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
       } else if (result.toString() == "empty") {
         setState(() {
           _isLoading = false;
         });
 
-        final snackBar = SnackBar(content: Text('All Fields Are Required'));
+        final snackBar = SnackBar(content: Text('Información Incompleta'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
       } else {
         setState(() {
           _isLoading = false;
         });
 
-        final snackBar = SnackBar(content: Text('An Error Ocurred'));
+        final snackBar = SnackBar(content: Text('Error'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
       }
     });

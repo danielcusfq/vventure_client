@@ -20,7 +20,7 @@ class _InspectionDetailWidgetState extends State<InspectionDetailWidget> {
           Center(
             child: Container(
               child: Text(
-                "Investor Feedback",
+                "Retroalimentación del Inversionista",
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
             ),
@@ -28,7 +28,7 @@ class _InspectionDetailWidgetState extends State<InspectionDetailWidget> {
           Center(
             child: Container(
               child: widget.detail == null || widget.detail.isEmpty == true
-                  ? Text("The investor Didnt't provide feedback")
+                  ? Text("El Inversor no Proporcionó Retroalimentación")
                   : Text(
                       widget.detail,
                       style: TextStyle(fontSize: 24),

@@ -73,7 +73,7 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Change Profile Image",
+                        "Cambiar Imagen de Perfil",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -124,7 +124,7 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
                             getImage();
                           },
                           child: Text(
-                            "Select Profile Image",
+                            "Seleccionar Imagen",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Color.fromRGBO(132, 94, 194, 1)),
@@ -163,7 +163,7 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
                                 }
                               },
                               child: Text(
-                                "Upload Image",
+                                "Cambiar",
                                 style: TextStyle(
                                     fontSize: 24, color: Colors.white),
                                 textAlign: TextAlign.center,

@@ -17,7 +17,7 @@ class _SolutionWidgetState extends State<SolutionWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "This is How We Are Solving the Problem",
+              "Así es Como Estamos Resolviendo el Problema",
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),

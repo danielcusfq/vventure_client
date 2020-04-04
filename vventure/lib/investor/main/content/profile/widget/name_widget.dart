@@ -52,7 +52,7 @@ class _NameWidgetState extends State<NameWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text("Represented by",
+              Text("Representado Por",
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
               Text(
                 fullName,
@@ -85,7 +85,7 @@ class _NameWidgetState extends State<NameWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Name",
+                        "Editar Nombre",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -101,7 +101,7 @@ class _NameWidgetState extends State<NameWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Name",
+                        "Nombre",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -135,7 +135,7 @@ class _NameWidgetState extends State<NameWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Last Name",
+                        "Apellido",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -185,7 +185,7 @@ class _NameWidgetState extends State<NameWidget> {
                           });
                         },
                         child: Text(
-                          "Update Name",
+                          "Editar",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),

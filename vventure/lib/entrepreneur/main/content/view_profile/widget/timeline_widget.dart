@@ -27,12 +27,16 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
         Padding(
           padding: EdgeInsets.only(top: 60),
           child: Text(
-            "Investor's Timeline",
+            "Línea de Tiempo",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
         widget.timeline == null || widget.timeline.isEmpty == true
-            ? Container()
+            ? Container(
+                child: Center(
+                  child: Text("Línea de Tiempo Vacia"),
+                ),
+              )
             : Container(
                 child: Timeline.builder(
                   itemBuilder: timelineModel,

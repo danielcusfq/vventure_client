@@ -22,7 +22,7 @@ class _InterestsWidgetState extends State<InterestsWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "These Are The Investor Interests",
+              "Estos son los Intereses del Inversor",
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),

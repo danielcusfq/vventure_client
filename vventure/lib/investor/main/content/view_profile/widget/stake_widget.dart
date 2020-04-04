@@ -21,7 +21,7 @@ class _StakeWidgetState extends State<StakeWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            "You Are Giving ",
+            "Estamos Dando el",
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           Text(
@@ -29,7 +29,7 @@ class _StakeWidgetState extends State<StakeWidget> {
             style: TextStyle(fontSize: 24),
           ),
           Text(
-            "Of Your Company in Exchange of",
+            "De Nuestra Compañía a Cambio de",
             style: TextStyle(fontSize: 22),
           ),
           Padding(

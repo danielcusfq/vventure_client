@@ -70,7 +70,7 @@ class _InspectionCardState extends State<InspectionCard> {
                           ),
                           Spacer(),
                           Text(
-                            "Stage",
+                            "Etapa",
                             style: TextStyle(fontSize: 18, color: Colors.black),
                           ),
                           Text(

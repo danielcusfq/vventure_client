@@ -18,7 +18,7 @@ class _StageWidgetState extends State<StageWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            "Project Stage",
+            "Etapa del Proyecto",
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           Text(

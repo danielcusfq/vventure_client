@@ -23,14 +23,14 @@ class _InfoWidgetState extends State<InfoWidget> {
         Padding(
           padding: EdgeInsets.only(top: 60),
           child: Text(
-            "Information",
+            "Información",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
         this.widget.info == null || this.widget.info.isEmpty == true
             ? Container(
                 child: Center(
-                  child: Text("Empty Info"),
+                  child: Text("Información Vacía"),
                 ),
               )
             : Container(

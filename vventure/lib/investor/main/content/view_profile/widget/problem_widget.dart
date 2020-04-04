@@ -18,7 +18,7 @@ class _ProblemWidgetState extends State<ProblemWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "We Are Solving This Problem",
+              "Estamos Resolviendo Este Problema",
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),

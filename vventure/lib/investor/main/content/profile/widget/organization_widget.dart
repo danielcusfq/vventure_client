@@ -65,7 +65,7 @@ class _OrganizationWidgetState extends State<OrganizationWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Organization",
+                        "Editar Organización",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -81,7 +81,7 @@ class _OrganizationWidgetState extends State<OrganizationWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Organization",
+                        "Organización",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -131,7 +131,7 @@ class _OrganizationWidgetState extends State<OrganizationWidget> {
                           });
                         },
                         child: Text(
-                          "Update Organization",
+                          "Editar",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),

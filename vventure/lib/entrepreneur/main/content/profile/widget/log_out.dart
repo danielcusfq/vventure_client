@@ -16,7 +16,7 @@ class _LogOutState extends State<LogOut> {
         GestureDetector(
           onTap: () => {logOut()},
           child: Text(
-            "Log Out",
+            "Cerrar Sesión",
             style: TextStyle(fontSize: 20, color: Colors.red),
           ),
         ),

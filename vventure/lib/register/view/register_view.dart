@@ -68,7 +68,7 @@ class _RegisterState extends State<Register> {
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: new Text(
-                        "Register as",
+                        "Regístrate como",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -77,14 +77,14 @@ class _RegisterState extends State<Register> {
                         Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Text(
-                            "Entrepreneur",
+                            "Emprendedor",
                             style: TextStyle(fontSize: 20),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Text(
-                            "Investor",
+                            "Inversor",
                             style: TextStyle(fontSize: 20),
                           ),
                         )
@@ -104,10 +104,10 @@ class _RegisterState extends State<Register> {
                         });
                       },
                       color: Colors.black,
-                      selectedColor: Color.fromRGBO(132, 94, 194, 1),
+                      selectedColor: Color.fromRGBO(255, 150, 113, 1),
                       fillColor: Colors.transparent,
                       borderRadius: BorderRadius.circular(25),
-                      splashColor: Color.fromRGBO(132, 94, 194, 0.2),
+                      splashColor: Color.fromRGBO(255, 150, 113, 0.2),
                     ),
                     Container(
                       padding:
@@ -121,7 +121,7 @@ class _RegisterState extends State<Register> {
                             fontSize: 20),
                         keyboardType: TextInputType.text,
                         decoration: new InputDecoration(
-                          labelText: 'Name',
+                          labelText: 'Nombre',
                           labelStyle: new TextStyle(
                               color: Color.fromRGBO(132, 94, 194, 1),
                               fontSize: 20),
@@ -143,7 +143,7 @@ class _RegisterState extends State<Register> {
                             fontSize: 20),
                         keyboardType: TextInputType.text,
                         decoration: new InputDecoration(
-                          labelText: 'Last Name',
+                          labelText: 'Apellido',
                           labelStyle: new TextStyle(
                               color: Color.fromRGBO(132, 94, 194, 1),
                               fontSize: 20),
@@ -165,7 +165,7 @@ class _RegisterState extends State<Register> {
                             fontSize: 20),
                         keyboardType: TextInputType.text,
                         decoration: new InputDecoration(
-                          labelText: 'Organization',
+                          labelText: 'Organización',
                           labelStyle: new TextStyle(
                               color: Color.fromRGBO(132, 94, 194, 1),
                               fontSize: 20),
@@ -208,7 +208,7 @@ class _RegisterState extends State<Register> {
                             fontSize: 20),
                         keyboardType: TextInputType.visiblePassword,
                         decoration: new InputDecoration(
-                          labelText: 'Password',
+                          labelText: 'Contraseña',
                           labelStyle: new TextStyle(
                               color: Color.fromRGBO(132, 94, 194, 1),
                               fontSize: 20),
@@ -237,7 +237,7 @@ class _RegisterState extends State<Register> {
                               getIndexSelections());
                         },
                         child: Text(
-                          "Register",
+                          "Registrarse",
                           style: TextStyle(
                               fontSize: 20,
                               color: Color.fromRGBO(132, 94, 194, 1)),
@@ -316,7 +316,7 @@ class _RegisterState extends State<Register> {
 
           clearInput();
 
-          final snackBar = SnackBar(content: Text('User Taken'));
+          final snackBar = SnackBar(content: Text('Usuario tomado'));
           _scaffoldKey.currentState.showSnackBar(snackBar);
         } else {
           setState(() {
@@ -325,7 +325,8 @@ class _RegisterState extends State<Register> {
 
           clearInput();
 
-          final snackBar = SnackBar(content: Text('Wrong user Information'));
+          final snackBar =
+              SnackBar(content: Text('Información de usuario incorrecta'));
           _scaffoldKey.currentState.showSnackBar(snackBar);
         }
       } else {
@@ -334,7 +335,7 @@ class _RegisterState extends State<Register> {
         });
 
         clearInput();
-        final snackBar = SnackBar(content: Text('Server Error'));
+        final snackBar = SnackBar(content: Text('Error del Servidor'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
       }
     } else {
@@ -343,7 +344,7 @@ class _RegisterState extends State<Register> {
       });
 
       clearInput();
-      final snackBar = SnackBar(content: Text('Empty Information'));
+      final snackBar = SnackBar(content: Text('Información Incompleta'));
       _scaffoldKey.currentState.showSnackBar(snackBar);
     }
   }

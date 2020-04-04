@@ -37,7 +37,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "This is Your Background",
+                "Estos son tus Antecedentes",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
@@ -73,7 +73,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Background",
+                        "Editar Antecedentes",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -89,7 +89,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Background",
+                        "Antecedentes",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -139,7 +139,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
                           });
                         },
                         child: Text(
-                          "Update Background",
+                          "Editar",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),

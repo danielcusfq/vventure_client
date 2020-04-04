@@ -38,7 +38,7 @@ class _InfoWidgetState extends State<InfoWidget> {
         Padding(
           padding: EdgeInsets.only(top: 60),
           child: Text(
-            "Information",
+            "Información",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
@@ -56,7 +56,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                 size: 50.0,
               ),
               Text(
-                "Add",
+                "Añadir",
                 style: TextStyle(fontSize: 22),
               ),
             ],
@@ -87,7 +87,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'Delete',
+                              'Eliminar',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 22),
                             ),
@@ -197,7 +197,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Add New Info",
+                        "Añadir Nueva Información",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -213,7 +213,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                     padding: EdgeInsets.only(top: 20.0),
                     child: Center(
                       child: Text(
-                        "Title",
+                        "Título",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -241,7 +241,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Description",
+                        "Descripción",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -291,7 +291,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                           });
                         },
                         child: Text(
-                          "Add Info",
+                          "Añadir",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -325,7 +325,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Info",
+                        "Editar Información",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -341,7 +341,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                     padding: EdgeInsets.only(top: 20.0),
                     child: Center(
                       child: Text(
-                        "Title",
+                        "Título",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -369,7 +369,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Description",
+                        "Descripción",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -424,7 +424,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                           });
                         },
                         child: Text(
-                          "Update Info",
+                          "Editar",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),

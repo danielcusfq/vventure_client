@@ -43,7 +43,7 @@ class _StakeWidgetState extends State<StakeWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "You Are Giving ",
+              "Estas Dando el",
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             Text(
@@ -51,7 +51,7 @@ class _StakeWidgetState extends State<StakeWidget> {
               style: TextStyle(fontSize: 24),
             ),
             Text(
-              "Of Your Company in Exchange of",
+              "De tu Compañía a Cambio de",
               style: TextStyle(fontSize: 22),
             ),
             Padding(
@@ -88,7 +88,7 @@ class _StakeWidgetState extends State<StakeWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Stakes",
+                        "Editar Participación",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -104,7 +104,7 @@ class _StakeWidgetState extends State<StakeWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Percentage to Give Up",
+                        "Porcentaje a Ceder",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -148,7 +148,7 @@ class _StakeWidgetState extends State<StakeWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "In Exchange of",
+                        "A Cambio de",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -198,7 +198,7 @@ class _StakeWidgetState extends State<StakeWidget> {
                           });
                         },
                         child: Text(
-                          "Update Stakes",
+                          "Editar",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),

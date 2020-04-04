@@ -132,7 +132,7 @@ class _CustomVideoState extends State<CustomVideo> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "Update Video",
+                        "Actualizar Video",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -185,7 +185,7 @@ class _CustomVideoState extends State<CustomVideo> {
                             getVideo();
                           },
                           child: Text(
-                            "Select Video",
+                            "Seleccionar Video",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Color.fromRGBO(132, 94, 194, 1)),
@@ -221,7 +221,7 @@ class _CustomVideoState extends State<CustomVideo> {
                                 }
                               },
                               child: Text(
-                                "Upload Video",
+                                "Subir Video",
                                 style: TextStyle(
                                     fontSize: 24, color: Colors.white),
                                 textAlign: TextAlign.center,

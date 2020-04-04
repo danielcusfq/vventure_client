@@ -40,7 +40,7 @@ class _InspectionFeedbackWidgetState extends State<InspectionFeedbackWidget> {
                 delete(context);
               },
               child: Text(
-                'Deny Feedback',
+                'Negar Retroalimentación',
                 style: TextStyle(fontSize: 22),
               ),
               color: secondary,
@@ -60,7 +60,7 @@ class _InspectionFeedbackWidgetState extends State<InspectionFeedbackWidget> {
                 feedback(context);
               },
               child: Text(
-                'Give Feedback',
+                'Dar Retroalimentación',
                 style: TextStyle(fontSize: 22),
               ),
               color: secondary,
@@ -96,7 +96,7 @@ class _InspectionFeedbackWidgetState extends State<InspectionFeedbackWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        "User Feedback",
+                        "Dar Retroalimentación",
                         style: TextStyle(fontSize: 24.0),
                       ),
                     ],
@@ -112,7 +112,7 @@ class _InspectionFeedbackWidgetState extends State<InspectionFeedbackWidget> {
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
                       child: Text(
-                        "Feedback",
+                        "Retroalimentación",
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -160,7 +160,7 @@ class _InspectionFeedbackWidgetState extends State<InspectionFeedbackWidget> {
                           widget.navigation();
                         },
                         child: Text(
-                          "Give Feedback",
+                          "Dar",
                           style: TextStyle(fontSize: 24, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
@@ -194,7 +194,7 @@ class _InspectionFeedbackWidgetState extends State<InspectionFeedbackWidget> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Text(
-                          "Deny Inspection",
+                          "Negar Retroalimentación",
                           style: TextStyle(fontSize: 24.0),
                         ),
                       ],
@@ -212,7 +212,7 @@ class _InspectionFeedbackWidgetState extends State<InspectionFeedbackWidget> {
                         child: Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Text(
-                            "Are You Sure You Want To Deny This Inspection?",
+                            "¿Estás Seguro de que Deseas Negar la Retroalimentación?",
                             style: TextStyle(fontSize: 24),
                           ),
                         ),
@@ -234,7 +234,7 @@ class _InspectionFeedbackWidgetState extends State<InspectionFeedbackWidget> {
                               });
                             },
                             child: Text(
-                              "Deny",
+                              "Negar",
                               style: TextStyle(fontSize: 24, color: Colors.red),
                               textAlign: TextAlign.center,
                             ),
@@ -245,7 +245,7 @@ class _InspectionFeedbackWidgetState extends State<InspectionFeedbackWidget> {
                                   .pop('dialog');
                             },
                             child: Text(
-                              "Cancel",
+                              "Cancelar",
                               style:
                                   TextStyle(fontSize: 24, color: Colors.black),
                               textAlign: TextAlign.center,

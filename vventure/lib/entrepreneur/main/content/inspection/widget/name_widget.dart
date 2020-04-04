@@ -34,7 +34,7 @@ class _NameWidgetState extends State<NameWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("Run by",
+            Text("Representado por",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             Text(
               fullName,

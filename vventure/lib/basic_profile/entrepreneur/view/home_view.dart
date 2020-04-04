@@ -20,7 +20,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
   File _image;
   TextEditingController percentage = new TextEditingController();
   TextEditingController exchange = new TextEditingController();
-  List<String> _dropItems = ["Concept", "Prototipe", "Production", "Scaling"];
+  List<String> _dropItems = ["Concepto", "Prototipo", "Producción", "Escalar"];
   String stage = "";
   TextEditingController problem = new TextEditingController();
   TextEditingController solution = new TextEditingController();
@@ -38,7 +38,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
                 title: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "Welcome to VVENTURE",
+                    "Bienvenido a VVENTURE",
                     style: TextStyle(
                         fontSize: 24, color: Color.fromRGBO(132, 94, 194, 1)),
                   ),
@@ -67,19 +67,19 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
                     Tab(
                       child: Align(
                         alignment: Alignment.center,
-                        child: Text("Profile Picture"),
+                        child: Text("Foto de Perfil"),
                       ),
                     ),
                     Tab(
                       child: Align(
                         alignment: Alignment.center,
-                        child: Text("Stage & Stakes"),
+                        child: Text("Etapa & Participaciones"),
                       ),
                     ),
                     Tab(
                       child: Align(
                         alignment: Alignment.center,
-                        child: Text("Problem & Solution"),
+                        child: Text("Problema & Solución"),
                       ),
                     )
                   ],
@@ -121,7 +121,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
                         FlatButton(
                           onPressed: getImage,
                           child: Text(
-                            "Add Profile Image",
+                            "Añadir Imagen de Perfil",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Color.fromRGBO(132, 94, 194, 1)),
@@ -143,7 +143,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "What’s the Stage of Your Project?",
+                          "¿Cuál es la Etapa de tu Proyecto?",
                           style: TextStyle(fontSize: 20),
                         ),
                         DropdownButton<String>(
@@ -155,7 +155,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
                             }).toList(),
                             hint: stage.isNotEmpty
                                 ? Text(stage)
-                                : Text("Select Project Stage"),
+                                : Text("Selecciona la Etapa de tu Proyecto"),
                             onChanged: (String val) {
                               stage = val;
                               setState(() {});
@@ -163,7 +163,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
-                            "Percentage to Give Up",
+                            "¿Qué Porcentaje de tu Compañía Estas Dispuesto a Dar?",
                             style: TextStyle(fontSize: 20),
                           ),
                         ),
@@ -206,7 +206,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
                         Padding(
                           padding: const EdgeInsets.only(top: 15.0),
                           child: Text(
-                            "In Exchange of",
+                            "A cambio de",
                             style: TextStyle(fontSize: 20),
                           ),
                         ),
@@ -245,7 +245,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "What Problem Are You Solving",
+                          "¿Qué Problema Estás Resolviendo?",
                           style: TextStyle(fontSize: 20),
                         ),
                         Container(
@@ -274,7 +274,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
-                            "How Are You Solving This Problem",
+                            "¿Cómo Estás Resolviendo Este Problema?",
                             style: TextStyle(fontSize: 20),
                           ),
                         ),
@@ -317,7 +317,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
                                 solution.text);
                           },
                           child: Text(
-                            "Finish",
+                            "Terminar",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Color.fromRGBO(132, 94, 194, 1)),
@@ -362,28 +362,28 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
           _isLoading = false;
         });
 
-        final snackBar = SnackBar(content: Text('Server Error'));
+        final snackBar = SnackBar(content: Text('Error del Servidor'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
       } else if (result.toString() == "Server Error") {
         setState(() {
           _isLoading = false;
         });
 
-        final snackBar = SnackBar(content: Text('Server Error'));
+        final snackBar = SnackBar(content: Text('Error del Servidor'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
       } else if (result.toString() == "empty") {
         setState(() {
           _isLoading = false;
         });
 
-        final snackBar = SnackBar(content: Text('All Fields Are Required'));
+        final snackBar = SnackBar(content: Text('Información Incompleta'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
       } else {
         setState(() {
           _isLoading = false;
         });
 
-        final snackBar = SnackBar(content: Text('An Error Ocurred'));
+        final snackBar = SnackBar(content: Text('Error'));
         _scaffoldKey.currentState.showSnackBar(snackBar);
       }
     });
