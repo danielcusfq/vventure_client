@@ -23,10 +23,12 @@ class Communication {
     String _solution;
     Map _data;
 
+    //check if user is activated
     if (userInfo.activation == "1") {
       return "Activated";
     }
 
+    //check if image is empty
     if (image != null) {
       _base64image = base64Encode(image.readAsBytesSync());
       _ext = image.path.split('.').last;
@@ -35,6 +37,7 @@ class Communication {
       _ext = "";
     }
 
+    //check if all the fields are not empty
     if (stage.isNotEmpty) {
       _stage = stage;
     } else {
@@ -65,6 +68,7 @@ class Communication {
       _solution = "";
     }
 
+    //set data to send on post
     _data = {
       "auth":
           "b2df705644a0c7ff7dd469afa096c56d6da918cfcf827d69631dcacfccf54fa5",
@@ -79,15 +83,19 @@ class Communication {
       "solution": _solution
     };
 
+    //set preferences instance
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    //send information to server
     var response = await http.post(
         "https://vventure.tk/complete_register/entrepreneur/",
         body: _data);
     Map<String, dynamic> jasonData;
 
+    //get response of server
     if (response.statusCode == 200) {
       jasonData = json.decode(response.body);
 
+      //sets preferences and redirects user
       if (jasonData['res'].toString() == "success" &&
           jasonData['type'].toString() == "1" &&
           jasonData['activation'].toString() == "1") {

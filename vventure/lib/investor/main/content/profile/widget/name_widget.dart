@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 
+//displays user name
+
 class NameWidget extends StatefulWidget {
   final String name;
   final String last;
@@ -29,6 +31,7 @@ class _NameWidgetState extends State<NameWidget> {
   TextEditingController name = new TextEditingController();
   TextEditingController lastName = new TextEditingController();
 
+  //init widget info
   @override
   void initState() {
     super.initState();
@@ -37,6 +40,7 @@ class _NameWidgetState extends State<NameWidget> {
     });
   }
 
+  //main view for user
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -65,6 +69,7 @@ class _NameWidgetState extends State<NameWidget> {
     );
   }
 
+  //popup dialog to update name
   void updateDialog(context) {
     showDialog(
         context: context,
@@ -199,6 +204,7 @@ class _NameWidgetState extends State<NameWidget> {
         });
   }
 
+  //calls controller
   void updateName(
       String id, String token, String type, String name, String lastName) {
     var future = Communication.updateName(id, token, type, name, lastName);

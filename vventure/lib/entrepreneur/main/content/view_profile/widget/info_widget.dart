@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/entrepreneur/main/common_models/info.dart';
 
+//this widget displays user info
+
 class InfoWidget extends StatefulWidget {
   final List<Info> info;
 

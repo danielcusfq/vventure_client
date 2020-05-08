@@ -1,3 +1,5 @@
+//model that represents user timeline
+
 class UserTimeline {
   String idTimeline;
   String idPerson;

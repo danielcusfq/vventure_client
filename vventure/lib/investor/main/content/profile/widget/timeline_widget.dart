@@ -4,6 +4,8 @@ import 'package:timeline_list/timeline.dart';
 import 'package:timeline_list/timeline_model.dart';
 import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 
+//this widget displays user timeline
+
 class UserTimelineWidget extends StatefulWidget {
   final List<UserTimeline> timeline;
   final String id;
@@ -31,6 +33,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
   TextEditingController detail = new TextEditingController();
   bool _isLoading = false;
 
+  //init widget data
   @override
   void initState() {
     super.initState();
@@ -40,6 +43,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
     });
   }
 
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -87,6 +91,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
     );
   }
 
+  //model for timeline
   TimelineModel timelineModel(BuildContext context, int i) {
     final data = widget.timeline[i];
 
@@ -169,6 +174,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
         ));
   }
 
+  //popup dialog for add entry
   void dialog(context) {
     showDialog(
         context: context,
@@ -269,6 +275,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
         });
   }
 
+  //popup dialog for update entry
   void updateDialog(context, String idTimeline) {
     showDialog(
         context: context,
@@ -369,6 +376,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
         });
   }
 
+  //this functions calls controller
   void insertTimeline(String id, String token, String type, String detail) {
     var future = Communication.insertTimeline(id, token, type, detail);
     future.then((val) {});

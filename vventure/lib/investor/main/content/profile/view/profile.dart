@@ -17,6 +17,8 @@ import 'package:vventure/investor/main/content/profile/widget/profile_image_widg
 import 'package:vventure/investor/main/content/profile/widget/background.dart';
 import 'package:vventure/investor/main/content/profile/widget/timeline_widget.dart';
 
+//this widget displays the hole user profile
+
 class Profile extends StatefulWidget {
   @override
   _ProfileState createState() => _ProfileState();
@@ -29,6 +31,7 @@ class _ProfileState extends State<Profile> {
   MyProfile _profile;
   bool _loaded = false;
 
+  //run functions at widget initialization
   @override
   void initState() {
     super.initState();
@@ -43,6 +46,7 @@ class _ProfileState extends State<Profile> {
     });
   }
 
+  //main view of widget
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -207,6 +211,7 @@ class _ProfileState extends State<Profile> {
     );
   }
 
+  //get preferences of device an user
   Future<dynamic> getPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     setState(() {
@@ -215,6 +220,7 @@ class _ProfileState extends State<Profile> {
     });
   }
 
+  //rebuild io
   void rebuild() {
     setState(() {
       _loaded = false;
@@ -231,6 +237,7 @@ class _ProfileState extends State<Profile> {
     });
   }
 
+  //show loading status
   void loading() {
     setState(() {
       _loaded = false;

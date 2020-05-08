@@ -6,6 +6,8 @@ import 'package:vventure/entrepreneur/main/common_models/work_image.dart';
 import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/loading_widget.dart';
 
+//class that contains the image widget
+
 class ImageWidget extends StatefulWidget {
   final List<WorkImage> images;
   final String id;
@@ -33,6 +35,7 @@ class _ImageWidgetState extends State<ImageWidget> {
   File imageFile;
   bool _imageLoading = false;
 
+  // main view for the widget
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -107,6 +110,7 @@ class _ImageWidgetState extends State<ImageWidget> {
     );
   }
 
+  //pop up to add image
   void dialog(context) {
     showDialog(
         context: context,
@@ -224,6 +228,7 @@ class _ImageWidgetState extends State<ImageWidget> {
         });
   }
 
+  //pop up to delete image
   void delete(context, String image, int index) {
     showDialog(
         context: context,
@@ -310,6 +315,7 @@ class _ImageWidgetState extends State<ImageWidget> {
         });
   }
 
+  //functions to call the controller
   Future<bool> insertImage(String id, String token, File image, String type) {
     var future = Communication.insertImage(id, token, image, type);
     future.then((val) {

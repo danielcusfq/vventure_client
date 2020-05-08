@@ -5,6 +5,8 @@ import 'package:vventure/investor/main/common_models/basic_card.dart';
 import 'package:vventure/investor/main/common_widgets/proflie_card.dart';
 import 'package:vventure/investor/main/content/search/controller/communication.dart';
 
+//this widget displays user searched users
+
 class Search extends StatefulWidget {
   @override
   _SearchState createState() => _SearchState();
@@ -20,6 +22,7 @@ class _SearchState extends State<Search> {
   String id;
   String token;
 
+  //init widget info
   @override
   void initState() {
     super.initState();
@@ -33,6 +36,7 @@ class _SearchState extends State<Search> {
     });
   }
 
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -161,6 +165,7 @@ class _SearchState extends State<Search> {
     );
   }
 
+  //get preferences of device and user
   Future<dynamic> getPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     setState(() {

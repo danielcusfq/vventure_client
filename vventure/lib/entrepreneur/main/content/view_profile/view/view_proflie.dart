@@ -15,6 +15,8 @@ import 'package:vventure/entrepreneur/main/content/view_profile/widget/organizat
 import 'package:vventure/entrepreneur/main/content/view_profile/widget/profile_image_widget.dart';
 import 'package:vventure/entrepreneur/main/content/view_profile/widget/timeline_widget.dart';
 
+//this widget shows user information
+
 class ViewInvestorProfile extends StatefulWidget {
   final String investorId;
 
@@ -35,6 +37,7 @@ class _ViewInvestorProfileState extends State<ViewInvestorProfile> {
   Color _favorite;
   bool _isLoading = false;
 
+  //run functions in widget initialize
   @override
   void initState() {
     setState(() {
@@ -60,6 +63,7 @@ class _ViewInvestorProfileState extends State<ViewInvestorProfile> {
     super.initState();
   }
 
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -204,6 +208,7 @@ class _ViewInvestorProfileState extends State<ViewInvestorProfile> {
     );
   }
 
+  //get device and user preferences
   Future<dynamic> getPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     setState(() {

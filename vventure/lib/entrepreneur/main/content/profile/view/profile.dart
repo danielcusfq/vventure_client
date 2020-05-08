@@ -31,6 +31,7 @@ class _ProfileState extends State<Profile> {
   MyProfile _profile;
   bool _loaded = false;
 
+  //functions run at widget initialization
   @override
   void initState() {
     super.initState();
@@ -45,6 +46,7 @@ class _ProfileState extends State<Profile> {
     });
   }
 
+  //widget that contains the main view for the profile module
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -228,6 +230,7 @@ class _ProfileState extends State<Profile> {
     );
   }
 
+  //get device and user preferences
   Future<dynamic> getPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     setState(() {
@@ -236,6 +239,7 @@ class _ProfileState extends State<Profile> {
     });
   }
 
+  //function to rebuild the ui
   void rebuild() {
     setState(() {
       _loaded = false;
@@ -252,6 +256,7 @@ class _ProfileState extends State<Profile> {
     });
   }
 
+  //set loading stage
   void loading() {
     setState(() {
       _loaded = false;

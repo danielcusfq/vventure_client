@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 
+//this widget displays the user background
+
 class BackgroundWidget extends StatefulWidget {
   final String background;
   final String id;
@@ -23,6 +25,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
   Color myColor = Color.fromRGBO(132, 94, 194, 1);
   TextEditingController background = TextEditingController();
 
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -53,6 +56,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
     );
   }
 
+  //popup dialog to edit background
   void updateDialog(context) {
     showDialog(
         context: context,
@@ -153,6 +157,7 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
         });
   }
 
+  //calls controller
   void updateBackground(
       String id, String token, String type, String background) {
     var future = Communication.updateBackground(id, token, type, background);

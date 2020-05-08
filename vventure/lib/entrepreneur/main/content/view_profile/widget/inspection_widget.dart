@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/entrepreneur/main/content/view_profile/controller/comunication.dart';
 
+//this widget displays user inspection
+
 class InspectionWidget extends StatefulWidget {
   final String investor;
   final String id;

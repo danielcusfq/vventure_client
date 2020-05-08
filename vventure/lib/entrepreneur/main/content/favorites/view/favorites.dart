@@ -17,6 +17,7 @@ class _FavoritesState extends State<Favorites> {
   String token;
   bool _loading;
 
+  //functions called at widget initialization
   @override
   void initState() {
     setState(() {
@@ -34,6 +35,7 @@ class _FavoritesState extends State<Favorites> {
     super.initState();
   }
 
+  //main view for favorite users
   @override
   Widget build(BuildContext context) {
     return _loading == true
@@ -87,6 +89,7 @@ class _FavoritesState extends State<Favorites> {
           );
   }
 
+  //get shared preferences from device
   Future<dynamic> getPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     setState(() {
@@ -95,6 +98,7 @@ class _FavoritesState extends State<Favorites> {
     });
   }
 
+  //refresh the view
   Future<Null> _refresh() async {
     setState(() {
       _loading = true;

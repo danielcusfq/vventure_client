@@ -4,6 +4,8 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 
+//widget that help us to download personal profile
+
 class DownloadProfileWidget extends StatefulWidget {
   final String id;
   final String token;
@@ -23,6 +25,7 @@ class _DownloadProfileWidgetState extends State<DownloadProfileWidget> {
   Color secondary = Color.fromRGBO(255, 150, 113, 1);
   bool _permissionReady;
 
+  //initialize widget
   @override
   void initState() {
     super.initState();
@@ -31,6 +34,7 @@ class _DownloadProfileWidgetState extends State<DownloadProfileWidget> {
     initDownloadsDirectoryState();
   }
 
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -69,6 +73,7 @@ class _DownloadProfileWidgetState extends State<DownloadProfileWidget> {
     );
   }
 
+  //download task
   Future<Null> download(String id, String token) async {
     String path = _downloadsDirectory.path;
 
@@ -89,6 +94,7 @@ class _DownloadProfileWidgetState extends State<DownloadProfileWidget> {
     );
   }
 
+  //check if permissions are set
   Future<bool> _checkPermission() async {
     if (widget.platform == TargetPlatform.android) {
       PermissionStatus permission = await PermissionHandler()
@@ -109,6 +115,7 @@ class _DownloadProfileWidgetState extends State<DownloadProfileWidget> {
     return false;
   }
 
+  //get download directory
   Future<void> initDownloadsDirectoryState() async {
     Directory downloadsDirectory;
     downloadsDirectory = widget.platform == TargetPlatform.android

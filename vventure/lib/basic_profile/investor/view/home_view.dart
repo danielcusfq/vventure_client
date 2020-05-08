@@ -23,6 +23,7 @@ class _BasicProfileInvestorViewState extends State<BasicProfileInvestorView> {
   File _image;
   bool _isLoading = false;
 
+  //main widget for the view
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -215,6 +216,7 @@ class _BasicProfileInvestorViewState extends State<BasicProfileInvestorView> {
     );
   }
 
+  //gets image from gallery
   Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
@@ -222,6 +224,7 @@ class _BasicProfileInvestorViewState extends State<BasicProfileInvestorView> {
     });
   }
 
+  //make call to server
   void completeRegister(
       UserInfo userInfo, File image, String interest, String background) {
     var future =

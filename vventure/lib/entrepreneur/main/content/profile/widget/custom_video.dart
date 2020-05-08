@@ -7,6 +7,8 @@ import 'package:chewie/chewie.dart';
 import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/loading_widget.dart';
 
+//this class contains the custom video widget
+
 class CustomVideo extends StatefulWidget {
   final String id;
   final String token;
@@ -28,6 +30,7 @@ class CustomVideo extends StatefulWidget {
 }
 
 class _CustomVideoState extends State<CustomVideo> {
+  //set video controller and aspect ratio
   VideoPlayerController _videoPlayerController;
   ChewieController _chewieMainController;
   double _aspectRatio = 16 / 10;
@@ -35,6 +38,7 @@ class _CustomVideoState extends State<CustomVideo> {
   bool _videoLoading = false;
   Color myColor = Color.fromRGBO(132, 94, 194, 1);
 
+  //initialize controllers
   @override
   initState() {
     super.initState();
@@ -69,6 +73,7 @@ class _CustomVideoState extends State<CustomVideo> {
     });
   }
 
+  //on destroy method
   @override
   void dispose() {
     _videoPlayerController.dispose();
@@ -81,6 +86,7 @@ class _CustomVideoState extends State<CustomVideo> {
     super.dispose();
   }
 
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -112,6 +118,7 @@ class _CustomVideoState extends State<CustomVideo> {
     );
   }
 
+  //pop up dialog fot update video
   void dialog(context) {
     showDialog(
         context: context,
@@ -236,6 +243,7 @@ class _CustomVideoState extends State<CustomVideo> {
         });
   }
 
+  //get video from gallery
   Future getVideo() async {
     var selectedVideo =
         await ImagePicker.pickVideo(source: ImageSource.gallery);
@@ -246,6 +254,7 @@ class _CustomVideoState extends State<CustomVideo> {
     dialog(context);
   }
 
+  //call controller to communicate with server
   Future<bool> insertVideo(String id, String token, File video, String type) {
     var future = Communication.insertVideo(id, token, video, type);
     future.then((val) {

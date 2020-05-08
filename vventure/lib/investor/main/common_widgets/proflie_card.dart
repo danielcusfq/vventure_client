@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/investor/main/content/view_profile/view/view_profile.dart';
 
+//this widgets have the ui for a basic card
+
 class ProfileCard extends StatefulWidget {
   final String id;
   final String image;
@@ -23,6 +25,7 @@ class ProfileCard extends StatefulWidget {
 }
 
 class _ProfileCardState extends State<ProfileCard> {
+  //main view for the widget
   @override
   Widget build(BuildContext context) {
     return Padding(

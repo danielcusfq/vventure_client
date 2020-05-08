@@ -3,6 +3,8 @@ import 'package:vventure/entrepreneur/main/common_models/info.dart';
 import 'package:vventure/entrepreneur/main/common_models/timeline.dart';
 import 'package:vventure/entrepreneur/main/common_models/work_image.dart';
 
+//model that contains all the user profile information
+
 class Profile {
   String name;
   String last;

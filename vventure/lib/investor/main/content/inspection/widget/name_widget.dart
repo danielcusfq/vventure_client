@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//displays the name of user
+
 class NameWidget extends StatefulWidget {
   final String name;
   final String last;
@@ -16,7 +18,7 @@ class NameWidget extends StatefulWidget {
 
 class _NameWidgetState extends State<NameWidget> {
   String fullName;
-
+  //sets name of user at widget start
   @override
   void initState() {
     super.initState();
@@ -25,6 +27,7 @@ class _NameWidgetState extends State<NameWidget> {
     });
   }
 
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return Padding(

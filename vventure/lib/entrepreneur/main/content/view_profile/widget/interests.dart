@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//this widget displays user interests
+
 class InterestsWidget extends StatefulWidget {
   final String interest;
 

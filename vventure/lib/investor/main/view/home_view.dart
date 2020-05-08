@@ -7,6 +7,8 @@ import 'package:vventure/investor/main/content/search/view/search.dart';
 import 'package:vventure/investor/main/content/inspection/view/inspection.dart';
 import 'package:vventure/investor/main/content/profile/view/profile.dart';
 
+//this widget contains main navigation bar and houses main scaffold
+
 class InvestorHomeView extends StatefulWidget {
   @override
   _InvestorHomeViewState createState() => _InvestorHomeViewState();
@@ -91,6 +93,7 @@ class _InvestorHomeViewState extends State<InvestorHomeView> {
     );
   }
 
+  //navigates to page
   _getPage(int index) {
     switch (index) {
       case 0:
@@ -109,6 +112,7 @@ class _InvestorHomeViewState extends State<InvestorHomeView> {
     }
   }
 
+  //checks log in status
   checkLoginStatus() async {
     sharedPreferences = await SharedPreferences.getInstance();
     if (sharedPreferences.getString("id") == null ||

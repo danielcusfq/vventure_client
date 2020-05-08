@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vventure/login/view/login_view.dart';
 
+//this widget helps user logout
+
 class LogOut extends StatefulWidget {
   @override
   _LogOutState createState() => _LogOutState();

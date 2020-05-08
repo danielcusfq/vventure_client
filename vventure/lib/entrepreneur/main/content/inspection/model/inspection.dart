@@ -1,3 +1,5 @@
+//this model represents the feedback of a inspection
+
 class InspectionModel {
   String image;
   String organization;

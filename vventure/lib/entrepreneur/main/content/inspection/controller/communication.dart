@@ -3,7 +3,10 @@ import 'package:http/http.dart' as http;
 import 'package:vventure/entrepreneur/main/content/inspection/model/inspection.dart';
 import 'package:vventure/entrepreneur/main/content/inspection/model/profile.dart';
 
+//this class helps with the communication with the server
+
 class Communication {
+  //this function get a list of the inspections that investors gave to the user
   static Future<List<InvestorBasicProfile>> fetchInspections(
       String id, String token) async {
     id = "&id=" + id;
@@ -36,6 +39,7 @@ class Communication {
     return users;
   }
 
+  //this function return all the information of a inspection
   static Future<InspectionModel> fetchInspection(
       String id, String token, String inspection, String investor) async {
     id = "&id=" + id;

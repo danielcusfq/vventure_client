@@ -3,6 +3,8 @@ import 'package:vventure/entrepreneur/main/common_models/timeline.dart';
 import 'package:timeline_list/timeline.dart';
 import 'package:timeline_list/timeline_model.dart';
 
+//this widget displays user timeline
+
 class UserTimelineWidget extends StatefulWidget {
   final List<UserTimeline> timeline;
   UserTimelineWidget({

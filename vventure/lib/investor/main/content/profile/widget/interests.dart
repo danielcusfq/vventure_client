@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 
+//this widget displays the user interests
+
 class InterestsWidget extends StatefulWidget {
   final String interest;
   final String id;
@@ -24,6 +26,7 @@ class _InterestsWidgetState extends State<InterestsWidget> {
   Color myColor = Color.fromRGBO(132, 94, 194, 1);
   TextEditingController interest = TextEditingController();
 
+  //main view for the widget
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -54,6 +57,7 @@ class _InterestsWidgetState extends State<InterestsWidget> {
     );
   }
 
+  //popup update dialog for interests
   void updateDialog(context) {
     showDialog(
         context: context,
@@ -154,6 +158,7 @@ class _InterestsWidgetState extends State<InterestsWidget> {
         });
   }
 
+  //calls controller
   void updateInterest(String id, String token, String type, String interest) {
     var future = Communication.updateInterests(id, token, type, interest);
     future.then((val) {});

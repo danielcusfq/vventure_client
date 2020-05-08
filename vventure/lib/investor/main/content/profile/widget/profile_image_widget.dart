@@ -1,9 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 import 'package:vventure/investor/main/content/profile/widget/loading_widget.dart';
+
+//displays user profile picture
 
 class ProfileImageWidget extends StatefulWidget {
   final String image;
@@ -29,6 +30,7 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
   File profileImageFile;
   bool _profileImageLoading = false;
 
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,6 +55,7 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
     );
   }
 
+  //popup update dialog for profile image
   void dialog(context) {
     showDialog(
         context: context,
@@ -178,6 +181,7 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
         });
   }
 
+  //calls controller
   Future<bool> insertProfileImage(
       String id, String token, File image, String type) {
     var future = Communication.insertProfileImage(id, token, image, type);
@@ -187,6 +191,7 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
     return future;
   }
 
+  //get image from gallery
   Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {

@@ -5,6 +5,8 @@ import 'package:vventure/entrepreneur/main/common_widgets/proflie_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vventure/entrepreneur/main/content/search/controller/coomunication.dart';
 
+//this widget help user search a user in database
+
 class Search extends StatefulWidget {
   @override
   _SearchState createState() => _SearchState();
@@ -20,6 +22,7 @@ class _SearchState extends State<Search> {
   String id;
   String token;
 
+  //run functions at widget initialize
   @override
   void initState() {
     super.initState();
@@ -33,6 +36,7 @@ class _SearchState extends State<Search> {
     });
   }
 
+  //main view for the widget
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -161,6 +165,7 @@ class _SearchState extends State<Search> {
     );
   }
 
+  //get device and user preferences
   Future<dynamic> getPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     setState(() {

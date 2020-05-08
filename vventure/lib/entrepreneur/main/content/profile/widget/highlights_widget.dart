@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:vventure/entrepreneur/main/common_models/highlight.dart';
 import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
 
+//class that contains highlight widget
+
 class HighlightsWidget extends StatefulWidget {
   final List<Highlight> highlights;
   final String id;
@@ -28,6 +30,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
   Color myColor = Color.fromRGBO(132, 94, 194, 1);
   TextEditingController description = TextEditingController();
 
+  //main view for the widget
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -154,6 +157,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
     );
   }
 
+  //pop up to add highlight
   void dialog(context) {
     showDialog(
         context: context,
@@ -254,6 +258,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
         });
   }
 
+  //pop up to update highlight
   void updateDialog(
       context, String id, String token, String idHighlight, String detail) {
     showDialog(
@@ -355,6 +360,7 @@ class _HighlightsWidgetState extends State<HighlightsWidget> {
         });
   }
 
+  //functions to call controller
   void insertHighlight(String id, String token, String detail, String type) {
     var future = Communication.insertHighlight(id, token, detail, type);
     future.then((val) {});

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//this widget contain the profile image of the investor
+
 class ProfileImageWidget extends StatefulWidget {
   final String image;
   ProfileImageWidget({

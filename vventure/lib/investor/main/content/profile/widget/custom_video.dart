@@ -7,6 +7,8 @@ import 'package:chewie/chewie.dart';
 import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 import 'package:vventure/investor/main/content/profile/widget/loading_widget.dart';
 
+//this widget display user video
+
 class CustomVideo extends StatefulWidget {
   final String id;
   final String token;
@@ -35,6 +37,7 @@ class _CustomVideoState extends State<CustomVideo> {
   bool _videoLoading = false;
   Color myColor = Color.fromRGBO(132, 94, 194, 1);
 
+  //set video controller at widget initialization
   @override
   initState() {
     super.initState();
@@ -69,6 +72,7 @@ class _CustomVideoState extends State<CustomVideo> {
     });
   }
 
+  //on destroy method
   @override
   void dispose() {
     _videoPlayerController.dispose();
@@ -81,6 +85,7 @@ class _CustomVideoState extends State<CustomVideo> {
     super.dispose();
   }
 
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -112,6 +117,7 @@ class _CustomVideoState extends State<CustomVideo> {
     );
   }
 
+  //popup dialog for update video
   void dialog(context) {
     showDialog(
         context: context,
@@ -236,6 +242,7 @@ class _CustomVideoState extends State<CustomVideo> {
         });
   }
 
+  //get video from device gallery
   Future getVideo() async {
     var selectedVideo =
         await ImagePicker.pickVideo(source: ImageSource.gallery);
@@ -246,6 +253,7 @@ class _CustomVideoState extends State<CustomVideo> {
     dialog(context);
   }
 
+  //calls controller
   Future<bool> insertVideo(String id, String token, File video, String type) {
     var future = Communication.insertVideo(id, token, video, type);
     future.then((val) {

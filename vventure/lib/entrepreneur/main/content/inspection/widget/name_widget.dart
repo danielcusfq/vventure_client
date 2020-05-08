@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//this widget contains the name of the user
+
 class NameWidget extends StatefulWidget {
   final String name;
   final String last;

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:snaplist/snaplist.dart';
 import 'package:vventure/entrepreneur/main/common_models/work_image.dart';
 
+//this widget displays user image
+
 class ImageWidget extends StatefulWidget {
   final List<WorkImage> images;
 

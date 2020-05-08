@@ -1,3 +1,5 @@
+//model that represents highlight
+
 class Highlight {
   String idHighlight;
   String idPerson;

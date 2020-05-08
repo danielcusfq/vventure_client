@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
 
+//widget that display and updates the organization solution
+
 class SolutionWidget extends StatefulWidget {
   final String solution;
   final String id;
@@ -23,6 +25,7 @@ class _SolutionWidgetState extends State<SolutionWidget> {
   Color myColor = Color.fromRGBO(132, 94, 194, 1);
   TextEditingController solution = TextEditingController();
 
+  //main view of the widget
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -53,6 +56,7 @@ class _SolutionWidgetState extends State<SolutionWidget> {
     );
   }
 
+  //pop up to update solution
   void updateDialog(context) {
     showDialog(
         context: context,
@@ -153,6 +157,7 @@ class _SolutionWidgetState extends State<SolutionWidget> {
         });
   }
 
+  //calls controller
   void updateSolution(String id, String token, String type, String solution) {
     var future = Communication.updateSolution(id, token, type, solution);
     future.then((val) {});

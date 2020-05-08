@@ -12,6 +12,7 @@ class _MainResultsState extends State<MainResults> {
   List<BasicCardInfo> _users = new List();
   bool _loading = false;
 
+  //functions run at server initialize
   @override
   void initState() {
     setState(() {
@@ -27,6 +28,7 @@ class _MainResultsState extends State<MainResults> {
     super.initState();
   }
 
+  //main view for the home module
   @override
   Widget build(BuildContext context) {
     return _loading == true

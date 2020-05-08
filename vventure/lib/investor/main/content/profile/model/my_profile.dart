@@ -3,6 +3,8 @@ import 'package:vventure/investor/main/common_models/info.dart';
 import 'package:vventure/investor/main/common_models/timeline.dart';
 import 'package:vventure/investor/main/common_models/work_image.dart';
 
+//model that represents user profile
+
 class MyProfile {
   String name;
   String last;

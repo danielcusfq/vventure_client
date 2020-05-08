@@ -14,10 +14,12 @@ class Communication {
     String _background;
     Map _data;
 
+    //check if user is activated
     if (userInfo.activation == "1") {
       return "Activated";
     }
 
+    //check if image is empty
     if (image != null) {
       _base64image = base64Encode(image.readAsBytesSync());
       _ext = image.path.split('.').last;
@@ -26,6 +28,7 @@ class Communication {
       _ext = "";
     }
 
+    //check if fields are empty
     if (interest.isNotEmpty) {
       _interest = interest;
     } else {
@@ -38,6 +41,7 @@ class Communication {
       _background = "";
     }
 
+    //sets post data
     _data = {
       "auth":
           "a5d2f6ffbaeb6e229e05e0b2e6a9136473778c0160d3a4d07f4c380067b3c2cd",
@@ -49,14 +53,17 @@ class Communication {
       "background": _background
     };
 
+    //gets device preferences instance
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var response = await http
         .post("https://vventure.tk/complete_register/investor/", body: _data);
     Map<String, dynamic> jasonData;
 
+    //check response from server
     if (response.statusCode == 200) {
       jasonData = json.decode(response.body);
 
+      //sets preferences and redirects user
       if (jasonData['res'].toString() == "success" &&
           jasonData['type'].toString() == "2" &&
           jasonData['activation'].toString() == "1") {

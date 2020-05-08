@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/entrepreneur/main/content/view_profile/view/view_proflie.dart';
 
+//this class represents a user profile card
+
 class ProfileCard extends StatefulWidget {
   final String id;
   final String image;
@@ -8,6 +10,7 @@ class ProfileCard extends StatefulWidget {
   final String last;
   final String organization;
 
+  //card constructor
   ProfileCard(
       {Key key,
       @required this.id,
@@ -22,6 +25,8 @@ class ProfileCard extends StatefulWidget {
 }
 
 class _ProfileCardState extends State<ProfileCard> {
+  //main widget view
+
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//this widget displays profile image
+
 class ProfileImageWidget extends StatefulWidget {
   final String image;
   ProfileImageWidget({

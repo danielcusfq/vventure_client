@@ -7,6 +7,8 @@ import 'package:vventure/investor/main/content/inspection/widget/organization_wi
 import 'package:vventure/investor/main/content/inspection/widget/profile_image_widget.dart';
 import 'package:vventure/investor/main/content/inspection/widget/inspection_detail_widget.dart';
 
+//this widget displays the detailed view of an inspection
+
 class ViewPreviousInspection extends StatefulWidget {
   final String id;
   final String token;
@@ -25,6 +27,7 @@ class _ViewPreviousInspectionState extends State<ViewPreviousInspection> {
   InspectionModel _inspection;
   bool _isLoading;
 
+  //run functions at widget initialization
   @override
   void initState() {
     setState(() {
@@ -43,6 +46,7 @@ class _ViewPreviousInspectionState extends State<ViewPreviousInspection> {
     super.initState();
   }
 
+  //main view of widget
   @override
   Widget build(BuildContext context) {
     return Hero(

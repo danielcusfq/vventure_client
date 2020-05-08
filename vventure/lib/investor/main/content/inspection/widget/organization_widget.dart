@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//displays organization name
+
 class OrganizationWidget extends StatefulWidget {
   final String organization;
 
@@ -12,6 +14,7 @@ class OrganizationWidget extends StatefulWidget {
 }
 
 class _OrganizationWidgetState extends State<OrganizationWidget> {
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return Padding(

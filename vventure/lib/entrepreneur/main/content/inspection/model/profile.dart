@@ -1,3 +1,5 @@
+//this class represents the user basic profile in the inspection view
+
 class InvestorBasicProfile {
   String id;
   String inspection;

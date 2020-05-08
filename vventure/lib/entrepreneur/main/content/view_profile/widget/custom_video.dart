@@ -3,6 +3,8 @@ import 'package:video_player/video_player.dart';
 import 'package:flutter/services.dart';
 import 'package:chewie/chewie.dart';
 
+//this class displays user video
+
 class CustomVideo extends StatefulWidget {
   final String video;
   CustomVideo({

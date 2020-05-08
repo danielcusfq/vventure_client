@@ -7,7 +7,10 @@ import 'package:vventure/entrepreneur/main/common_models/timeline.dart';
 import 'package:vventure/entrepreneur/main/common_models/work_image.dart';
 import 'package:vventure/entrepreneur/main/common_models/profile.dart';
 
+//this controller communicates with server
+
 class Communication {
+  //this function fetches user profile
   static Future<Profile> fetchProfile(
       String investor, String id, String token) async {
     id = "&id=" + id;
@@ -81,6 +84,7 @@ class Communication {
     }
   }
 
+  //this function request user inspection
   static Future<String> requestInspection(
       String investor, String id, String token) async {
     Map data = {
@@ -109,6 +113,7 @@ class Communication {
     }
   }
 
+  //this function add user to favorites
   static Future<String> addToFavorites(
       String id, String token, String investor) async {
     Map data = {
@@ -135,6 +140,7 @@ class Communication {
     }
   }
 
+  //remove user from favorites
   static Future<String> removeFromFavorites(
       String id, String token, String investor) async {
     Map data = {

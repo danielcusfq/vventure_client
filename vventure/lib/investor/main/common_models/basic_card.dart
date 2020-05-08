@@ -1,3 +1,5 @@
+//model that contains basic card user information
+
 class BasicCardInfo {
   String id;
   String organization;

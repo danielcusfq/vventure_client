@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//this widget display user background
+
 class BackgroundWidget extends StatefulWidget {
   final String background;
   BackgroundWidget({

@@ -4,6 +4,8 @@ import 'package:timeline_list/timeline.dart';
 import 'package:timeline_list/timeline_model.dart';
 import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
 
+//widget that displays and updates timeline
+
 class UserTimelineWidget extends StatefulWidget {
   final List<UserTimeline> timeline;
   final String id;
@@ -40,6 +42,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
     });
   }
 
+  //main view of the widget
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -169,6 +172,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
         ));
   }
 
+  //pop up dialog that add entry
   void dialog(context) {
     showDialog(
         context: context,
@@ -269,6 +273,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
         });
   }
 
+  //pop up dialog that updates entry
   void updateDialog(context, String idTimeline) {
     showDialog(
         context: context,
@@ -369,6 +374,7 @@ class _UserTimelineWidgetState extends State<UserTimelineWidget> {
         });
   }
 
+  //functions that calls controller
   void insertTimeline(String id, String token, String type, String detail) {
     var future = Communication.insertTimeline(id, token, type, detail);
     future.then((val) {});

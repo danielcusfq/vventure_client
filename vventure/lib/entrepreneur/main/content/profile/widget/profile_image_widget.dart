@@ -1,9 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
 import 'package:vventure/entrepreneur/main/content/profile/widget/loading_widget.dart';
+
+//widget that displays and updates profile image
 
 class ProfileImageWidget extends StatefulWidget {
   final String image;
@@ -29,6 +30,7 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
   File profileImageFile;
   bool _profileImageLoading = false;
 
+  //main view for the widget
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,6 +55,7 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
     );
   }
 
+  //dialog to update image
   void dialog(context) {
     showDialog(
         context: context,
@@ -178,6 +181,7 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
         });
   }
 
+  //functions that calls controller
   Future<bool> insertProfileImage(
       String id, String token, File image, String type) {
     var future = Communication.insertProfileImage(id, token, image, type);

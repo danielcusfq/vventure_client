@@ -1,3 +1,5 @@
+//authentication class used for login
+
 class UserInfo {
   String token;
   String type;

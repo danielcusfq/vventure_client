@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//this widget displays user profile image
+
 class ProfileImageWidget extends StatefulWidget {
   final String image;
   ProfileImageWidget({
@@ -12,6 +14,7 @@ class ProfileImageWidget extends StatefulWidget {
 }
 
 class _ProfileImageWidgetState extends State<ProfileImageWidget> {
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return Container(

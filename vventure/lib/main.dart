@@ -6,6 +6,7 @@ import 'package:vventure/register/view/register_view.dart';
 import 'package:vventure/investor/main/view/home_view.dart';
 import 'package:vventure/entrepreneur/main/view/home_view.dart';
 
+//launch main app
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'vventure',
       theme: ThemeData(
+          //Theme data for the application
           primaryColor: Color.fromRGBO(132, 94, 194, 1),
           accentColor: Color.fromRGBO(132, 94, 194, 1),
           textTheme: Theme.of(context).textTheme.apply(
@@ -27,6 +29,7 @@ class MyApp extends StatelessWidget {
               )),
       home: Splash(),
       routes: {
+        //named routes fro the application
         '/login': (context) => LoginView(),
         '/register': (context) => Register(),
         '/investor_home': (context) => InvestorHomeView(),

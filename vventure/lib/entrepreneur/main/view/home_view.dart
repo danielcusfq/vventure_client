@@ -7,6 +7,8 @@ import 'package:vventure/entrepreneur/main/content/search/view/search.dart';
 import 'package:vventure/entrepreneur/main/content/inspection/view/inspection.dart';
 import 'package:vventure/entrepreneur/main/content/profile/view/profile.dart';
 
+//this class contains all the navigation features of the entrepreneur
+
 class EntrepreneurHomeView extends StatefulWidget {
   @override
   _EntrepreneurHomeViewState createState() => _EntrepreneurHomeViewState();
@@ -22,6 +24,7 @@ class _EntrepreneurHomeViewState extends State<EntrepreneurHomeView> {
     checkLoginStatus();
   }
 
+  //main view for the app and navigation
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -91,6 +94,7 @@ class _EntrepreneurHomeViewState extends State<EntrepreneurHomeView> {
     );
   }
 
+  //get the index of the page thr user is going to navigate
   _getPage(int index) {
     switch (index) {
       case 0:
@@ -109,6 +113,7 @@ class _EntrepreneurHomeViewState extends State<EntrepreneurHomeView> {
     }
   }
 
+  //check if user is logged in and is an entrepreneur
   checkLoginStatus() async {
     sharedPreferences = await SharedPreferences.getInstance();
     if (sharedPreferences.getString("id") == null ||

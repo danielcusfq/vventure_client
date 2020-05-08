@@ -22,6 +22,7 @@ class _RegisterState extends State<Register> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool _isLoading = false;
 
+  // main widget with the register form
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -265,6 +266,7 @@ class _RegisterState extends State<Register> {
       'password': password
     };
 
+    //check if fields are empty
     if (type != null &&
         name.isNotEmpty &&
         lastName.isNotEmpty &&
@@ -275,6 +277,7 @@ class _RegisterState extends State<Register> {
           await http.post("https://vventure.tk/register/", body: data);
       Map<String, dynamic> jasonData;
 
+      //check status code of response
       if (response.statusCode == 200) {
         jasonData = json.decode(response.body);
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//this widget displays organization name
+
 class OrganizationWidget extends StatefulWidget {
   final String organization;
 

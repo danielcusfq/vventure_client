@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:vventure/investor/main/common_models/basic_card.dart';
 
+//this class communicates with server and fetches a list with results
+
 class FetchResults {
   static Future<List<BasicCardInfo>> fetchResults() async {
     final response = await http.get(

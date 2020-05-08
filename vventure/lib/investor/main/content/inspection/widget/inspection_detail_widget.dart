@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//this widget displays all the information of an inspection
+
 class InspectionDetailWidget extends StatefulWidget {
   final String detail;
   InspectionDetailWidget({Key key, @required this.detail}) : super(key: key);
@@ -8,6 +10,7 @@ class InspectionDetailWidget extends StatefulWidget {
 }
 
 class _InspectionDetailWidgetState extends State<InspectionDetailWidget> {
+  //main view of the widget
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//this class contains the main widget for a detailed inspection
+
 class InspectionDetailWidget extends StatefulWidget {
   final String detail;
   InspectionDetailWidget({Key key, @required this.detail}) : super(key: key);

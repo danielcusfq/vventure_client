@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vventure/login/view/login_view.dart';
 
+//displays log out option and handles the request
+
 class LogOut extends StatefulWidget {
   @override
   _LogOutState createState() => _LogOutState();
 }
 
 class _LogOutState extends State<LogOut> {
+  //main view for the widget
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -31,6 +34,7 @@ class _LogOutState extends State<LogOut> {
     );
   }
 
+  //log outs user
   logOut() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.clear();

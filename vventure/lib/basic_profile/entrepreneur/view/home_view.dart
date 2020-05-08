@@ -26,6 +26,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
   TextEditingController solution = new TextEditingController();
   bool _isLoading = false;
 
+  //main widget for the view
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -332,6 +333,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
     );
   }
 
+  //gets image from gallery
   Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
@@ -339,6 +341,7 @@ class _BasicProfileEntViewState extends State<BasicProfileEntView> {
     });
   }
 
+  //makes call to server
   void completeRegister(UserInfo userInfo, File image, String stage,
       String percentage, String exchange, String problem, String solution) {
     var future = Communication.completeRegister(

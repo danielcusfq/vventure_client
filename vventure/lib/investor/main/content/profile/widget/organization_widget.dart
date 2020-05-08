@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 
+//this widget displays organization name
+
 class OrganizationWidget extends StatefulWidget {
   final String organization;
   final String id;
@@ -24,6 +26,7 @@ class _OrganizationWidgetState extends State<OrganizationWidget> {
   Color myColor = Color.fromRGBO(132, 94, 194, 1);
   TextEditingController organization = new TextEditingController();
 
+  //main view for = the widget
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,6 +48,7 @@ class _OrganizationWidgetState extends State<OrganizationWidget> {
     );
   }
 
+  //popup update dialog for organization name
   void updateDialog(context) {
     showDialog(
         context: context,
@@ -145,6 +149,7 @@ class _OrganizationWidgetState extends State<OrganizationWidget> {
         });
   }
 
+  //calls controller
   void updateOrganization(
       String id, String token, String type, String organization) {
     var future =

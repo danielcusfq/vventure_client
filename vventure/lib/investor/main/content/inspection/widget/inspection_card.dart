@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/investor/main/content/inspection/view/view_inspection.dart';
 
+//this widget shows a card with information of user
+
 class InspectionCard extends StatefulWidget {
   final investorID;
   final token;
@@ -25,6 +27,7 @@ class InspectionCard extends StatefulWidget {
 }
 
 class _InspectionCardState extends State<InspectionCard> {
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return Hero(

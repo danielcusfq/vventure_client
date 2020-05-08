@@ -3,6 +3,8 @@ import 'package:vventure/investor/main/content/inspection/controller/communicati
 import 'package:vventure/investor/main/common_models/basic_card.dart';
 import 'package:vventure/investor/main/content/inspection/widget/inspection_card.dart';
 
+//this widget displays a list of a previous inspections
+
 class InvestorInspectionHistoryView extends StatefulWidget {
   final String id;
   final String token;
@@ -20,6 +22,7 @@ class _InvestorInspectionHistoryViewState
   List<BasicCardInfo> _users = new List();
   bool _loading = false;
 
+  //run functions on widget initialization
   @override
   void initState() {
     setState(() {
@@ -36,6 +39,7 @@ class _InvestorInspectionHistoryViewState
     super.initState();
   }
 
+  //main view of the widget
   @override
   Widget build(BuildContext context) {
     return Scaffold(

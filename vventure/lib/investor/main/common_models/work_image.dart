@@ -1,3 +1,5 @@
+//model that represents user workimages
+
 class WorkImage {
   String idImage;
   String idPerson;

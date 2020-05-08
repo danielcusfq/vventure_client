@@ -12,6 +12,8 @@ class ViewInvestorInspection extends StatefulWidget {
   final String id;
   final String inspection;
   final String investor;
+
+  //constructor of class
   ViewInvestorInspection(
       {Key key,
       @required this.inspection,
@@ -29,6 +31,7 @@ class _ViewInvestorInspectionState extends State<ViewInvestorInspection> {
   InspectionModel _inspection;
   bool _isLoading = false;
 
+  //functions run at initialization
   @override
   void initState() {
     setState(() {
@@ -49,6 +52,7 @@ class _ViewInvestorInspectionState extends State<ViewInvestorInspection> {
     super.initState();
   }
 
+  //main widget with the detailed view of one inspection
   @override
   Widget build(BuildContext context) {
     return Hero(
@@ -85,6 +89,7 @@ class _ViewInvestorInspectionState extends State<ViewInvestorInspection> {
     );
   }
 
+  //access shared preferences of device and user
   Future<dynamic> getPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     setState(() {

@@ -1,3 +1,5 @@
+//model that represents user information
+
 class Info {
   String idInfo;
   String idPerson;

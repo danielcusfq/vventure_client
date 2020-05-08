@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vventure/investor/main/common_models/info.dart';
 import 'package:vventure/investor/main/content/profile/controller/communication.dart';
 
+//this widget displays user information
+
 class InfoWidget extends StatefulWidget {
   final List<Info> info;
   final String id;
@@ -29,6 +31,7 @@ class _InfoWidgetState extends State<InfoWidget> {
   TextEditingController title = new TextEditingController();
   TextEditingController description = new TextEditingController();
 
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -177,6 +180,7 @@ class _InfoWidgetState extends State<InfoWidget> {
     );
   }
 
+  //popup to add new information
   void dialog(context) {
     showDialog(
         context: context,
@@ -305,6 +309,7 @@ class _InfoWidgetState extends State<InfoWidget> {
         });
   }
 
+  //popup dialog to update infromation
   void updateDialog(context, String id, String token, String idInfo) {
     showDialog(
         context: context,
@@ -438,6 +443,7 @@ class _InfoWidgetState extends State<InfoWidget> {
         });
   }
 
+  //functions that call the controller
   void insertInfo(
       String id, String token, String title, String detail, String type) {
     var future = Communication.insertInfo(id, token, title, detail, type);

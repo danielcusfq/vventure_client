@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
 
+//widget that displays and update organization stage
+
 class StageWidget extends StatefulWidget {
   final stage;
   final String id;
@@ -33,6 +35,7 @@ class _StageWidgetState extends State<StageWidget> {
     });
   }
 
+  //main view for the widget
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -59,6 +62,7 @@ class _StageWidgetState extends State<StageWidget> {
     );
   }
 
+  //pop up to update stage
   void updateDialog(context) {
     showDialog(
         context: context,
@@ -156,6 +160,7 @@ class _StageWidgetState extends State<StageWidget> {
         });
   }
 
+  //calls controller
   void updateStage(String id, String token, String type, String stage) {
     var future = Communication.updateStage(id, token, type, stage);
     future.then((val) {});

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/entrepreneur/main/content/inspection/view/view_inspection.dart';
 
+//this class contain the widget that represents a card with the investor information
+
 class InvestorProfileCard extends StatefulWidget {
   final String id;
   final String inspection;

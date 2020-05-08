@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:vventure/entrepreneur/main/common_models/highlight.dart';
 
+//this widget displays user highlights
+
 class HighlightsWidget extends StatefulWidget {
   final List<Highlight> highlights;
 

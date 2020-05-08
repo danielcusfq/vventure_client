@@ -17,6 +17,7 @@ class _InspectionState extends State<Inspection> {
   String id;
   String token;
 
+  //functions run at widget initialization
   @override
   void initState() {
     setState(() {
@@ -35,6 +36,7 @@ class _InspectionState extends State<Inspection> {
     super.initState();
   }
 
+  //main widget with view for the lis of inspections
   @override
   Widget build(BuildContext context) {
     return _loading == true
@@ -89,6 +91,7 @@ class _InspectionState extends State<Inspection> {
           );
   }
 
+  //get preferences of device and user
   Future<dynamic> getPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     setState(() {
@@ -97,6 +100,7 @@ class _InspectionState extends State<Inspection> {
     });
   }
 
+  //refresh the view
   Future<Null> _refresh() async {
     setState(() {
       _loading = true;

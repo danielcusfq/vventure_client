@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vventure/entrepreneur/main/content/profile/controller/communication.dart';
 
+//widget that displays and updates organization stakes
+
 class StakeWidget extends StatefulWidget {
   final String stake;
   final String exchange;
@@ -27,6 +29,7 @@ class _StakeWidgetState extends State<StakeWidget> {
   TextEditingController stake = new TextEditingController();
   TextEditingController exchange = new TextEditingController();
 
+  //main view of the widget
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -68,6 +71,7 @@ class _StakeWidgetState extends State<StakeWidget> {
     );
   }
 
+  //pop up dialog to update stakes
   void updateDialog(context) {
     showDialog(
         context: context,
@@ -212,6 +216,7 @@ class _StakeWidgetState extends State<StakeWidget> {
         });
   }
 
+  //calls controller
   void updateStake(
       String id, String token, String type, String stake, String exchange) {
     var future = Communication.updateStake(id, token, type, stake, exchange);

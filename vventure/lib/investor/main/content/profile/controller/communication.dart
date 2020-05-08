@@ -8,7 +8,10 @@ import 'package:vventure/investor/main/common_models/timeline.dart';
 import 'package:vventure/investor/main/common_models/work_image.dart';
 import 'package:vventure/investor/main/content/profile/model/my_profile.dart';
 
+//this class helps the communication with server
+
 class Communication {
+  //this function fetches the hole profile of user
   static Future<MyProfile> fetchProfile(String id, String token) async {
     id = "&id=" + id;
     token = "&token=" + token;
@@ -74,6 +77,7 @@ class Communication {
 
   //----------------------------------------------------------------------------
   //-------------------Profile Video--------------------------------------------
+  //this function inserts user video in the server
   static Future<bool> insertVideo(
       String id, String token, File videoFile, String type) async {
     String video;
@@ -117,6 +121,7 @@ class Communication {
 
   //----------------------------------------------------------------------------
   //-------------------Profile Image--------------------------------------------
+  //this function inserts user profile image in the server
   static Future<bool> insertProfileImage(
       String id, String token, File imageFile, String type) async {
     String image;
@@ -159,6 +164,7 @@ class Communication {
 
   //----------------------------------------------------------------------------
   //-------------------Organization---------------------------------------------
+  //this function inserts organization name in the server
   static Future<bool> updateOrganization(
       String id, String token, String organization, String type) async {
     Map data = {
@@ -190,6 +196,7 @@ class Communication {
 
   //----------------------------------------------------------------------------
   //-------------------Name-----------------------------------------------------
+  //this function updates user name
   static Future<bool> updateName(String id, String token, String type,
       String name, String lastName) async {
     Map data = {
@@ -221,6 +228,7 @@ class Communication {
 
   //----------------------------------------------------------------------------
   //-------------------Interests------------------------------------------------
+  //this function updates user interests
   static Future<bool> updateInterests(
       String id, String token, String type, String interest) async {
     Map data = {
@@ -253,6 +261,7 @@ class Communication {
 
   //----------------------------------------------------------------------------
   //-------------------Background-----------------------------------------------
+  //this function updates user background
   static Future<bool> updateBackground(
       String id, String token, String type, String background) async {
     Map data = {
@@ -285,6 +294,7 @@ class Communication {
 
   //----------------------------------------------------------------------------
   //-------------------HIGHLIGHTS-----------------------------------------------
+  //this function inserts user highlights
   static Future<bool> insertHighlight(
       String id, String token, String detail, String type) async {
     Map data = {
@@ -313,6 +323,7 @@ class Communication {
     }
   }
 
+  //this function updates user highlights
   static Future<bool> updateHighlight(String id, String token, String detail,
       String type, String idHighlight) async {
     Map data = {
@@ -343,6 +354,7 @@ class Communication {
     }
   }
 
+  //this function deletes user highlights
   static Future<bool> deleteHighlight(
       String id, String token, String type, String idHighlight) async {
     Map data = {
@@ -374,6 +386,7 @@ class Communication {
 
   //----------------------------------------------------------------------------
   //-------------------Info-----------------------------------------------------
+  //this function inserts user information
   static Future<bool> insertInfo(
       String id, String token, String title, String detail, String type) async {
     Map data = {
@@ -402,6 +415,7 @@ class Communication {
     }
   }
 
+  //this function updates user info
   static Future<bool> updateInfo(String id, String token, String title,
       String detail, String type, String idInfo) async {
     Map data = {
@@ -432,6 +446,7 @@ class Communication {
     }
   }
 
+  //this function deletes user info
   static Future<bool> deleteInfo(
       String id, String token, String type, String idInfo) async {
     Map data = {
@@ -462,6 +477,7 @@ class Communication {
 
   //----------------------------------------------------------------------------
   //------------------Image-----------------------------------------------------
+  //this function inserts user image
   static Future<bool> insertImage(
       String id, String token, File imageFile, String type) async {
     String image;
@@ -502,6 +518,7 @@ class Communication {
     }
   }
 
+  //this function deletes user image
   static Future<bool> deleteImage(
       String id, String token, String type, String idImage) async {
     Map data = {
@@ -532,6 +549,7 @@ class Communication {
 
   //----------------------------------------------------------------------------
   //-------------------Timeline-------------------------------------------------
+  //this function inserts user timeline
   static Future<bool> insertTimeline(
       String id, String token, String type, String detail) async {
     Map data = {
@@ -560,6 +578,7 @@ class Communication {
     }
   }
 
+  //this function updates user timeline
   static Future<bool> updateTimeline(String id, String token, String type,
       String idTimeline, String detail) async {
     Map data = {
@@ -590,6 +609,7 @@ class Communication {
     }
   }
 
+  //this function deletes user timeline
   static Future<bool> deleteTimeline(
       String id, String token, String type, String idTimeline) async {
     Map data = {

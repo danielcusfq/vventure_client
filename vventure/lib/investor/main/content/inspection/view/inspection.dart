@@ -5,6 +5,8 @@ import 'package:vventure/investor/main/content/inspection/controller/communicati
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vventure/investor/main/content/inspection/view/history.dart';
 
+//this widget displays a list currents inspections
+
 class Inspection extends StatefulWidget {
   @override
   _InspectionState createState() => _InspectionState();
@@ -20,6 +22,7 @@ class _InspectionState extends State<Inspection> {
   String id;
   String token;
 
+  //run functions at widget initialization
   @override
   void initState() {
     setState(() {
@@ -38,6 +41,7 @@ class _InspectionState extends State<Inspection> {
     super.initState();
   }
 
+  //main view of widget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,6 +111,7 @@ class _InspectionState extends State<Inspection> {
     );
   }
 
+  //get preferences of device and user
   Future<dynamic> getPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     setState(() {
@@ -115,6 +120,7 @@ class _InspectionState extends State<Inspection> {
     });
   }
 
+  //refresh the view of user
   Future<Null> _refresh() async {
     setState(() {
       _loading = true;

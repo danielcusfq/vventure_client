@@ -21,6 +21,7 @@ class _LoginViewState extends State<LoginView> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool _isLoading = false;
 
+  //this widget contains the main view for the login
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -181,12 +182,14 @@ class _LoginViewState extends State<LoginView> {
       'password': password
     };
 
+    //check that info is not empty
     if (type != null && password.isNotEmpty && email.isNotEmpty) {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       var response = await http.post("https://vventure.tk/login/", body: data);
       Map<String, dynamic> jasonData;
 
+      //check for status code
       if (response.statusCode == 200) {
         jasonData = json.decode(response.body);
 
@@ -196,6 +199,7 @@ class _LoginViewState extends State<LoginView> {
           setState(() {
             _isLoading = false;
 
+            //create user info
             final UserInfo userInfo = new UserInfo(
                 jasonData['token'].toString(),
                 jasonData['type'].toString(),
@@ -215,6 +219,7 @@ class _LoginViewState extends State<LoginView> {
                 sharedPreferences.setString(
                     "activation", jasonData['activation'].toString());
 
+                //navigates the user to page
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                         builder: (BuildContext context) =>

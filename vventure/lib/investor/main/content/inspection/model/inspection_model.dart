@@ -1,3 +1,5 @@
+//this model represents all the information of an inspection
+
 class InspectionModel {
   String image;
   String organization;

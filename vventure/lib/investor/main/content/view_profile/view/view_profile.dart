@@ -18,6 +18,8 @@ import 'package:vventure/investor/main/content/view_profile/widget/stake_widget.
 import 'package:vventure/investor/main/content/view_profile/widget/problem_widget.dart';
 import 'package:vventure/investor/main/content/view_profile/widget/solution_widget.dart';
 
+//this widget shows user extended profile
+
 class ViewEntrepreneurProfile extends StatefulWidget {
   final String entrepreneurId;
   final bool inspection;
@@ -42,6 +44,7 @@ class _ViewEntrepreneurProfileState extends State<ViewEntrepreneurProfile> {
   Color _favorite;
   bool _isLoading = false;
 
+  //init data on widget
   @override
   void initState() {
     setState(() {
@@ -67,6 +70,7 @@ class _ViewEntrepreneurProfileState extends State<ViewEntrepreneurProfile> {
     super.initState();
   }
 
+  //main view for widget
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -221,6 +225,7 @@ class _ViewEntrepreneurProfileState extends State<ViewEntrepreneurProfile> {
     );
   }
 
+  //get device and user preferences
   Future<dynamic> getPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     setState(() {
@@ -229,6 +234,7 @@ class _ViewEntrepreneurProfileState extends State<ViewEntrepreneurProfile> {
     });
   }
 
+  //navigate to previous page
   void navigateBack() {
     Navigator.pop(context, false);
   }

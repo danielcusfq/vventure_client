@@ -3,7 +3,10 @@ import 'package:http/http.dart' as http;
 import 'package:vventure/investor/main/content/inspection/model/inspection_model.dart';
 import 'package:vventure/investor/main/common_models/basic_card.dart';
 
+//this class communicates with server
+
 class Communication {
+  //this function fetches user basic information
   static Future<List<BasicCardInfo>> fetchUsers(String id, String token) async {
     id = "&id=" + id;
     token = "&token=" + token;
@@ -34,6 +37,7 @@ class Communication {
     return users;
   }
 
+  //this function fetches an inspection information
   static Future<InspectionModel> fetchInspection(
       String id, String token, String inspection) async {
     id = "&id=" + id;
@@ -65,6 +69,7 @@ class Communication {
     return inspectionData;
   }
 
+  //this function fetches a list with previous inspection
   static Future<List<BasicCardInfo>> fetchInspectionHistory(
       String id, String token) async {
     id = "&id=" + id;
@@ -96,6 +101,7 @@ class Communication {
     return users;
   }
 
+  //this function denys user inspection
   static Future<String> denyInspection(
       String inspection, String entrepreneur, String id, String token) async {
     Map data = {
@@ -123,6 +129,7 @@ class Communication {
     }
   }
 
+  //this function gives user feedback
   static Future<String> giveFeedback(String inspection, String entrepreneur,
       String id, String token, String description) async {
     Map data = {

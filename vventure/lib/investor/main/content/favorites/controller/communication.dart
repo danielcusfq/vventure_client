@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:vventure/investor/main/common_models/basic_card.dart';
 
+//this class communicates with the server and fetches a list of users with their basic information
+
 class Communication {
   static Future<List<BasicCardInfo>> fetchResults(
       String id, String token) async {
